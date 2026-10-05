@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs><clipPath id="pool"><path d="M340 400h900a40 40 0 0 1 40 40v260a40 40 0 0 1-40 40h-900a40 40 0 0 1-40-40v-260a40 40 0 0 1 40-40z"/></clipPath></defs>
+  <g clip-path="url(#pool)"><circle cx="480" cy="560" r="22" fill="#fff6d8" fill-opacity="0.28"/>
+        <circle cx="480" cy="560" r="6" fill="#fffaf0"/><circle cx="680" cy="560" r="22" fill="#fff6d8" fill-opacity="0.28"/>
+        <circle cx="680" cy="560" r="6" fill="#fffaf0"/><circle cx="880" cy="560" r="22" fill="#fff6d8" fill-opacity="0.28"/>
+        <circle cx="880" cy="560" r="6" fill="#fffaf0"/><circle cx="1080" cy="560" r="22" fill="#fff6d8" fill-opacity="0.28"/>
+        <circle cx="1080" cy="560" r="6" fill="#fffaf0"/><circle cx="780" cy="680" r="22" fill="#fff6d8" fill-opacity="0.28"/>
+        <circle cx="780" cy="680" r="6" fill="#fffaf0"/></g></svg>

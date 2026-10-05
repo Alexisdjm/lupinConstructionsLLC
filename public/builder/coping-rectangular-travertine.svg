@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs><pattern id="grain" width="28" height="14" patternUnits="userSpaceOnUse">
+      <rect width="28" height="14" fill="#e6d3b4"/>
+      <path d="M0 7h28M14 0v7M0 7v7" stroke="#c4b08a" stroke-width="1"/>
+    </pattern></defs>
+  <path d="M340 400h900a40 40 0 0 1 40 40v260a40 40 0 0 1-40 40h-900a40 40 0 0 1-40-40v-260a40 40 0 0 1 40-40z" stroke="url(#grain)" stroke-width="26" stroke-linejoin="round"/>
+  <path d="M340 400h900a40 40 0 0 1 40 40v260a40 40 0 0 1-40 40h-900a40 40 0 0 1-40-40v-260a40 40 0 0 1 40-40z" stroke="#c4b08a" stroke-opacity="0.45" stroke-width="2" stroke-linejoin="round"/></svg>

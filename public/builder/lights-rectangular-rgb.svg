@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs><clipPath id="pool"><path d="M340 400h900a40 40 0 0 1 40 40v260a40 40 0 0 1-40 40h-900a40 40 0 0 1-40-40v-260a40 40 0 0 1 40-40z"/></clipPath></defs>
+  <g clip-path="url(#pool)"><circle cx="480" cy="560" r="18" fill="#2ad9c3" fill-opacity="0.35">
+        <animate attributeName="fill" values="#2ad9c3;#60a5fa;#f472b6;#facc15;#2ad9c3" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="480" cy="560" r="5" fill="#2ad9c3">
+        <animate attributeName="fill" values="#2ad9c3;#60a5fa;#f472b6;#facc15;#2ad9c3" dur="4s" repeatCount="indefinite"/>
+      </circle><circle cx="680" cy="560" r="18" fill="#60a5fa" fill-opacity="0.35">
+        <animate attributeName="fill" values="#2ad9c3;#60a5fa;#f472b6;#facc15;#2ad9c3" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="680" cy="560" r="5" fill="#60a5fa">
+        <animate attributeName="fill" values="#2ad9c3;#60a5fa;#f472b6;#facc15;#2ad9c3" dur="4s" repeatCount="indefinite"/>
+      </circle><circle cx="880" cy="560" r="18" fill="#f472b6" fill-opacity="0.35">
+        <animate attributeName="fill" values="#2ad9c3;#60a5fa;#f472b6;#facc15;#2ad9c3" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="880" cy="560" r="5" fill="#f472b6">
+        <animate attributeName="fill" values="#2ad9c3;#60a5fa;#f472b6;#facc15;#2ad9c3" dur="4s" repeatCount="indefinite"/>
+      </circle><circle cx="1080" cy="560" r="18" fill="#facc15" fill-opacity="0.35">
+        <animate attributeName="fill" values="#2ad9c3;#60a5fa;#f472b6;#facc15;#2ad9c3" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="1080" cy="560" r="5" fill="#facc15">
+        <animate attributeName="fill" values="#2ad9c3;#60a5fa;#f472b6;#facc15;#2ad9c3" dur="4s" repeatCount="indefinite"/>
+      </circle><circle cx="780" cy="680" r="18" fill="#2ad9c3" fill-opacity="0.35">
+        <animate attributeName="fill" values="#2ad9c3;#60a5fa;#f472b6;#facc15;#2ad9c3" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="780" cy="680" r="5" fill="#2ad9c3">
+        <animate attributeName="fill" values="#2ad9c3;#60a5fa;#f472b6;#facc15;#2ad9c3" dur="4s" repeatCount="indefinite"/>
+      </circle></g></svg>

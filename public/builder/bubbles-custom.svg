@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs><clipPath id="pool"><path d="M420 390c120-70 360-90 560-40 180 46 250 150 220 250-40 130-210 210-460 200-220-10-390-90-430-210-30-90 10-150 110-200z"/></clipPath></defs>
+  <g clip-path="url(#pool)"><circle cx="520" cy="480" r="3" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="480;462;480" dur="2s" repeatCount="indefinite"/>
+    </circle><circle cx="757" cy="469" r="4" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="469;451;469" dur="3s" repeatCount="indefinite"/>
+    </circle><circle cx="994" cy="538" r="5" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="538;520;538" dur="4s" repeatCount="indefinite"/>
+    </circle><circle cx="851" cy="677" r="6" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="677;659;677" dur="2s" repeatCount="indefinite"/>
+    </circle><circle cx="668" cy="636" r="3" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="636;618;636" dur="3s" repeatCount="indefinite"/>
+    </circle><circle cx="545" cy="505" r="4" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="505;487;505" dur="4s" repeatCount="indefinite"/>
+    </circle><circle cx="782" cy="494" r="5" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="494;476;494" dur="2s" repeatCount="indefinite"/>
+    </circle><circle cx="939" cy="563" r="6" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="563;545;563" dur="3s" repeatCount="indefinite"/>
+    </circle><circle cx="876" cy="632" r="3" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="632;614;632" dur="4s" repeatCount="indefinite"/>
+    </circle><circle cx="613" cy="661" r="4" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="661;643;661" dur="2s" repeatCount="indefinite"/>
+    </circle><circle cx="570" cy="530" r="5" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="530;512;530" dur="3s" repeatCount="indefinite"/>
+    </circle><circle cx="727" cy="519" r="6" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="519;501;519" dur="4s" repeatCount="indefinite"/>
+    </circle><circle cx="964" cy="518" r="3" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="518;500;518" dur="2s" repeatCount="indefinite"/>
+    </circle><circle cx="821" cy="657" r="4" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="657;639;657" dur="3s" repeatCount="indefinite"/>
+    </circle><circle cx="638" cy="686" r="5" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="686;668;686" dur="4s" repeatCount="indefinite"/>
+    </circle><circle cx="595" cy="485" r="6" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="485;467;485" dur="2s" repeatCount="indefinite"/>
+    </circle><circle cx="752" cy="474" r="3" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="474;456;474" dur="3s" repeatCount="indefinite"/>
+    </circle><circle cx="989" cy="543" r="4" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="543;525;543" dur="4s" repeatCount="indefinite"/>
+    </circle><circle cx="846" cy="682" r="5" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="682;664;682" dur="2s" repeatCount="indefinite"/>
+    </circle><circle cx="663" cy="641" r="6" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="641;623;641" dur="3s" repeatCount="indefinite"/>
+    </circle><circle cx="540" cy="510" r="3" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="510;492;510" dur="4s" repeatCount="indefinite"/>
+    </circle><circle cx="777" cy="499" r="4" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="499;481;499" dur="2s" repeatCount="indefinite"/>
+    </circle><circle cx="934" cy="568" r="5" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="568;550;568" dur="3s" repeatCount="indefinite"/>
+    </circle><circle cx="871" cy="637" r="6" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="637;619;637" dur="4s" repeatCount="indefinite"/>
+    </circle><circle cx="608" cy="666" r="3" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="666;648;666" dur="2s" repeatCount="indefinite"/>
+    </circle><circle cx="565" cy="535" r="4" fill="#ffffff" fill-opacity="0.75">
+      <animate attributeName="cy" values="535;517;535" dur="3s" repeatCount="indefinite"/>
+    </circle></g></svg>

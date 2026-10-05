@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs><pattern id="deck" width="46" height="24" patternUnits="userSpaceOnUse">
+      <rect width="46" height="24" fill="#d7b56a"/>
+      <path d="M0 12h46M23 0v12M0 12v12" stroke="#b08a3e" stroke-width="1.2"/>
+    </pattern></defs>
+  <path d="M340 400h900a40 40 0 0 1 40 40v260a40 40 0 0 1-40 40h-900a40 40 0 0 1-40-40v-260a40 40 0 0 1 40-40z" stroke="url(#deck)" stroke-width="220" stroke-linejoin="round"/></svg>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <clipPath id="pool"><path d="M340 400h900a40 40 0 0 1 40 40v260a40 40 0 0 1-40 40h-900a40 40 0 0 1-40-40v-260a40 40 0 0 1 40-40z"/></clipPath>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6e7c1"/>
+      <stop offset="0.45" stop-color="#e7c98a"/>
+      <stop offset="1" stop-color="#a16207"/>
+    </linearGradient>
+    <pattern id="tile" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0V36" stroke="#ffffff" stroke-opacity="0.45" stroke-width="1.4"/>
+    </pattern>
+  </defs>
+  <g clip-path="url(#pool)">
+    <rect width="1600" height="900" fill="url(#water)"/>
+    <rect width="1600" height="900" fill="url(#tile)"/>
+    <path d="M340 400h900a40 40 0 0 1 40 40v260a40 40 0 0 1-40 40h-900a40 40 0 0 1-40-40v-260a40 40 0 0 1 40-40z" fill="none" stroke="#a16207" stroke-opacity="0.55" stroke-width="70"/>
+    <ellipse cx="760" cy="470" rx="280" ry="28" fill="#ffffff" fill-opacity="0.2"/>
+  </g></svg>
