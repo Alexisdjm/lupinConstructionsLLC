@@ -1,6 +1,12 @@
 import { BrandLockup } from "@/src/components/Header/BrandLockup";
 import Link from "next/link";
+import { useState } from "react";
 import {
+  COPING_PHOTO_BASE,
+  COPING_PHOTO_OVERLAYS,
+  DECK_PHOTO_BASE,
+  DECK_PHOTO_OVERLAYS,
+  VIEWER_MODES,
   copingSources,
   deckSources,
   fountainSources,
@@ -11,7 +17,7 @@ import {
   waterSources,
 } from "./config";
 import { LayerImage } from "./LayerImage";
-import type { PoolConfig } from "./types";
+import type { PhotoPhase, PoolConfig, ViewerMode } from "./types";
 
 const WATER = waterSources();
 const DECKS = deckSources();
@@ -20,15 +26,33 @@ const LIGHTS = lightingSources();
 const SPAS = spaSources();
 const FOUNTAINS = fountainSources();
 const BUBBLES = shapeSources("bubbles");
+const PHOTO_FIT = "object-contain";
 
 type PoolViewerProps = {
   config: PoolConfig;
+  photoPhase: PhotoPhase;
 };
 
-export function PoolViewer({ config }: PoolViewerProps) {
+export function PoolViewer({ config, photoPhase }: PoolViewerProps) {
+  const [mode, setMode] = useState<ViewerMode>("animation");
+  const [realisticMounted, setRealisticMounted] = useState(false);
+
+  function selectMode(next: ViewerMode) {
+    if (next === "realistic" && !realisticMounted) {
+      setRealisticMounted(true);
+      window.setTimeout(() => setMode("realistic"), 20);
+      return;
+    }
+    setMode(next);
+  }
+
   return (
     <section className="relative min-h-[42dvh] flex-1 overflow-hidden bg-[#07111c]" aria-label="Pool preview">
-      <div className="absolute inset-0">
+      <div
+        className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+        style={{ opacity: mode === "animation" ? 1 : 0 }}
+        aria-hidden={mode !== "animation"}
+      >
         <img
           src="/hero/villa-night.jpg"
           alt=""
@@ -84,6 +108,69 @@ export function PoolViewer({ config }: PoolViewerProps) {
             visible={config.fountain && layer.shape === config.shape && layer.coping === config.coping}
           />
         ))}
+      </div>
+
+      {realisticMounted ? (
+        <div
+          className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+          style={{ opacity: mode === "realistic" ? 1 : 0 }}
+          aria-hidden={mode !== "realistic"}
+        >
+          <div
+            className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+            style={{ opacity: photoPhase === "coping" ? 1 : 0 }}
+          >
+            <LayerImage src={COPING_PHOTO_BASE} visible fit={PHOTO_FIT} />
+            {COPING_PHOTO_OVERLAYS.map((overlay) => (
+              <LayerImage
+                key={`coping-${overlay.id}`}
+                src={overlay.src}
+                visible={config.coping === overlay.id}
+                fit={PHOTO_FIT}
+              />
+            ))}
+          </div>
+          <div
+            className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+            style={{ opacity: photoPhase === "deck" ? 1 : 0 }}
+          >
+            <LayerImage src={DECK_PHOTO_BASE} visible fit={PHOTO_FIT} />
+            {DECK_PHOTO_OVERLAYS.map((overlay) => (
+              <LayerImage
+                key={`deck-${overlay.id}`}
+                src={overlay.src}
+                visible={config.deck === overlay.id}
+                fit={PHOTO_FIT}
+              />
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      <div className="absolute top-28 left-1/2 z-20 -translate-x-1/2 md:top-4">
+        <div
+          role="radiogroup"
+          aria-label="Preview style"
+          className="flex rounded-full border border-white/15 bg-[#07111c]/75 p-1"
+        >
+          {VIEWER_MODES.map((item) => {
+            const selected = mode === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                role="radio"
+                aria-checked={selected}
+                onClick={() => selectMode(item.id)}
+                className={`rounded-full px-4 py-2 text-xs font-medium tracking-wide transition-colors ${
+                  selected ? "bg-[#2ad9c3] text-[#06261f]" : "text-white/75 hover:text-white"
+                }`}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-4 bg-gradient-to-b from-[#07111c]/75 to-transparent px-4 py-4 sm:px-6">

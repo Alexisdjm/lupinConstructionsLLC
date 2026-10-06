@@ -6,6 +6,7 @@ import type {
   LightingId,
   PoolConfig,
   ShapeId,
+  ViewerMode,
 } from "./types";
 
 export const STEPS = [
@@ -56,6 +57,30 @@ export const DECKS: { id: DeckId; label: string; detail: string; swatch: string 
   { id: "charcoal", label: "Charcoal", detail: "Dark cut pavers", swatch: "#3c444a" },
   { id: "ipe", label: "Ipe", detail: "Hardwood decking", swatch: "#6e4126" },
   { id: "bluestone", label: "Bluestone", detail: "Blue-gray natural stone", swatch: "#7f97a3" },
+];
+
+export const VIEWER_MODES: { id: ViewerMode; label: string }[] = [
+  { id: "animation", label: "Animation" },
+  { id: "realistic", label: "Realistic" },
+];
+
+export const COPING_PHOTO_BASE = "/builder/phases/coping/based-pavers.webp";
+
+export const COPING_PHOTO_OVERLAYS: { id: CopingId; src: string }[] = [
+  { id: "travertine", src: "/builder/phases/coping/travertine.webp" },
+  { id: "slate", src: "/builder/phases/coping/concrete.webp" },
+  { id: "teak", src: "/builder/phases/coping/wood.webp" },
+  { id: "brick", src: "/builder/phases/coping/brick.webp" },
+];
+
+export const DECK_PHOTO_BASE = "/builder/phases/deck/ipe-deck.webp";
+
+export const DECK_PHOTO_OVERLAYS: { id: DeckId; src: string }[] = [
+  { id: "travertine", src: "/builder/phases/deck/travertine-deck.webp" },
+  { id: "shellstone", src: "/builder/phases/deck/shellstone-deck.webp" },
+  { id: "concrete", src: "/builder/phases/deck/concrete-deck.webp" },
+  { id: "charcoal", src: "/builder/phases/deck/charcoal-deck.webp" },
+  { id: "bluestone", src: "/builder/phases/deck/bluestone-deck.webp" },
 ];
 
 export const LIGHTING: { id: LightingId; label: string; detail: string }[] = [
