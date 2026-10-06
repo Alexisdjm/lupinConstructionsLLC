@@ -53,6 +53,7 @@ export function ContactStep({ config, onSubmit }: ContactStepProps) {
 
   const extras = [
     config.spa ? "Attached spa" : null,
+    config.fountain ? "Fountain" : null,
     config.heater ? "Heater" : null,
     config.bubbles ? "Bubble jets" : null,
   ].filter((item): item is string => item !== null);

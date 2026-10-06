@@ -74,6 +74,7 @@ export const DEFAULT_CONFIG: PoolConfig = {
   deck: "shellstone",
   lighting: "white",
   spa: false,
+  fountain: false,
   heater: false,
   bubbles: false,
 };
@@ -148,7 +149,29 @@ export function lightingSources() {
   );
 }
 
-export function shapeSources(kind: "spa" | "bubbles") {
+export function spaSources() {
+  return SHAPES.flatMap((shape) =>
+    COPINGS.map((coping) => ({
+      key: `spa-${shape.id}-${coping.id}`,
+      src: `/builder/spa-${shape.id}-${coping.id}.svg`,
+      shape: shape.id,
+      coping: coping.id,
+    })),
+  );
+}
+
+export function fountainSources() {
+  return SHAPES.flatMap((shape) =>
+    COPINGS.map((coping) => ({
+      key: `fountain-${shape.id}-${coping.id}`,
+      src: `/builder/fountain-${shape.id}-${coping.id}.svg`,
+      shape: shape.id,
+      coping: coping.id,
+    })),
+  );
+}
+
+export function shapeSources(kind: "bubbles") {
   return SHAPES.map((shape) => ({
     key: `${kind}-${shape.id}`,
     src: `/builder/${kind}-${shape.id}.svg`,

@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const outDir = path.join(process.cwd(), "public", "builder");
@@ -14,6 +14,7 @@ const shapes = {
       [780, 680],
     ],
     spa: { cx: 1230, cy: 430, r: 72 },
+    fountain: { x: 220, y: 500, s: 88, aim: { x: 460, y: 560 } },
   },
   "l-shape": {
     path: "M300 360h520v150h420a36 36 0 0 1 36 36v190a36 36 0 0 1-36 36h-940a36 36 0 0 1-36-36v-340a36 36 0 0 1 36-36z",
@@ -25,6 +26,7 @@ const shapes = {
       [520, 680],
     ],
     spa: { cx: 1180, cy: 400, r: 68 },
+    fountain: { x: 190, y: 460, s: 82, aim: { x: 400, y: 520 } },
   },
   lap: {
     path: "M160 470h1280a28 28 0 0 1 28 28v84a28 28 0 0 1-28 28h-1280a28 28 0 0 1-28-28v-84a28 28 0 0 1 28-28z",
@@ -36,6 +38,7 @@ const shapes = {
       [1280, 540],
     ],
     spa: { cx: 1420, cy: 430, r: 64 },
+    fountain: { x: 200, y: 350, s: 74, aim: { x: 300, y: 540 } },
   },
   custom: {
     path: "M420 390c120-70 360-90 560-40 180 46 250 150 220 250-40 130-210 210-460 200-220-10-390-90-430-210-30-90 10-150 110-200z",
@@ -47,6 +50,7 @@ const shapes = {
       [640, 650],
     ],
     spa: { cx: 1120, cy: 400, r: 66 },
+    fountain: { x: 250, y: 280, s: 78, aim: { x: 480, y: 450 } },
   },
 };
 
@@ -177,13 +181,54 @@ function lights(shape, mode) {
   <g clip-path="url(#pool)">${circles}</g>`);
 }
 
-function spa(shape) {
+function spa(shape, material) {
   const { cx, cy, r } = shape.spa;
+  const tone = coping[material];
+  const x = cx - r;
+  const y = cy - r;
+  const size = r * 2;
+  const rim = 18;
   return shell(`
-  <circle cx="${cx}" cy="${cy}" r="${r}" fill="#67e8f9"/>
-  <circle cx="${cx}" cy="${cy}" r="${r - 16}" fill="#0891b2"/>
-  <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#e6d3b4" stroke-width="16"/>
-  <circle cx="${cx - 18}" cy="${cy - 10}" r="16" fill="#ffffff" fill-opacity="0.25"/>`);
+  <rect x="${x}" y="${y}" width="${size}" height="${size}" rx="8" fill="${tone.fill}" stroke="${tone.line}" stroke-width="3"/>
+  <rect x="${x + rim}" y="${y + rim}" width="${size - rim * 2}" height="${size - rim * 2}" rx="4" fill="#8ff3e8"/>
+  <rect x="${x + rim + 10}" y="${y + rim + 10}" width="${size - (rim + 10) * 2}" height="${size - (rim + 10) * 2}" rx="3" fill="#0e7490"/>
+  <rect x="${x + rim + 8}" y="${y + rim + 6}" width="${Math.round(size * 0.28)}" height="8" rx="4" fill="#ffffff" fill-opacity="0.35"/>`);
+}
+
+function rimPoint(x, y, s, aim) {
+  const cx = x + s / 2;
+  const cy = y + s / 2;
+  const dx = aim.x - cx;
+  const dy = aim.y - cy;
+  const half = s / 2;
+  const scale = Math.abs(dx) / half > Math.abs(dy) / half ? half / Math.abs(dx) : half / Math.abs(dy);
+  const round = (value) => Math.round(value * 10) / 10;
+  return { x: round(cx + dx * scale), y: round(cy + dy * scale) };
+}
+
+function fountain(shape, material) {
+  const { x, y, s, aim } = shape.fountain;
+  const tone = coping[material];
+  const start = rimPoint(x, y, s, aim);
+  const end = aim;
+  const mx = Math.round((start.x + end.x) / 2);
+  const my = Math.round(Math.min(start.y, end.y) - 34);
+  const arc = `M ${start.x} ${start.y} Q ${mx} ${my} ${end.x} ${end.y}`;
+  const drops = [0, 0.4, 0.75]
+    .map(
+      (begin, index) => `<circle r="${4.5 - index}" fill="#d9fbff" fill-opacity="${[0.95, 0.8, 0.65][index]}">
+      <animateMotion dur="1.15s" begin="${begin}s" repeatCount="indefinite" path="${arc}"/>
+    </circle>`,
+    )
+    .join("");
+
+  return shell(`
+  <rect x="${x}" y="${y}" width="${s}" height="${s}" rx="6" fill="${tone.fill}" stroke="${tone.line}" stroke-width="3"/>
+  <rect x="${x + 12}" y="${y + 12}" width="${s - 24}" height="${s - 24}" rx="3" fill="#9aebf2"/>
+  <rect x="${x + 20}" y="${y + 20}" width="${s - 40}" height="${s - 40}" rx="2" fill="#12828c"/>
+  <path d="${arc}" fill="none" stroke="#c8f7fb" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.8"/>
+  ${drops}
+  <ellipse cx="${end.x}" cy="${end.y}" rx="16" ry="6" fill="#ffffff" fill-opacity="0.4"/>`);
 }
 
 function bubbles(shape) {
@@ -221,7 +266,13 @@ for (const [shapeId, shape] of Object.entries(shapes)) {
   for (const mode of ["white", "color", "rgb"]) {
     jobs.push(writeFile(path.join(outDir, `lights-${shapeId}-${mode}.svg`), lights(shape, mode)));
   }
-  jobs.push(writeFile(path.join(outDir, `spa-${shapeId}.svg`), spa(shape)));
+  for (const material of Object.keys(coping)) {
+    jobs.push(writeFile(path.join(outDir, `spa-${shapeId}-${material}.svg`), spa(shape, material)));
+  }
+  jobs.push(unlink(path.join(outDir, `fountain-${shapeId}.svg`)).catch(() => {}));
+  for (const material of Object.keys(coping)) {
+    jobs.push(writeFile(path.join(outDir, `fountain-${shapeId}-${material}.svg`), fountain(shape, material)));
+  }
   jobs.push(writeFile(path.join(outDir, `bubbles-${shapeId}.svg`), bubbles(shape)));
 }
 

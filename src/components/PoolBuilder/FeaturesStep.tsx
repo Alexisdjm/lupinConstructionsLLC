@@ -38,8 +38,14 @@ export function FeaturesStep({ config, onChange }: FeaturesStepProps) {
           <ToggleRow
             checked={config.spa}
             title="Attached spa"
-            detail="A raised spa tucked against the main pool."
+            detail="A square spa set against the main pool."
             onToggle={() => onChange({ spa: !config.spa })}
+          />
+          <ToggleRow
+            checked={config.fountain}
+            title="Fountain"
+            detail="A small fountain on the deck beside the pool."
+            onToggle={() => onChange({ fountain: !config.fountain })}
           />
           <ToggleRow
             checked={config.heater}

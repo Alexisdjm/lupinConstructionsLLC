@@ -3,9 +3,11 @@ import Link from "next/link";
 import {
   copingSources,
   deckSources,
+  fountainSources,
   lightingSources,
   selectionSummary,
   shapeSources,
+  spaSources,
   waterSources,
 } from "./config";
 import { LayerImage } from "./LayerImage";
@@ -15,7 +17,8 @@ const WATER = waterSources();
 const DECKS = deckSources();
 const COPING = copingSources();
 const LIGHTS = lightingSources();
-const SPAS = shapeSources("spa");
+const SPAS = spaSources();
+const FOUNTAINS = fountainSources();
 const BUBBLES = shapeSources("bubbles");
 
 type PoolViewerProps = {
@@ -68,7 +71,18 @@ export function PoolViewer({ config }: PoolViewerProps) {
           />
         ))}
         {SPAS.map((layer) => (
-          <LayerImage key={layer.key} src={layer.src} visible={config.spa && layer.shape === config.shape} />
+          <LayerImage
+            key={layer.key}
+            src={layer.src}
+            visible={config.spa && layer.shape === config.shape && layer.coping === config.coping}
+          />
+        ))}
+        {FOUNTAINS.map((layer) => (
+          <LayerImage
+            key={layer.key}
+            src={layer.src}
+            visible={config.fountain && layer.shape === config.shape && layer.coping === config.coping}
+          />
         ))}
       </div>
 

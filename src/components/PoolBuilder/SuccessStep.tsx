@@ -48,6 +48,7 @@ export function SuccessStep({ config, contact }: SuccessStepProps) {
           <dd className="max-w-[14rem] text-right">
             {[
               config.spa ? "Attached spa" : null,
+              config.fountain ? "Fountain" : null,
               config.heater ? "Heater" : null,
               config.bubbles ? "Bubble jets" : null,
             ]

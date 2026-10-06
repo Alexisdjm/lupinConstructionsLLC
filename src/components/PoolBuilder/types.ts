@@ -14,6 +14,7 @@ export type PoolConfig = {
   deck: DeckId;
   lighting: LightingId;
   spa: boolean;
+  fountain: boolean;
   heater: boolean;
   bubbles: boolean;
 };
