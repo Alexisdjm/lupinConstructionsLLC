@@ -6,6 +6,16 @@ import {
   COPING_PHOTO_OVERLAYS,
   DECK_PHOTO_BASE,
   DECK_PHOTO_OVERLAYS,
+  FOUNTAIN_PHOTO_BASE,
+  FOUNTAIN_PHOTO_OVERLAY,
+  INTERIOR_PHOTO_BASE,
+  INTERIOR_PHOTO_OVERLAY,
+  SPA_PHOTO_BASE,
+  SPA_PHOTO_OVERLAY,
+  LIGHT_COLOR_PHOTOS,
+  LIGHT_PHOTOS,
+  RGB_LIGHT_CYCLE,
+  type LightColorPhoto,
   VIEWER_MODES,
   copingSources,
   deckSources,
@@ -27,13 +37,15 @@ const SPAS = spaSources();
 const FOUNTAINS = fountainSources();
 const BUBBLES = shapeSources("bubbles");
 const PHOTO_FIT = "object-contain";
+const FILL_FIT = "object-cover object-center";
 
 type PoolViewerProps = {
   config: PoolConfig;
   photoPhase: PhotoPhase;
+  accentLight: LightColorPhoto;
 };
 
-export function PoolViewer({ config, photoPhase }: PoolViewerProps) {
+export function PoolViewer({ config, photoPhase, accentLight }: PoolViewerProps) {
   const [mode, setMode] = useState<ViewerMode>("animation");
   const [realisticMounted, setRealisticMounted] = useState(false);
 
@@ -112,10 +124,21 @@ export function PoolViewer({ config, photoPhase }: PoolViewerProps) {
 
       {realisticMounted ? (
         <div
-          className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
-          style={{ opacity: mode === "realistic" ? 1 : 0 }}
+        className="absolute inset-0 z-[1] transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+        style={{ opacity: mode === "realistic" ? 1 : 0 }}
           aria-hidden={mode !== "realistic"}
         >
+          <div
+            className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+            style={{ opacity: photoPhase === "interior" ? 1 : 0 }}
+          >
+            <LayerImage src={INTERIOR_PHOTO_BASE} visible fit={FILL_FIT} />
+            <LayerImage
+              src={INTERIOR_PHOTO_OVERLAY}
+              visible={config.interior === "diamond-brite"}
+              fit={FILL_FIT}
+            />
+          </div>
           <div
             className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "coping" ? 1 : 0 }}
@@ -143,6 +166,48 @@ export function PoolViewer({ config, photoPhase }: PoolViewerProps) {
                 fit={PHOTO_FIT}
               />
             ))}
+          </div>
+          <div
+            className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+            style={{ opacity: photoPhase === "fountain" ? 1 : 0 }}
+          >
+            <LayerImage src={FOUNTAIN_PHOTO_BASE} visible fit={PHOTO_FIT} />
+            <LayerImage src={FOUNTAIN_PHOTO_OVERLAY} visible={config.fountain} fit={PHOTO_FIT} />
+          </div>
+          <div
+            className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+            style={{ opacity: photoPhase === "spa" ? 1 : 0 }}
+          >
+            <LayerImage src={SPA_PHOTO_BASE} visible fit={FILL_FIT} />
+            <LayerImage src={SPA_PHOTO_OVERLAY} visible={config.spa} fit={FILL_FIT} />
+          </div>
+          <div
+            className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+            style={{ opacity: photoPhase === "lights" ? 1 : 0 }}
+          >
+            <LayerImage src={LIGHT_PHOTOS.white} visible={config.lighting === "white"} fit={FILL_FIT} />
+            {LIGHT_COLOR_PHOTOS.map((color) => (
+              <LayerImage
+                key={`color-${color}`}
+                src={LIGHT_PHOTOS[color]}
+                visible={config.lighting === "color" && color === accentLight}
+                fit={FILL_FIT}
+              />
+            ))}
+            <LayerImage src={LIGHT_PHOTOS.red} visible={config.lighting === "rgb"} fit={FILL_FIT} />
+            {config.lighting === "rgb"
+              ? RGB_LIGHT_CYCLE.map((color, index) => (
+                  <img
+                    key={`rgb-${color}`}
+                    src={LIGHT_PHOTOS[color]}
+                    alt=""
+                    aria-hidden="true"
+                    draggable={false}
+                    className={`pool-light-fade pointer-events-none absolute inset-0 h-full w-full ${FILL_FIT} opacity-0 motion-reduce:animate-none`}
+                    style={{ animationDelay: `${index * 4}s` }}
+                  />
+                ))
+              : null}
           </div>
         </div>
       ) : null}

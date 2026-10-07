@@ -36,3 +36,25 @@ h5,
 h6 {
   font-family: var(--font-plus-jakarta), sans-serif;
 }
+
+@keyframes pool-light-fade {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+  }
+  26.67% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.pool-light-fade {
+  animation: pool-light-fade 12s ease-in-out infinite;
+}

@@ -4,7 +4,7 @@ export type CopingId = "travertine" | "slate" | "teak" | "brick" | "pavers";
 export type DeckId = "travertine" | "shellstone" | "concrete" | "charcoal" | "ipe" | "bluestone";
 export type LightingId = "white" | "color" | "rgb";
 export type ViewerMode = "animation" | "realistic";
-export type PhotoPhase = "coping" | "deck";
+export type PhotoPhase = "coping" | "deck" | "fountain" | "lights" | "spa" | "interior";
 
 export type PoolConfig = {
   shape: ShapeId;

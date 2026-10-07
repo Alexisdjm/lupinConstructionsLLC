@@ -83,6 +83,33 @@ export const DECK_PHOTO_OVERLAYS: { id: DeckId; src: string }[] = [
   { id: "bluestone", src: "/builder/phases/deck/bluestone-deck.webp" },
 ];
 
+export const FOUNTAIN_PHOTO_BASE = "/builder/phases/source/no-source.webp";
+export const FOUNTAIN_PHOTO_OVERLAY = "/builder/phases/source/source.webp";
+
+export const SPA_PHOTO_BASE = "/builder/phases/spa/no-spa.webp";
+export const SPA_PHOTO_OVERLAY = "/builder/phases/spa/spa.webp";
+
+export const INTERIOR_PHOTO_BASE = "/builder/phases/surface/loza.webp";
+export const INTERIOR_PHOTO_OVERLAY = "/builder/phases/surface/diamond-bride.webp";
+
+export const LIGHT_PHOTOS = {
+  white: "/builder/phases/lights/white.webp",
+  red: "/builder/phases/lights/red.webp",
+  blue: "/builder/phases/lights/blue.webp",
+  green: "/builder/phases/lights/green.webp",
+  pink: "/builder/phases/lights/pink.webp",
+} as const;
+
+export const LIGHT_COLOR_PHOTOS = ["red", "blue", "green", "pink"] as const;
+export type LightColorPhoto = (typeof LIGHT_COLOR_PHOTOS)[number];
+
+export const RGB_LIGHT_CYCLE = ["blue", "green", "pink"] as const;
+
+export function nextAccentLight(current: LightColorPhoto): LightColorPhoto {
+  const pool = LIGHT_COLOR_PHOTOS.filter((color) => color !== current);
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
 export const LIGHTING: { id: LightingId; label: string; detail: string }[] = [
   { id: "white", label: "Warm White", detail: "Even glow along the floor" },
   { id: "color", label: "Color", detail: "Fixed teal and magenta accents" },

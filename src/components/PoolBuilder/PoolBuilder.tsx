@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ContactStep } from "./ContactStep";
-import { DEFAULT_CONFIG, STEPS, dimensionsValid } from "./config";
+import { DEFAULT_CONFIG, STEPS, dimensionsValid, nextAccentLight, type LightColorPhoto } from "./config";
 import { FeaturesStep } from "./FeaturesStep";
 import { InteriorStep } from "./InteriorStep";
 import { PoolViewer } from "./PoolViewer";
@@ -14,13 +14,23 @@ export function PoolBuilder() {
   const [step, setStep] = useState(0);
   const [config, setConfig] = useState<PoolConfig>(DEFAULT_CONFIG);
   const [photoPhase, setPhotoPhase] = useState<PhotoPhase>("coping");
+  const [accentLight, setAccentLight] = useState<LightColorPhoto>("blue");
   const [stepError, setStepError] = useState("");
   const [quote, setQuote] = useState<ContactDetails | null>(null);
 
   function updateConfig(patch: Partial<PoolConfig>) {
     setConfig((current) => ({ ...current, ...patch }));
+    if ("interior" in patch) setPhotoPhase("interior");
     if ("coping" in patch) setPhotoPhase("coping");
     if ("deck" in patch) setPhotoPhase("deck");
+    if ("fountain" in patch) setPhotoPhase("fountain");
+    if ("spa" in patch) setPhotoPhase("spa");
+    if ("lighting" in patch) {
+      setPhotoPhase("lights");
+      if (patch.lighting === "color") {
+        setAccentLight((current) => nextAccentLight(current));
+      }
+    }
     if ("length" in patch || "width" in patch || "depth" in patch) {
       setStepError("");
     }
@@ -39,7 +49,7 @@ export function PoolBuilder() {
 
   return (
     <div className="flex h-dvh flex-col bg-[#07111c] text-white lg:flex-row">
-      <PoolViewer config={config} photoPhase={photoPhase} />
+      <PoolViewer config={config} photoPhase={photoPhase} accentLight={accentLight} />
       <aside className="flex h-[58dvh] w-full shrink-0 flex-col border-t border-white/10 bg-[#0b1922] lg:h-auto lg:w-[420px] lg:border-t-0 lg:border-l">
         <div className="border-b border-white/10 px-5 py-4">
           <ol className="flex items-center gap-1.5">
