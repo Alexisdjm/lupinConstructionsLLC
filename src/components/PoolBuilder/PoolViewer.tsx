@@ -1,4 +1,5 @@
 import { BrandLockup } from "@/src/components/Header/BrandLockup";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import {
@@ -79,10 +80,13 @@ export function PoolViewer({
         style={{ opacity: mode === "animation" ? 1 : 0 }}
         aria-hidden={mode !== "animation"}
       >
-        <img
+        <Image
           src="/hero/villa-night.jpg"
           alt=""
-          className="absolute inset-0 h-full w-full object-cover object-[center_40%]"
+          fill
+          preload
+          sizes="(min-width: 1024px) calc(100vw - 420px), 100vw"
+          className="object-cover object-[center_40%]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,17,28,0.55)_0%,rgba(7,17,28,0.08)_34%,rgba(7,17,28,0.28)_52%,rgba(6,16,24,0.82)_100%)]" />
         {DECKS.map((layer) => (
@@ -270,13 +274,15 @@ export function PoolViewer({
             />
             {config.lighting === "rgb"
               ? RGB_LIGHT_CYCLE.map((color, index) => (
-                  <img
+                  <Image
                     key={`rgb-${color}`}
                     src={LIGHT_PHOTOS[color]}
                     alt=""
-                    aria-hidden="true"
+                    fill
+                    aria-hidden
                     draggable={false}
-                    className={`pool-light-fade pointer-events-none absolute inset-0 h-full w-full ${PHOTO_FRAME.lights} opacity-0 motion-reduce:animate-none`}
+                    sizes="(min-width: 1024px) calc(100vw - 420px), 100vw"
+                    className={`pool-light-fade pointer-events-none ${PHOTO_FRAME.lights} opacity-0 motion-reduce:animate-none`}
                     style={{ animationDelay: `${index * 4}s` }}
                   />
                 ))
