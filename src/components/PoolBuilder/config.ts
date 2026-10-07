@@ -73,24 +73,26 @@ export const COPING_PHOTO_OVERLAYS: { id: CopingId; src: string }[] = [
   { id: "brick", src: "/builder/phases/coping/brick.webp" },
 ];
 
-export const DECK_PHOTO_BASE = "/builder/phases/deck/ipe-deck.webp";
+export const DECK_PHOTO_BASE = "/builder/phases/deck/ipe-new.webp";
 
 export const DECK_PHOTO_OVERLAYS: { id: DeckId; src: string }[] = [
-  { id: "travertine", src: "/builder/phases/deck/travertine-deck.webp" },
-  { id: "shellstone", src: "/builder/phases/deck/shellstone-deck.webp" },
-  { id: "concrete", src: "/builder/phases/deck/concrete-deck.webp" },
-  { id: "charcoal", src: "/builder/phases/deck/charcoal-deck.webp" },
-  { id: "bluestone", src: "/builder/phases/deck/bluestone-deck.webp" },
+  { id: "travertine", src: "/builder/phases/deck/travertine-new.webp" },
+  { id: "shellstone", src: "/builder/phases/deck/shellstone-new.webp" },
+  { id: "concrete", src: "/builder/phases/deck/concrete-new.webp" },
+  { id: "charcoal", src: "/builder/phases/deck/charcoal-new.webp" },
+  { id: "bluestone", src: "/builder/phases/deck/bluestone-new.webp" },
 ];
 
-export const FOUNTAIN_PHOTO_BASE = "/builder/phases/source/no-source.webp";
-export const FOUNTAIN_PHOTO_OVERLAY = "/builder/phases/source/source.webp";
+export const FOUNTAIN_PHOTO_BASE = "/builder/phases/fountain/no-fountain.webp";
+export const FOUNTAIN_PHOTO_OVERLAY = "/builder/phases/fountain/fountain.webp";
 
-export const SPA_PHOTO_BASE = "/builder/phases/spa/no-spa.webp";
-export const SPA_PHOTO_OVERLAY = "/builder/phases/spa/spa.webp";
+export const SPA_PHOTO_BASE = "/builder/phases/spa/no-spa-new.webp";
+export const SPA_PHOTO_OVERLAY = "/builder/phases/spa/spa-new.webp";
 
-export const INTERIOR_PHOTO_BASE = "/builder/phases/surface/loza.webp";
-export const INTERIOR_PHOTO_OVERLAY = "/builder/phases/surface/diamond-bride.webp";
+export const INTERIOR_PHOTOS: Record<InteriorId, string> = {
+  "diamond-brite": "/builder/phases/surface/diamond.webp",
+  "glass-tile": "/builder/phases/surface/tile.webp",
+};
 
 export const LIGHT_PHOTOS = {
   white: "/builder/phases/lights/white.webp",

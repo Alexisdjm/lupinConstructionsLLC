@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import { ContactStep } from "./ContactStep";
-import { DEFAULT_CONFIG, STEPS, dimensionsValid, nextAccentLight, type LightColorPhoto } from "./config";
+import {
+  DEFAULT_CONFIG,
+  STEPS,
+  dimensionsValid,
+  nextAccentLight,
+  type LightColorPhoto,
+} from "./config";
 import { FeaturesStep } from "./FeaturesStep";
 import { InteriorStep } from "./InteriorStep";
 import { PoolViewer } from "./PoolViewer";
@@ -38,7 +44,9 @@ export function PoolBuilder() {
 
   function goNext() {
     if (step === 0 && !dimensionsValid(config)) {
-      setStepError("Enter a length, width, and depth inside the allowed range.");
+      setStepError(
+        "Enter a length, width, and depth inside the allowed range.",
+      );
       return;
     }
     setStepError("");
@@ -49,7 +57,11 @@ export function PoolBuilder() {
 
   return (
     <div className="flex h-dvh flex-col bg-[#07111c] text-white lg:flex-row">
-      <PoolViewer config={config} photoPhase={photoPhase} accentLight={accentLight} />
+      <PoolViewer
+        config={config}
+        photoPhase={photoPhase}
+        accentLight={accentLight}
+      />
       <aside className="flex h-[58dvh] w-full shrink-0 flex-col border-t border-white/10 bg-[#0b1922] lg:h-auto lg:w-[420px] lg:border-t-0 lg:border-l">
         <div className="border-b border-white/10 px-5 py-4">
           <ol className="flex items-center gap-1.5">
@@ -63,7 +75,11 @@ export function PoolBuilder() {
                     disabled={Boolean(quote) || index > step}
                     onClick={() => setStep(index)}
                     className={`flex items-center gap-1.5 rounded-full px-1.5 py-1 text-[11px] tracking-wide uppercase disabled:cursor-default ${
-                      current ? "text-white" : reached ? "text-white/70" : "text-white/35"
+                      current
+                        ? "text-white"
+                        : reached
+                          ? "text-white/70"
+                          : "text-white/35"
                     }`}
                   >
                     <span
@@ -79,7 +95,9 @@ export function PoolBuilder() {
                     </span>
                     <span className="hidden sm:inline">{item.label}</span>
                   </button>
-                  {index < STEPS.length - 1 ? <span className="h-px w-3 bg-white/15" aria-hidden="true" /> : null}
+                  {index < STEPS.length - 1 ? (
+                    <span className="h-px w-3 bg-white/15" aria-hidden="true" />
+                  ) : null}
                 </li>
               );
             })}
@@ -97,10 +115,22 @@ export function PoolBuilder() {
             <SuccessStep config={config} contact={quote} />
           ) : (
             <>
-              {step === 0 ? <ShapeStep config={config} error={stepError} onChange={updateConfig} /> : null}
-              {step === 1 ? <InteriorStep config={config} onChange={updateConfig} /> : null}
-              {step === 2 ? <FeaturesStep config={config} onChange={updateConfig} /> : null}
-              {step === 3 ? <ContactStep config={config} onSubmit={setQuote} /> : null}
+              {step === 0 ? (
+                <ShapeStep
+                  config={config}
+                  error={stepError}
+                  onChange={updateConfig}
+                />
+              ) : null}
+              {step === 1 ? (
+                <InteriorStep config={config} onChange={updateConfig} />
+              ) : null}
+              {step === 2 ? (
+                <FeaturesStep config={config} onChange={updateConfig} />
+              ) : null}
+              {step === 3 ? (
+                <ContactStep config={config} onSubmit={setQuote} />
+              ) : null}
             </>
           )}
         </div>
