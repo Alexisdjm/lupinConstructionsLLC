@@ -9,6 +9,7 @@ import {
   FOUNTAIN_PHOTO_BASE,
   FOUNTAIN_PHOTO_OVERLAY,
   INTERIOR_PHOTOS,
+  SHAPE_PHOTOS,
   SPA_PHOTO_BASE,
   SPA_PHOTO_OVERLAY,
   LIGHT_COLOR_PHOTOS,
@@ -36,6 +37,7 @@ const SPAS = spaSources();
 const FOUNTAINS = fountainSources();
 const BUBBLES = shapeSources("bubbles");
 const PHOTO_FRAME: Record<PhotoPhase, string> = {
+  shape: "object-cover object-center",
   interior: "object-cover object-center",
   coping: "object-cover object-center",
   deck: "object-cover object-center",
@@ -150,12 +152,37 @@ export function PoolViewer({
 
       {realisticMounted ? (
         <div
-          className="absolute inset-0 z-[1] transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+          className="absolute inset-0 z-1 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
           style={{ opacity: mode === "realistic" ? 1 : 0 }}
           aria-hidden={mode !== "realistic"}
         >
           <div
-            className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+            className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
+            style={{ opacity: photoPhase === "shape" ? 1 : 0 }}
+          >
+            <LayerImage
+              src={SHAPE_PHOTOS.rectangular}
+              visible={config.shape === "rectangular"}
+              fit={PHOTO_FRAME.shape}
+            />
+            <LayerImage
+              src={SHAPE_PHOTOS["l-shape"]}
+              visible={config.shape === "l-shape"}
+              fit={PHOTO_FRAME.shape}
+            />
+            <LayerImage
+              src={SHAPE_PHOTOS.lap}
+              visible={config.shape === "lap"}
+              fit={PHOTO_FRAME.shape}
+            />
+            <LayerImage
+              src={SHAPE_PHOTOS.custom}
+              visible={config.shape === "custom"}
+              fit={PHOTO_FRAME.shape}
+            />
+          </div>
+          <div
+            className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "interior" ? 1 : 0 }}
           >
             <LayerImage
@@ -170,7 +197,7 @@ export function PoolViewer({
             />
           </div>
           <div
-            className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+            className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "coping" ? 1 : 0 }}
           >
             <LayerImage src={COPING_PHOTO_BASE} visible fit={PHOTO_FRAME.coping} />
@@ -184,7 +211,7 @@ export function PoolViewer({
             ))}
           </div>
           <div
-            className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+            className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "deck" ? 1 : 0 }}
           >
             <LayerImage src={DECK_PHOTO_BASE} visible fit={PHOTO_FRAME.deck} />
@@ -198,7 +225,7 @@ export function PoolViewer({
             ))}
           </div>
           <div
-            className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+            className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "fountain" ? 1 : 0 }}
           >
             <LayerImage src={FOUNTAIN_PHOTO_BASE} visible fit={PHOTO_FRAME.fountain} />
@@ -209,7 +236,7 @@ export function PoolViewer({
             />
           </div>
           <div
-            className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+            className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "spa" ? 1 : 0 }}
           >
             <LayerImage src={SPA_PHOTO_BASE} visible fit={PHOTO_FRAME.spa} />
@@ -220,7 +247,7 @@ export function PoolViewer({
             />
           </div>
           <div
-            className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
+            className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "lights" ? 1 : 0 }}
           >
             <LayerImage

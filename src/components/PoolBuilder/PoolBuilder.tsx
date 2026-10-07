@@ -16,16 +16,23 @@ import { ShapeStep } from "./ShapeStep";
 import { SuccessStep } from "./SuccessStep";
 import type { ContactDetails, PhotoPhase, PoolConfig } from "./types";
 
+const STEP_PHOTO: Partial<Record<number, PhotoPhase>> = {
+  0: "shape",
+  1: "interior",
+  2: "deck",
+};
+
 export function PoolBuilder() {
   const [step, setStep] = useState(0);
   const [config, setConfig] = useState<PoolConfig>(DEFAULT_CONFIG);
-  const [photoPhase, setPhotoPhase] = useState<PhotoPhase>("coping");
+  const [photoPhase, setPhotoPhase] = useState<PhotoPhase>("shape");
   const [accentLight, setAccentLight] = useState<LightColorPhoto>("blue");
   const [stepError, setStepError] = useState("");
   const [quote, setQuote] = useState<ContactDetails | null>(null);
 
   function updateConfig(patch: Partial<PoolConfig>) {
     setConfig((current) => ({ ...current, ...patch }));
+    if ("shape" in patch) setPhotoPhase("shape");
     if ("interior" in patch) setPhotoPhase("interior");
     if ("coping" in patch) setPhotoPhase("coping");
     if ("deck" in patch) setPhotoPhase("deck");
@@ -42,6 +49,13 @@ export function PoolBuilder() {
     }
   }
 
+  function openStep(index: number) {
+    const next = Math.min(Math.max(index, 0), STEPS.length - 1);
+    setStep(next);
+    const phase = STEP_PHOTO[next];
+    if (phase) setPhotoPhase(phase);
+  }
+
   function goNext() {
     if (step === 0 && !dimensionsValid(config)) {
       setStepError(
@@ -50,7 +64,7 @@ export function PoolBuilder() {
       return;
     }
     setStepError("");
-    setStep((current) => Math.min(current + 1, STEPS.length - 1));
+    openStep(step + 1);
   }
 
   const stepMeta = STEPS[step];
@@ -73,7 +87,7 @@ export function PoolBuilder() {
                   <button
                     type="button"
                     disabled={Boolean(quote) || index > step}
-                    onClick={() => setStep(index)}
+                    onClick={() => openStep(index)}
                     className={`flex items-center gap-1.5 rounded-full px-1.5 py-1 text-[11px] tracking-wide uppercase disabled:cursor-default ${
                       current
                         ? "text-white"
@@ -139,7 +153,7 @@ export function PoolBuilder() {
           <div className="flex gap-3 border-t border-white/10 px-5 py-4">
             <button
               type="button"
-              onClick={() => setStep((current) => Math.max(current - 1, 0))}
+              onClick={() => openStep(step - 1)}
               disabled={step === 0}
               className="rounded-full border border-white/15 px-5 py-3 text-sm text-white transition-colors hover:border-white/40 disabled:cursor-not-allowed disabled:opacity-35"
             >

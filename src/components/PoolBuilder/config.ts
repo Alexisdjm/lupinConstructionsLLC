@@ -89,6 +89,13 @@ export const FOUNTAIN_PHOTO_OVERLAY = "/builder/phases/fountain/fountain.webp";
 export const SPA_PHOTO_BASE = "/builder/phases/spa/no-spa-new.webp";
 export const SPA_PHOTO_OVERLAY = "/builder/phases/spa/spa-new.webp";
 
+export const SHAPE_PHOTOS: Record<ShapeId, string> = {
+  rectangular: "/builder/phases/shape/squared.webp",
+  "l-shape": "/builder/phases/shape/l-shape.webp",
+  lap: "/builder/phases/shape/lap.webp",
+  custom: "/builder/phases/shape/freeform.webp",
+};
+
 export const INTERIOR_PHOTOS: Record<InteriorId, string> = {
   "diamond-brite": "/builder/phases/surface/diamond.webp",
   "glass-tile": "/builder/phases/surface/tile.webp",
