@@ -1,7 +1,7 @@
 import { BrandLockup } from "@/src/components/Header/BrandLockup";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   COPING_PHOTO_BASE,
   COPING_PHOTO_OVERLAYS,
@@ -37,6 +37,59 @@ const LIGHTS = lightingSources();
 const SPAS = spaSources();
 const FOUNTAINS = fountainSources();
 const BUBBLES = shapeSources("bubbles");
+function addSources(current: ReadonlySet<string>, sources: readonly string[]) {
+  if (sources.every((src) => current.has(src))) return current;
+  const next = new Set(current);
+  for (const src of sources) next.add(src);
+  return next;
+}
+
+function activePhotoSrcs(phase: PhotoPhase, config: PoolConfig, accentLight: LightColorPhoto) {
+  switch (phase) {
+    case "shape":
+      return [SHAPE_PHOTOS[config.shape]];
+    case "interior":
+      return [INTERIOR_PHOTOS[config.interior]];
+    case "coping": {
+      const overlay = COPING_PHOTO_OVERLAYS.find((item) => item.id === config.coping);
+      return overlay ? [COPING_PHOTO_BASE, overlay.src] : [COPING_PHOTO_BASE];
+    }
+    case "deck": {
+      const overlay = DECK_PHOTO_OVERLAYS.find((item) => item.id === config.deck);
+      return overlay ? [DECK_PHOTO_BASE, overlay.src] : [DECK_PHOTO_BASE];
+    }
+    case "fountain":
+      return config.fountain
+        ? [FOUNTAIN_PHOTO_BASE, FOUNTAIN_PHOTO_OVERLAY]
+        : [FOUNTAIN_PHOTO_BASE];
+    case "spa":
+      return config.spa ? [SPA_PHOTO_BASE, SPA_PHOTO_OVERLAY] : [SPA_PHOTO_BASE];
+    case "lights":
+      if (config.lighting === "white") return [LIGHT_PHOTOS.white];
+      if (config.lighting === "color") return [LIGHT_PHOTOS[accentLight]];
+      return [LIGHT_PHOTOS.red, ...RGB_LIGHT_CYCLE.map((color) => LIGHT_PHOTOS[color])];
+  }
+}
+
+function phasePhotoSrcs(phase: PhotoPhase) {
+  switch (phase) {
+    case "shape":
+      return Object.values(SHAPE_PHOTOS);
+    case "interior":
+      return Object.values(INTERIOR_PHOTOS);
+    case "coping":
+      return [COPING_PHOTO_BASE, ...COPING_PHOTO_OVERLAYS.map((item) => item.src)];
+    case "deck":
+      return [DECK_PHOTO_BASE, ...DECK_PHOTO_OVERLAYS.map((item) => item.src)];
+    case "fountain":
+      return [FOUNTAIN_PHOTO_BASE, FOUNTAIN_PHOTO_OVERLAY];
+    case "spa":
+      return [SPA_PHOTO_BASE, SPA_PHOTO_OVERLAY];
+    case "lights":
+      return Object.values(LIGHT_PHOTOS);
+  }
+}
+
 const PHOTO_FRAME: Record<PhotoPhase, string> = {
   shape: "object-cover object-center",
   interior: "object-cover object-center",
@@ -58,16 +111,62 @@ export function PoolViewer({
   photoPhase,
   accentLight,
 }: PoolViewerProps) {
-  const [mode, setMode] = useState<ViewerMode>("animation");
-  const [realisticMounted, setRealisticMounted] = useState(false);
+  const [mode, setMode] = useState<ViewerMode>("realistic");
+  const [animationMounted, setAnimationMounted] = useState(false);
+  const [revealed, setRevealed] = useState<ReadonlySet<string>>(
+    () => new Set([SHAPE_PHOTOS.rectangular]),
+  );
+  const [entered, setEntered] = useState<ReadonlySet<string>>(
+    () => new Set([SHAPE_PHOTOS.rectangular]),
+  );
+
+  const needed = activePhotoSrcs(photoPhase, config, accentLight);
+  if (needed.some((src) => !revealed.has(src))) {
+    setRevealed(addSources(revealed, needed));
+  }
+
+  useEffect(() => {
+    const pending = [...revealed].filter((src) => !entered.has(src));
+    if (pending.length === 0) return;
+    const id = window.requestAnimationFrame(() => {
+      setEntered((current) => addSources(current, pending));
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [revealed, entered]);
+
+  useEffect(() => {
+    const phase = photoPhase;
+    const id = window.setTimeout(() => {
+      setRevealed((current) => addSources(current, phasePhotoSrcs(phase)));
+    }, 1500);
+    return () => window.clearTimeout(id);
+  }, [photoPhase]);
+
+  function prefetchPhase(phase: PhotoPhase) {
+    setRevealed((current) => addSources(current, phasePhotoSrcs(phase)));
+  }
 
   function selectMode(next: ViewerMode) {
-    if (next === "realistic" && !realisticMounted) {
-      setRealisticMounted(true);
-      window.setTimeout(() => setMode("realistic"), 20);
+    if (next === "animation" && !animationMounted) {
+      setAnimationMounted(true);
+      window.setTimeout(() => setMode("animation"), 20);
       return;
     }
     setMode(next);
+  }
+
+  function photo(src: string, visible: boolean, fit: string) {
+    if (!revealed.has(src)) return null;
+    return (
+      <LayerImage
+        key={src}
+        src={src}
+        visible={visible && entered.has(src)}
+        fit={fit}
+        priority={visible}
+        onLoad={visible ? () => prefetchPhase(photoPhase) : undefined}
+      />
+    );
   }
 
   return (
@@ -75,6 +174,7 @@ export function PoolViewer({
       className="relative min-h-[42dvh] flex-1 overflow-hidden bg-[#07111c]"
       aria-label="Pool preview"
     >
+      {animationMounted ? (
       <div
         className="absolute inset-0 transition-opacity duration-[400ms] ease-in-out motion-reduce:transition-none"
         style={{ opacity: mode === "animation" ? 1 : 0 }}
@@ -84,19 +184,20 @@ export function PoolViewer({
           src="/hero/villa-night.jpg"
           alt=""
           fill
-          preload
           sizes="(min-width: 1024px) calc(100vw - 420px), 100vw"
           className="object-cover object-[center_40%]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,17,28,0.55)_0%,rgba(7,17,28,0.08)_34%,rgba(7,17,28,0.28)_52%,rgba(6,16,24,0.82)_100%)]" />
-        {DECKS.map((layer) => (
+        {DECKS.filter((layer) => layer.shape === config.shape && layer.deck === config.deck).map((layer) => (
           <LayerImage
             key={layer.key}
             src={layer.src}
             visible={layer.shape === config.shape && layer.deck === config.deck}
           />
         ))}
-        {WATER.map((layer) => (
+        {WATER.filter(
+          (layer) => layer.shape === config.shape && layer.interior === config.interior,
+        ).map((layer) => (
           <LayerImage
             key={layer.key}
             src={layer.src}
@@ -105,14 +206,16 @@ export function PoolViewer({
             }
           />
         ))}
-        {BUBBLES.map((layer) => (
+        {BUBBLES.filter((layer) => config.bubbles && layer.shape === config.shape).map((layer) => (
           <LayerImage
             key={layer.key}
             src={layer.src}
             visible={config.bubbles && layer.shape === config.shape}
           />
         ))}
-        {LIGHTS.map((layer) => (
+        {LIGHTS.filter(
+          (layer) => layer.shape === config.shape && layer.lighting === config.lighting,
+        ).map((layer) => (
           <LayerImage
             key={layer.key}
             src={layer.src}
@@ -121,7 +224,9 @@ export function PoolViewer({
             }
           />
         ))}
-        {COPING.map((layer) => (
+        {COPING.filter(
+          (layer) => layer.shape === config.shape && layer.coping === config.coping,
+        ).map((layer) => (
           <LayerImage
             key={layer.key}
             src={layer.src}
@@ -130,7 +235,9 @@ export function PoolViewer({
             }
           />
         ))}
-        {SPAS.map((layer) => (
+        {SPAS.filter(
+          (layer) => config.spa && layer.shape === config.shape && layer.coping === config.coping,
+        ).map((layer) => (
           <LayerImage
             key={layer.key}
             src={layer.src}
@@ -141,7 +248,10 @@ export function PoolViewer({
             }
           />
         ))}
-        {FOUNTAINS.map((layer) => (
+        {FOUNTAINS.filter(
+          (layer) =>
+            config.fountain && layer.shape === config.shape && layer.coping === config.coping,
+        ).map((layer) => (
           <LayerImage
             key={layer.key}
             src={layer.src}
@@ -153,9 +263,9 @@ export function PoolViewer({
           />
         ))}
       </div>
+      ) : null}
 
-      {realisticMounted ? (
-        <div
+      <div
           className="absolute inset-0 z-1 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
           style={{ opacity: mode === "realistic" ? 1 : 0 }}
           aria-hidden={mode !== "realistic"}
@@ -164,132 +274,82 @@ export function PoolViewer({
             className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "shape" ? 1 : 0 }}
           >
-            <LayerImage
-              src={SHAPE_PHOTOS.rectangular}
-              visible={config.shape === "rectangular"}
-              fit={PHOTO_FRAME.shape}
-            />
-            <LayerImage
-              src={SHAPE_PHOTOS["l-shape"]}
-              visible={config.shape === "l-shape"}
-              fit={PHOTO_FRAME.shape}
-            />
-            <LayerImage
-              src={SHAPE_PHOTOS.lap}
-              visible={config.shape === "lap"}
-              fit={PHOTO_FRAME.shape}
-            />
-            <LayerImage
-              src={SHAPE_PHOTOS.custom}
-              visible={config.shape === "custom"}
-              fit={PHOTO_FRAME.shape}
-            />
+            {photo(SHAPE_PHOTOS.rectangular, config.shape === "rectangular", PHOTO_FRAME.shape)}
+            {photo(SHAPE_PHOTOS["l-shape"], config.shape === "l-shape", PHOTO_FRAME.shape)}
+            {photo(SHAPE_PHOTOS.lap, config.shape === "lap", PHOTO_FRAME.shape)}
+            {photo(SHAPE_PHOTOS.custom, config.shape === "custom", PHOTO_FRAME.shape)}
           </div>
           <div
             className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "interior" ? 1 : 0 }}
           >
-            <LayerImage
-              src={INTERIOR_PHOTOS["diamond-brite"]}
-              visible={config.interior === "diamond-brite"}
-              fit={PHOTO_FRAME.interior}
-            />
-            <LayerImage
-              src={INTERIOR_PHOTOS["glass-tile"]}
-              visible={config.interior === "glass-tile"}
-              fit={PHOTO_FRAME.interior}
-            />
+            {photo(INTERIOR_PHOTOS["diamond-brite"], config.interior === "diamond-brite", PHOTO_FRAME.interior)}
+            {photo(INTERIOR_PHOTOS["glass-tile"], config.interior === "glass-tile", PHOTO_FRAME.interior)}
           </div>
           <div
             className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "coping" ? 1 : 0 }}
           >
-            <LayerImage src={COPING_PHOTO_BASE} visible fit={PHOTO_FRAME.coping} />
-            {COPING_PHOTO_OVERLAYS.map((overlay) => (
-              <LayerImage
-                key={`coping-${overlay.id}`}
-                src={overlay.src}
-                visible={config.coping === overlay.id}
-                fit={PHOTO_FRAME.coping}
-              />
-            ))}
+            {photo(COPING_PHOTO_BASE, true, PHOTO_FRAME.coping)}
+            {COPING_PHOTO_OVERLAYS.map((overlay) =>
+              photo(overlay.src, config.coping === overlay.id, PHOTO_FRAME.coping),
+            )}
           </div>
           <div
             className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "deck" ? 1 : 0 }}
           >
-            <LayerImage src={DECK_PHOTO_BASE} visible fit={PHOTO_FRAME.deck} />
-            {DECK_PHOTO_OVERLAYS.map((overlay) => (
-              <LayerImage
-                key={`deck-${overlay.id}`}
-                src={overlay.src}
-                visible={config.deck === overlay.id}
-                fit={PHOTO_FRAME.deck}
-              />
-            ))}
+            {photo(DECK_PHOTO_BASE, true, PHOTO_FRAME.deck)}
+            {DECK_PHOTO_OVERLAYS.map((overlay) =>
+              photo(overlay.src, config.deck === overlay.id, PHOTO_FRAME.deck),
+            )}
           </div>
           <div
             className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "fountain" ? 1 : 0 }}
           >
-            <LayerImage src={FOUNTAIN_PHOTO_BASE} visible fit={PHOTO_FRAME.fountain} />
-            <LayerImage
-              src={FOUNTAIN_PHOTO_OVERLAY}
-              visible={config.fountain}
-              fit={PHOTO_FRAME.fountain}
-            />
+            {photo(FOUNTAIN_PHOTO_BASE, true, PHOTO_FRAME.fountain)}
+            {photo(FOUNTAIN_PHOTO_OVERLAY, config.fountain, PHOTO_FRAME.fountain)}
           </div>
           <div
             className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "spa" ? 1 : 0 }}
           >
-            <LayerImage src={SPA_PHOTO_BASE} visible fit={PHOTO_FRAME.spa} />
-            <LayerImage
-              src={SPA_PHOTO_OVERLAY}
-              visible={config.spa}
-              fit={PHOTO_FRAME.spa}
-            />
+            {photo(SPA_PHOTO_BASE, true, PHOTO_FRAME.spa)}
+            {photo(SPA_PHOTO_OVERLAY, config.spa, PHOTO_FRAME.spa)}
           </div>
           <div
             className="absolute inset-0 transition-opacity duration-400 ease-in-out motion-reduce:transition-none"
             style={{ opacity: photoPhase === "lights" ? 1 : 0 }}
           >
-            <LayerImage
-              src={LIGHT_PHOTOS.white}
-              visible={config.lighting === "white"}
-              fit={PHOTO_FRAME.lights}
-            />
-            {LIGHT_COLOR_PHOTOS.map((color) => (
-              <LayerImage
-                key={`color-${color}`}
-                src={LIGHT_PHOTOS[color]}
-                visible={config.lighting === "color" && color === accentLight}
-                fit={PHOTO_FRAME.lights}
-              />
-            ))}
-            <LayerImage
-              src={LIGHT_PHOTOS.red}
-              visible={config.lighting === "rgb"}
-              fit={PHOTO_FRAME.lights}
-            />
+            {photo(LIGHT_PHOTOS.white, config.lighting === "white", PHOTO_FRAME.lights)}
+            {LIGHT_COLOR_PHOTOS.map((color) =>
+              photo(
+                LIGHT_PHOTOS[color],
+                config.lighting === "color" && color === accentLight,
+                PHOTO_FRAME.lights,
+              ),
+            )}
+            {photo(LIGHT_PHOTOS.red, config.lighting === "rgb", PHOTO_FRAME.lights)}
             {config.lighting === "rgb"
-              ? RGB_LIGHT_CYCLE.map((color, index) => (
-                  <Image
-                    key={`rgb-${color}`}
-                    src={LIGHT_PHOTOS[color]}
-                    alt=""
-                    fill
-                    aria-hidden
-                    draggable={false}
-                    sizes="(min-width: 1024px) calc(100vw - 420px), 100vw"
-                    className={`pool-light-fade pointer-events-none ${PHOTO_FRAME.lights} opacity-0 motion-reduce:animate-none`}
-                    style={{ animationDelay: `${index * 4}s` }}
-                  />
-                ))
+              ? RGB_LIGHT_CYCLE.map((color, index) =>
+                  revealed.has(LIGHT_PHOTOS[color]) ? (
+                    <Image
+                      key={`rgb-${color}`}
+                      src={LIGHT_PHOTOS[color]}
+                      alt=""
+                      fill
+                      aria-hidden
+                      draggable={false}
+                      sizes="(min-width: 1024px) calc(100vw - 420px), 100vw"
+                      className={`pool-light-fade pointer-events-none ${PHOTO_FRAME.lights} opacity-0 motion-reduce:animate-none`}
+                      style={{ animationDelay: `${index * 4}s` }}
+                    />
+                  ) : null,
+                )
               : null}
           </div>
         </div>
-      ) : null}
 
       <div className="absolute top-28 left-1/2 z-20 -translate-x-1/2 md:top-4">
         <div
@@ -322,13 +382,6 @@ export function PoolViewer({
       <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-4 bg-gradient-to-b from-[#07111c]/75 to-transparent px-4 py-4 sm:px-6">
         <div className="min-w-0">
           <BrandLockup />
-          <p className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1 text-[10px] font-medium tracking-[0.16em] text-white/80 uppercase">
-            <span
-              className="size-1.5 rounded-full bg-[#2ad9c3]"
-              aria-hidden="true"
-            />
-            Live preview
-          </p>
         </div>
         <Link
           href="/"
