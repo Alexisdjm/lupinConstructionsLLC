@@ -89,7 +89,7 @@ const STANDARDS = [
 
 export function Standard() {
   return (
-    <section id="standard" className="bg-[#f4f1eb] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
+    <section id="standard" className="bg-[#fff] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
           <div>

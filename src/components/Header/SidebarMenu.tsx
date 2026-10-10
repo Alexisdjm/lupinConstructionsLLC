@@ -81,7 +81,7 @@ export function SidebarMenu({ id, isOpen, onClose, links }: SidebarMenuProps) {
           <Link
             href={QUOTE_LINK.href}
             onClick={onClose}
-            className="inline-flex w-full items-center justify-center rounded-full bg-[#2ad9c3] px-5 py-3 text-sm font-semibold text-[#062018] transition-colors hover:bg-[#5ee8d4] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="inline-flex w-full items-center justify-center rounded-[12px] bg-[#2ad9c3] px-5 py-3 text-sm font-semibold text-[#062018] transition-colors hover:bg-[#5ee8d4] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             {QUOTE_LINK.label}
           </Link>
