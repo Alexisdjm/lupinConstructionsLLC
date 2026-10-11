@@ -32,7 +32,7 @@ export function Header() {
           : "border-b border-white/10 bg-[#07111c]/85 backdrop-blur-md"
       }`}
     >
-      <div className="flex h-19 items-center justify-between gap-4 px-4 sm:px-6 lg:px-10">
+      <div className="page-shell flex h-19 items-center justify-between gap-4">
         <Link
           href="/"
           className="min-w-0 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2ad9c3]"

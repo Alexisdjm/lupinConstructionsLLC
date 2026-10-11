@@ -3,7 +3,7 @@ import { ServicesGrid } from "./ServicesGrid";
 export function Services() {
   return (
     <section id="services" className="scroll-mt-24 bg-[#fff] py-16 lg:py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
+      <div className="page-shell">
         <div className="mx-auto max-w-2xl text-center">
           <p className="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[0.22em] text-[#149e90] uppercase">
             <span className="size-1.5 rounded-full bg-[#2ad9c3]" aria-hidden="true" />

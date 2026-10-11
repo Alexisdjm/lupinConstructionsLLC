@@ -89,8 +89,8 @@ const STANDARDS = [
 
 export function Standard() {
   return (
-    <section id="standard" className="bg-[#fff] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
-      <div className="mx-auto max-w-6xl">
+    <section id="standard" className="bg-[#fff] py-16 lg:py-20">
+      <div className="page-shell">
         <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
           <div>
             <p className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.22em] text-[#149e90] uppercase">

@@ -14,7 +14,7 @@ export function ProcessCard({
   icon,
 }: ProcessCardProps) {
   return (
-    <article className="flex h-full flex-col rounded-[20px] border border-white/10 bg-[#102c38] p-5 transition duration-300 ease-out hover:-translate-y-1 hover:border-white/20">
+    <article className="flex h-full flex-col rounded-[20px] border border-white/12 bg-[#112638] p-5 transition duration-300 ease-out hover:-translate-y-1 hover:border-white/25">
       <div className="flex items-start justify-between">
         <span className="text-sm font-medium text-[#8ea3ae]">{step}</span>
         <span className="grid size-9 place-items-center rounded-lg border border-white/10 text-[#9fb4bf]">

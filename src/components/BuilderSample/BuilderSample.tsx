@@ -181,8 +181,8 @@ export function BuilderSample() {
   }
 
   return (
-    <section id="preview" className="bg-[#071422] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
-      <div className="mx-auto max-w-6xl">
+    <section id="preview" className="bg-[#071422] py-16 lg:py-20">
+      <div className="page-shell">
         <div className="mx-auto max-w-3xl text-center">
           <p className="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[0.22em] text-[#2ad9c3] uppercase">
             <span className="size-1.5 rounded-full bg-[#2ad9c3]" aria-hidden="true" />
@@ -198,10 +198,7 @@ export function BuilderSample() {
           </p>
         </div>
 
-        <div
-          className="relative mx-auto mt-10 aspect-[9/4] w-full"
-          style={{ maxWidth: 975 }}
-        >
+        <div className="relative mt-10 aspect-[9/4] w-full">
           <div className="absolute inset-0 overflow-hidden rounded-[20px] shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
             {STACK.map((src) =>
               mounted.includes(src) ? (
@@ -211,7 +208,7 @@ export function BuilderSample() {
                   alt=""
                   fill
                   quality={90}
-                  sizes="(min-width: 975px) 975px, 100vw"
+                  sizes="(min-width: 1445px) 1300px, 90vw"
                   priority={src === INITIAL}
                   className={`pointer-events-none object-cover object-center transition-opacity duration-500 ease-in-out motion-reduce:transition-none ${
                     active.includes(src) && entered.includes(src)
@@ -272,7 +269,7 @@ export function BuilderSample() {
           })}
         </div>
 
-        <div className="mx-auto mt-5 flex max-w-[975px] flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mt-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <p className="max-w-xl text-xs leading-5 text-white/45">
             Builder previews are conceptual representations. Final materials,
             dimensions, finishes, feasibility, and pricing are subject to
