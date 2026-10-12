@@ -1,0 +1,51 @@
+[
+  {
+    "id": "pinecrest-spa-terrace",
+    "image": "/projects/pool1.webp",
+    "category": "Spa & Lounge",
+    "title": "Pinecrest Spa Terrace",
+    "location": "Pinecrest, Miami"
+  },
+  {
+    "id": "coconut-grove-night-pool",
+    "image": "/projects/pool2.webp",
+    "category": "Evening Light",
+    "title": "Coconut Grove Night Pool",
+    "location": "Coconut Grove, Miami"
+  },
+  {
+    "id": "palm-beach-rain-court",
+    "image": "/projects/pool3.webp",
+    "category": "Spa & Waterfall",
+    "title": "Palm Beach Rain Court",
+    "location": "Palm Beach"
+  },
+  {
+    "id": "boca-raton-garden-pool",
+    "image": "/projects/pool4.webp",
+    "category": "Geometric Spa",
+    "title": "Boca Raton Garden Pool",
+    "location": "Boca Raton"
+  },
+  {
+    "id": "fort-lauderdale-paver-retreat",
+    "image": "/projects/pool5.webp",
+    "category": "Resort Style",
+    "title": "Fort Lauderdale Paver Retreat",
+    "location": "Fort Lauderdale"
+  },
+  {
+    "id": "las-olas-canal-pool",
+    "image": "/projects/pool6.webp",
+    "category": "Waterfront",
+    "title": "Las Olas Canal Pool",
+    "location": "Fort Lauderdale"
+  },
+  {
+    "id": "coral-gables-sun-shelf",
+    "image": "/projects/pool7.webp",
+    "category": "Sun Shelf",
+    "title": "Coral Gables Sun Shelf",
+    "location": "Coral Gables, Miami"
+  }
+]

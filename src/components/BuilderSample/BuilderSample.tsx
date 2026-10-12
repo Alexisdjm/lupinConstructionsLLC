@@ -183,7 +183,7 @@ export function BuilderSample() {
   return (
     <section id="preview" className="bg-[#071422] py-16 lg:py-20">
       <div className="page-shell">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto text-start">
           <p className="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[0.22em] text-[#2ad9c3] uppercase">
             <span className="size-1.5 rounded-full bg-[#2ad9c3]" aria-hidden="true" />
             Interactive Pool Builder

@@ -58,7 +58,7 @@ export function BeforeAfter() {
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
     >
-      <div className="relative aspect-[2/1] overflow-hidden rounded-[20px] bg-[#e7eef1] shadow-[0_18px_40px_rgba(16,24,40,0.08)]">
+      <div className="relative aspect-2/1 overflow-hidden rounded-[20px] bg-[#e7eef1] shadow-[0_18px_40px_rgba(16,24,40,0.08)]">
         <Image
           src={BEFORE}
           alt="Deteriorated pool before repair"

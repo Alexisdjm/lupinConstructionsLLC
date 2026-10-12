@@ -9,7 +9,7 @@ export function PrimaryCTA({ href, children }: PrimaryCTAProps) {
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-2 rounded-[12px] bg-[#2ad9c3] px-5 py-3 text-sm font-semibold text-[#062018] transition-colors hover:bg-[#5ee8d4] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      className="inline-flex items-center gap-2 rounded-xl bg-[#2ad9c3] px-5 py-3 text-sm font-semibold text-[#062018] transition-colors hover:bg-[#5ee8d4] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
     >
       {children}
       <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">
