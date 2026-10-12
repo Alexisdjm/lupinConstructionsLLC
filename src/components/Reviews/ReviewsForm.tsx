@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { PrimaryCTA } from "@/src/components/UXUI/PrimaryCTA";
+import { SecondaryCTA } from "@/src/components/UXUI/SecondaryTSX";
 
 const GOOGLE_REVIEW_URL =
   "https://www.google.com/search?q=Lupin+Construction+LLC+South+Florida";
@@ -67,15 +69,10 @@ export function ReviewsForm() {
           <p className="text-sm leading-6 text-white/75">
             Thank you for sharing your experience with Lupin Construction LLC.
           </p>
-          <a
-            href={GOOGLE_REVIEW_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-          >
+          <SecondaryCTA href={GOOGLE_REVIEW_URL} external className="mt-6">
             Leave a Review on Google
             <ExternalIcon />
-          </a>
+          </SecondaryCTA>
         </div>
       ) : (
         <form className="mt-6" onSubmit={handleSubmit} noValidate>
@@ -201,21 +198,17 @@ export function ReviewsForm() {
           ) : null}
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <button
-              type="submit"
-              className="rounded-xl bg-[#2ad9c3] px-5 py-3 text-sm font-semibold text-[#062018] transition-colors hover:bg-[#5ee8d4] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
+            <PrimaryCTA hoverColor="#C4FCFA" type="submit" className="w-full justify-center">
               Submit Review
-            </button>
-            <a
+            </PrimaryCTA>
+            <SecondaryCTA
               href={GOOGLE_REVIEW_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              external
+              className="w-full justify-center"
             >
               Leave a Review on Google
               <ExternalIcon />
-            </a>
+            </SecondaryCTA>
           </div>
         </form>
       )}

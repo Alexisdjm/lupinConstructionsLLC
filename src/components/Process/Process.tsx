@@ -101,7 +101,7 @@ export function Process() {
             </h2>
           </div>
           <div className="shrink-0 self-start">
-            <PrimaryCTA href="/create">Start Your Design</PrimaryCTA>
+            <PrimaryCTA hoverColor="#C4FCFA" href="/create">Start Your Design</PrimaryCTA>
           </div>
         </div>
 

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { PrimaryCTA } from "@/src/components/UXUI/PrimaryCTA";
 import { BrandLockup } from "./BrandLockup";
 import { NAV_LINKS, QUOTE_LINK } from "./nav";
 import { SidebarMenu } from "./SidebarMenu";
@@ -50,12 +51,9 @@ export function Header() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href={QUOTE_LINK.href}
-            className="rounded-[12px] bg-[#2ad9c3] px-5 py-2.5 text-sm font-semibold text-[#062018] transition-colors hover:bg-[#5ee8d4] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-          >
+          <PrimaryCTA hoverColor="#C4FCFA" href={QUOTE_LINK.href}>
             {QUOTE_LINK.label}
-          </Link>
+          </PrimaryCTA>
         </nav>
 
         <button

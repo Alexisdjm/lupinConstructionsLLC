@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { BrandLockup } from "./BrandLockup";
+import { PrimaryCTA } from "@/src/components/UXUI/PrimaryCTA";
 import { QUOTE_LINK, type NavLink } from "./nav";
 
 type SidebarMenuProps = {
@@ -78,13 +79,14 @@ export function SidebarMenu({ id, isOpen, onClose, links }: SidebarMenuProps) {
         </nav>
 
         <div className="border-t border-white/10 p-5">
-          <Link
+          <PrimaryCTA
+            hoverColor="#C4FCFA"
             href={QUOTE_LINK.href}
             onClick={onClose}
-            className="inline-flex w-full items-center justify-center rounded-[12px] bg-[#2ad9c3] px-5 py-3 text-sm font-semibold text-[#062018] transition-colors hover:bg-[#5ee8d4] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="w-full justify-center"
           >
             {QUOTE_LINK.label}
-          </Link>
+          </PrimaryCTA>
         </div>
       </aside>
     </>

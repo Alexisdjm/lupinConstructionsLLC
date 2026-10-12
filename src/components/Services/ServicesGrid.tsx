@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { PrimaryCTA } from "@/src/components/UXUI/PrimaryCTA";
 
 const SERVICES = [
   {
@@ -46,11 +46,11 @@ export function ServicesGrid() {
           }}
         >
           <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#041018]/80 via-[#041018]/15 to-transparent"
+            className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#041018]/80 via-[#041018]/15 to-transparent"
             aria-hidden="true"
           />
           <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#06283a] via-[#0b3a4c]/85 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 motion-reduce:transition-none"
+            className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#06283a] via-[#0b3a4c]/85 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 motion-reduce:transition-none"
             aria-hidden="true"
           />
 
@@ -66,13 +66,9 @@ export function ServicesGrid() {
                 <p className="pt-3 text-sm leading-relaxed text-white/85">
                   {service.description}
                 </p>
-                <Link
-                  href="/#quote"
-                  className="mt-4 inline-flex items-center gap-2 rounded-[12px] bg-[#2ad9c3] px-3.5 py-2 text-sm font-semibold text-[#062018] transition-colors hover:bg-[#5ee8d4] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                >
+                <PrimaryCTA hoverColor="#C4FCFA" href="/#quote" className="mt-4">
                   Learn More
-                  <span aria-hidden="true">+</span>
-                </Link>
+                </PrimaryCTA>
               </div>
             </div>
           </div>

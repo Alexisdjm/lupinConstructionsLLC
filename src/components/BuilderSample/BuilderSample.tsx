@@ -183,9 +183,12 @@ export function BuilderSample() {
   return (
     <section id="preview" className="bg-[#071422] py-16 lg:py-20">
       <div className="page-shell">
-        <div className="mx-auto text-start">
+        <div className="mx-auto text-center">
           <p className="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[0.22em] text-[#2ad9c3] uppercase">
-            <span className="size-1.5 rounded-full bg-[#2ad9c3]" aria-hidden="true" />
+            <span
+              className="size-1.5 rounded-full bg-[#2ad9c3]"
+              aria-hidden="true"
+            />
             Interactive Pool Builder
           </p>
           <h2 className="mt-3 text-3xl leading-tight font-medium text-white sm:text-4xl">
@@ -221,7 +224,10 @@ export function BuilderSample() {
           </div>
 
           <p className="absolute top-4 left-4 z-10 inline-flex items-center gap-2 rounded-full border border-white/15 bg-[#07111c]/75 px-3 py-1.5 text-[10px] font-semibold tracking-[0.16em] text-white uppercase backdrop-blur-sm">
-            <span className="size-1.5 rounded-full bg-[#2ad9c3]" aria-hidden="true" />
+            <span
+              className="size-1.5 rounded-full bg-[#2ad9c3]"
+              aria-hidden="true"
+            />
             Builder preview
           </p>
 
@@ -259,7 +265,11 @@ export function BuilderSample() {
                   <OptionCard
                     title={hotspot.label}
                     choices={choicesFor(hotspot.id)}
-                    note={hotspot.id === "finish" ? "Visual estimate only" : undefined}
+                    note={
+                      hotspot.id === "finish"
+                        ? "Visual estimate only"
+                        : undefined
+                    }
                     placement={hotspot.placement}
                     align={hotspot.align}
                   />
@@ -276,7 +286,9 @@ export function BuilderSample() {
             professional evaluation and site assessment.
           </p>
           <div className="flex shrink-0 flex-wrap gap-3">
-            <PrimaryCTA href="/create">Design Your Pool</PrimaryCTA>
+            <PrimaryCTA hoverColor="#C4FCFA" href="/create">
+              Design Your Pool
+            </PrimaryCTA>
             <SecondaryCTA href="/#quote">Request a Consultation</SecondaryCTA>
           </div>
         </div>

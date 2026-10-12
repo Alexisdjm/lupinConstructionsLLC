@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { PrimaryCTA } from "@/src/components/UXUI/PrimaryCTA";
 
 export function Invitation() {
   return (
@@ -13,22 +13,14 @@ export function Invitation() {
             directly to your inbox.
           </p>
         </div>
-        <Link
+        <PrimaryCTA
           href="/#quote"
-          className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-[12px] bg-white px-5 py-3 text-sm font-semibold text-[#062018] transition-colors hover:bg-[#f4fffd] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#062018] lg:self-center"
+          color="#ffffff"
+          hoverColor="#C4FCFA"
+          className="self-start lg:self-center"
         >
           Request a Custom Proposal
-          <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">
-            <path
-              d="M5 12h14M13 6l6 6-6 6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </Link>
+        </PrimaryCTA>
       </div>
     </div>
   );

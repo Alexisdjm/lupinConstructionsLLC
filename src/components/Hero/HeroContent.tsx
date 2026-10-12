@@ -17,7 +17,7 @@ export function HeroContent() {
           crafted by our expert design team, delivered by email.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
-          <PrimaryCTA href="/create">Start Your Design</PrimaryCTA>
+          <PrimaryCTA hoverColor="#C4FCFA" href="/create">Start Your Design</PrimaryCTA>
           <SecondaryCTA href="/#portfolio">View Gallery</SecondaryCTA>
         </div>
         </div>

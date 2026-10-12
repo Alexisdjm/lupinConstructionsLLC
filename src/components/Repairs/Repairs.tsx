@@ -28,7 +28,7 @@ export function Repairs() {
             site conditions and project scope.
           </p>
           <div className="shrink-0">
-            <PrimaryCTA href="/#quote">Request a Consultation</PrimaryCTA>
+            <PrimaryCTA hoverColor="#C4FCFA" href="/#quote">Request a Consultation</PrimaryCTA>
           </div>
         </div>
       </div>
