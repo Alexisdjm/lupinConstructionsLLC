@@ -1,0 +1,343 @@
+{
+  "meta": {
+    "title": "Lupin Construction LLC | Piscinas de lujo en el sur de la Florida",
+    "description": "Piscinas, spas y espacios exteriores a medida para el sur de la Florida. Diseña tu piscina y pide una propuesta personalizada."
+  },
+  "create": {
+    "title": "Diseña tu piscina | Lupin Construction",
+    "description": "Configura la forma, el interior, el borde y los extras de tu piscina en el sur de la Florida, y pide una propuesta a medida."
+  },
+  "header": {
+    "region": "SUR DE LA FLORIDA",
+    "primary": "Principal",
+    "mobile": "Móvil",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "siteMenu": "Menú del sitio",
+    "language": "Idioma",
+    "switchAria": "View the site in English",
+    "nav": [
+      { "href": "/#services", "label": "Servicios" },
+      { "href": "/#portfolio", "label": "Portafolio" },
+      { "href": "/#process", "label": "Proceso" },
+      { "href": "/#reviews", "label": "Reseñas" }
+    ],
+    "quote": { "href": "/#quote", "label": "Pedir una cotización" }
+  },
+  "hero": {
+    "label": "Lupin Construction",
+    "eyebrow": "Especialistas en piscinas de lujo en Miami",
+    "title": "Construye el paraíso de tu patio en el sur de la Florida",
+    "subtitle": "Cuéntanos tu idea y recibe una propuesta personalizada, preparada por nuestro equipo de diseño y enviada por correo.",
+    "design": "Empieza tu diseño",
+    "gallery": "Ver galería",
+    "alts": [
+      "Casa blanca moderna con una piscina reflejante y palmeras",
+      "Piscina de patio junto a una casa enmarcada por palmeras",
+      "Villa de cristal que se abre a una piscina turquesa"
+    ]
+  },
+  "standard": {
+    "eyebrow": "El estándar Lupin",
+    "title": "Construido con belleza. Respaldado por completo.",
+    "line1": "Un solo equipo experto gestiona el diseño, la ingeniería y los permisos,",
+    "line2": "y la construcción, del primer boceto al primer chapuzón.",
+    "cards": [
+      { "title": "Con licencia estatal y seguro", "description": "Licencia CFC" },
+      { "title": "Garantía estructural de por vida", "description": "Hecho para durar con confianza" },
+      { "title": "100% de gestión de permisos", "description": "De los planos a la inspección final" },
+      { "title": "Más de 20 años de excelencia", "description": "Oficio de confianza desde 2004" }
+    ]
+  },
+  "builder": {
+    "eyebrow": "Diseñador interactivo",
+    "title": "Visualiza tu piscina antes de romper suelo.",
+    "subtitle": "Explora acabados, bordes y combinaciones en nuestro diseñador interactivo. Mira cómo cada decisión cambia el aspecto de tu futura piscina.",
+    "badge": "Vista previa",
+    "disclaimer": "Las vistas previas son representaciones conceptuales. Los materiales, las medidas, los acabados, la viabilidad y el precio se confirman tras una evaluación profesional del sitio.",
+    "design": "Diseña tu piscina",
+    "consult": "Pedir una consulta",
+    "note": "Solo una estimación visual",
+    "hotspots": {
+      "fountain": "Fuente",
+      "finish": "Acabado interior",
+      "spa": "Spa"
+    },
+    "fountainOff": "Sin fuente",
+    "fountainOffDetail": "Agua abierta, sin elemento",
+    "fountainOn": "Añadir fuente",
+    "fountainOnDetail": "Cortina de agua",
+    "spaOff": "Sin spa",
+    "spaOffDetail": "Solo la piscina",
+    "spaOn": "Añadir spa",
+    "spaOnDetail": "Spa integrado",
+    "diamond": "Diamond Brite",
+    "diamondDetail": "Acabado de agregado de cuarzo",
+    "tile": "Mosaico de vidrio",
+    "tileDetail": "Detalle luminoso en mosaico"
+  },
+  "wizard": {
+    "preview": "Vista previa de la piscina",
+    "previewStyle": "Estilo de vista previa",
+    "modes": { "animation": "Animación", "realistic": "Realista" },
+    "exit": "Volver al inicio",
+    "currentSelection": "Selección actual",
+    "summary": "{length}×{width} ft · {shape} · Borde {coping} · Deck {deck}",
+    "stepOf": "Paso {current} de {total}",
+    "received": "Propuesta recibida.",
+    "back": "Atrás",
+    "continue": "Continuar",
+    "send": "Enviar mi propuesta personalizada",
+    "dimensionsError": "Ingresa un largo, ancho y profundidad dentro del rango permitido.",
+    "steps": [
+      { "label": "Forma", "title": "Define la base de tu piscina." },
+      { "label": "Interior", "title": "Elige el acabado y el borde." },
+      { "label": "Extras", "title": "Elige el deck. Agrega movimiento." },
+      { "label": "Enviar", "title": "Tu propuesta personalizada empieza aquí." }
+    ],
+    "shape": {
+      "size": "Tamaño de la piscina",
+      "shape": "Forma de la piscina",
+      "length": "Largo",
+      "width": "Ancho",
+      "depth": "Profundidad",
+      "hint": "En pies. Largo 10–80, ancho 6–40, profundidad 3–12.",
+      "presets": { "small": "Pequeña", "medium": "Mediana", "large": "Grande" },
+      "shapes": {
+        "rectangular": { "label": "Rectangular", "detail": "Geometría limpia, fácil de amueblar" },
+        "l-shape": { "label": "En L", "detail": "Un ala de descanso junto al vaso principal" },
+        "lap": { "label": "De nado", "detail": "Larga y angosta para nadar a diario" },
+        "custom": { "label": "Personalizada", "detail": "Una silueta de forma libre" }
+      }
+    },
+    "interior": {
+      "finish": "Acabado interior",
+      "coping": "Borde",
+      "interiors": {
+        "diamond-brite": { "label": "Diamond Brite", "detail": "Acabado de piedra con un brillo suave" },
+        "glass-tile": { "label": "Mosaico de vidrio", "detail": "Vidrio en cuadrícula sobre todo el vaso" }
+      },
+      "copings": {
+        "travertine": { "label": "Travertino", "detail": "Borde cálido de piedra caliza" },
+        "slate": { "label": "Pizarra oscura", "detail": "Piedra fría y pulida" },
+        "teak": { "label": "Teca", "detail": "Remate de madera dura aceitada" },
+        "brick": { "label": "Ladrillo", "detail": "Hiladas de arcilla en la línea de agua" },
+        "pavers": { "label": "Adoquines", "detail": "Piedra cortada en cuadrícula" }
+      }
+    },
+    "features": {
+      "deck": "Deck",
+      "lighting": "Iluminación",
+      "extras": "Extras",
+      "decks": {
+        "travertine": { "label": "Travertino", "detail": "Losas de piedra cálida bajo los pies" },
+        "shellstone": { "label": "Piedra coquina", "detail": "Caliza crema de la Florida" },
+        "concrete": { "label": "Concreto", "detail": "Losa lisa en gris frío" },
+        "charcoal": { "label": "Grafito", "detail": "Adoquines oscuros cortados" },
+        "ipe": { "label": "Ipé", "detail": "Deck de madera dura" },
+        "bluestone": { "label": "Piedra azul", "detail": "Piedra natural gris azulada" }
+      },
+      "lightings": {
+        "white": { "label": "Blanco cálido", "detail": "Luz uniforme a lo largo del piso" },
+        "color": { "label": "Color", "detail": "Acentos fijos en turquesa y magenta" },
+        "rgb": { "label": "RGB dinámico", "detail": "Luces que cambian de color" }
+      },
+      "spa": { "label": "Spa integrado", "detail": "Un spa cuadrado unido a la piscina principal." },
+      "fountain": { "label": "Fuente", "detail": "Una fuente pequeña en el deck junto a la piscina." },
+      "heater": { "label": "Calentador", "detail": "Calefacción a gas para que el agua siempre esté lista." },
+      "bubbles": { "label": "Chorros de burbujas", "detail": "Una cortina de burbujas por el piso de la piscina." }
+    },
+    "contact": {
+      "shape": "Forma",
+      "size": "Tamaño",
+      "sizeValue": "{length} × {width} ft · {depth} ft de profundidad",
+      "interior": "Interior",
+      "coping": "Borde",
+      "deck": "Deck",
+      "lighting": "Iluminación",
+      "extras": "Extras",
+      "none": "Ninguno",
+      "name": "Nombre",
+      "address": "Dirección",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "errors": {
+        "name": "Ingresa tu nombre completo.",
+        "address": "Ingresa la dirección del proyecto.",
+        "email": "Ingresa un correo electrónico válido.",
+        "phone": "Ingresa un número de teléfono válido."
+      }
+    },
+    "success": {
+      "message": "{name}, te enviaremos por correo una propuesta personalizada para tu piscina {shape} a {email}.",
+      "project": "Proyecto",
+      "projectValue": "{length}×{width} ft · {interior}",
+      "edge": "Perímetro",
+      "edgeValue": "Borde {coping} · Deck {deck}",
+      "lighting": "Iluminación",
+      "extras": "Extras",
+      "address": "Dirección",
+      "phone": "Teléfono",
+      "home": "Volver al inicio"
+    }
+  },
+  "services": {
+    "eyebrow": "Nuestros servicios",
+    "title": "Lo que construimos para ti.",
+    "subtitle": "De la piscina nueva a las reparaciones y las piezas de primera, Lupin Construction cuida cada etapa de la vida de tu piscina.",
+    "learnMore": "Saber más",
+    "items": [
+      {
+        "title": "Construcción de piscinas",
+        "description": "Diseñamos y construimos una piscina nueva, del primer boceto a los permisos, la estructura y el acabado, pensada para vivir en el sur de la Florida."
+      },
+      {
+        "title": "Remodelación de piscinas",
+        "description": "Transforma tu piscina con acabados nuevos, mosaico contemporáneo, renovación de superficie y mejoras estructurales a la medida de tu idea."
+      },
+      {
+        "title": "Reparación de piscinas",
+        "description": "Reparamos superficies, equipos, plomería y estructura para que tu piscina vuelva a ser segura, eficiente y lista para nadar."
+      },
+      {
+        "title": "Venta de piezas",
+        "description": "Acabados, equipos y repuestos de primera, elegidos por su durabilidad y por encajar con precisión en tu piscina."
+      }
+    ]
+  },
+  "repairs": {
+    "eyebrow": "Reparación y remodelación",
+    "title": "Restaura lo que tienes. Eleva lo que es posible.",
+    "subtitle": "De las reparaciones estructurales y el acabado de la superficie a las renovaciones completas, devolvemos la vida a piscinas deterioradas o pasadas de moda, con belleza y durabilidad.",
+    "disclaimer": "Ilustración conceptual de antes y después. El resultado real depende de las condiciones del sitio y del alcance del proyecto.",
+    "consult": "Pedir una consulta",
+    "before": "Antes",
+    "after": "Después",
+    "beforeAlt": "Piscina deteriorada antes de la reparación",
+    "slider": "Compara la piscina antes y después de la remodelación",
+    "value": "{percent}% de la piscina deteriorada visible"
+  },
+  "process": {
+    "eyebrow": "Cómo funciona",
+    "title1": "De la inspiración al primer chapuzón,",
+    "title2": "sin suposiciones.",
+    "design": "Empieza tu diseño",
+    "steps": [
+      {
+        "title": "1. Comparte tu idea",
+        "description": "Cuéntanos la piscina que imaginas — medidas, acabado, iluminación, elementos de agua — y registramos cada detalle.",
+        "duration": "Cerca de 1 minuto"
+      },
+      {
+        "title": "2. Recibe tu propuesta",
+        "description": "Nuestro equipo revisa tu solicitud y envía una propuesta a medida por correo, seguida de una visita al sitio sin costo.",
+        "duration": "Propuesta en 24 horas"
+      },
+      {
+        "title": "3. Construimos",
+        "description": "Nuestro equipo con licencia gestiona la ingeniería, los permisos, la construcción y tu orientación de piscina.",
+        "duration": "Obra típica: 10 a 14 semanas"
+      }
+    ]
+  },
+  "projects": {
+    "eyebrow": "Nuestro portafolio",
+    "title": "Proyectos terminados en el sur de la Florida",
+    "subtitle": "Explora piscinas y espacios exteriores diseñados para complementar las casas y el estilo de vida del sur de la Florida.",
+    "carousel": "Proyectos terminados",
+    "show": "Mostrar {title}",
+    "items": {
+      "pinecrest-spa-terrace": { "category": "Spa y salón", "title": "Terraza con spa en Pinecrest", "description": "Integramos un spa elevado, amplios escalones de acceso y una terraza de piedra en una piscina de líneas limpias, pensada para recibir invitados." },
+      "coconut-grove-night-pool": { "category": "Luz de noche", "title": "Piscina nocturna en Coconut Grove", "description": "Combinamos un acabado interior oscuro, iluminación LED por capas y una terraza estilizada para crear una piscina impactante al anochecer." },
+      "palm-beach-rain-court": { "category": "Spa y cascada", "title": "Patio de lluvia en Palm Beach", "description": "Transformamos este patio con un spa integrado, una cascada escultural y detalles de piedra natural que suavizan su geometría moderna." },
+      "boca-raton-garden-pool": { "category": "Spa geométrico", "title": "Piscina jardín en Boca Raton", "description": "Ubicamos cuidadosamente una piscina y un spa geométricos dentro del jardín, con bordes precisos y zonas equilibradas para nadar y descansar." },
+      "fort-lauderdale-paver-retreat": { "category": "Estilo resort", "title": "Retiro de adoquines en Fort Lauderdale", "description": "Los adoquines de gran formato, escalones amplios y una distribución inspirada en resorts convirtieron el patio en un refugio para cada día." },
+      "las-olas-canal-pool": { "category": "Frente al agua", "title": "Piscina del canal Las Olas", "description": "Diseñada alrededor de la vista al canal, combina una línea de agua limpia, acabados costeros duraderos y una terraza abierta." },
+      "coral-gables-sun-shelf": { "category": "Banco de sol", "title": "Banco de sol en Coral Gables", "description": "Un amplio banco de sol, acceso gradual y acabados claros crearon una piscina luminosa y familiar para descansar y jugar." }
+    }
+  },
+  "faqs": {
+    "eyebrow": "Preguntas frecuentes",
+    "title": "Todo lo que debes saber antes de empezar.",
+    "subtitle": "Planear una piscina a medida trae preguntas importantes. Estamos aquí para ayudarte a entender el proceso.",
+    "cta": "¿Aún tienes preguntas? Habla con nuestro equipo",
+    "items": [
+      {
+        "id": "cost",
+        "question": "¿Cuánto cuesta construir una piscina a medida?",
+        "answer": "Cada proyecto es distinto. El precio depende del tamaño, los materiales, las condiciones del sitio, la ingeniería, los permisos y los extras. Nuestro equipo revisa lo que necesitas antes de preparar una cotización personalizada."
+      },
+      {
+        "id": "customize",
+        "question": "¿Puedo personalizar mi piscina con el diseñador en línea?",
+        "answer": "Sí. El diseñador te deja explorar la forma, el acabado interior, el borde, la terraza, los elementos de agua y la iluminación, y luego enviar ese diseño a nuestro equipo."
+      },
+      {
+        "id": "price",
+        "question": "¿El diseñador da un precio al instante?",
+        "answer": "No. El diseñador es una vista previa. Los materiales, las medidas y el precio se confirman cuando nuestro equipo revisa tu diseño y tu sitio."
+      },
+      {
+        "id": "permits",
+        "question": "¿Ustedes se encargan de los permisos y los requisitos de construcción?",
+        "answer": "Sí. Nuestro equipo con licencia gestiona la ingeniería, los permisos, las inspecciones y la construcción, desde los planos aprobados hasta la orientación de tu piscina."
+      },
+      {
+        "id": "timeline",
+        "question": "¿Cuánto tarda construir una piscina?",
+        "answer": "La mayoría de los proyectos toma unas 10 a 14 semanas una vez aprobados los permisos. El calendario depende del diseño, del sitio y de los tiempos de inspección."
+      },
+      {
+        "id": "after-submit",
+        "question": "¿Qué pasa después de enviar mi diseño?",
+        "answer": "Nuestro equipo revisa tu solicitud y envía una propuesta a medida por correo, por lo general en 24 horas, seguida de una visita al sitio sin costo."
+      }
+    ]
+  },
+  "reviews": {
+    "eyebrow": "Comparte tu experiencia",
+    "title": "Deja una reseña",
+    "subtitle": "Valoramos tu opinión sincera. Comparte cómo fue trabajar con Lupin Construction LLC para que otras personas conozcan a nuestro equipo.",
+    "formTitle": "Comparte tu experiencia",
+    "thanks": "Gracias por compartir tu experiencia con Lupin Construction LLC.",
+    "google": "Dejar una reseña en Google",
+    "name": "Nombre completo",
+    "namePlaceholder": "Escribe tu nombre completo",
+    "email": "Correo electrónico",
+    "review": "Tu reseña",
+    "reviewPlaceholder": "Cuéntanos tu experiencia, qué salió bien y cualquier detalle que creas útil para otras personas.",
+    "consent": "Acepto que Lupin Construction LLC publique mi reseña en este sitio. Entiendo que mi correo no se publicará.",
+    "submit": "Enviar reseña",
+    "starOne": "1 estrella",
+    "starMany": "{count} estrellas",
+    "errors": {
+      "rating": "Elige una calificación.",
+      "name": "Escribe tu nombre completo.",
+      "email": "Escribe un correo válido.",
+      "review": "Cuéntanos un poco más sobre tu experiencia.",
+      "consent": "Acepta antes de enviar."
+    }
+  },
+  "footer": {
+    "description": "Piscinas, spas y espacios exteriores a medida, diseñados para el estilo de vida del sur de la Florida.",
+    "serving": "Servimos el sur de la Florida · Miami, Fort Lauderdale y Palm Beach",
+    "explore": "Explorar",
+    "exploreNav": "Explorar",
+    "studio": "Visita nuestro estudio de diseño",
+    "hours": "Lun–vie 8:00 AM–6:00 PM · Sáb con cita",
+    "copyright": "© 2026 Lupin Construction LLC · Licencia de contratista de Florida: CFC-XXXXXXX",
+    "terms": "Términos del servicio",
+    "privacy": "Política de privacidad",
+    "invitationTitle": "Tu retiro en el sur de la Florida empieza aquí.",
+    "invitationBody": "Cuéntanos tu idea y te enviaremos una propuesta a medida directamente a tu correo.",
+    "invitationCta": "Pedir una propuesta a medida",
+    "links": [
+      { "href": "/#services", "label": "Servicios" },
+      { "href": "/#reviews", "label": "Reseñas de clientes" },
+      { "href": "/#portfolio", "label": "Portafolio" },
+      { "href": "/#quote", "label": "Contacto" },
+      { "href": "/#process", "label": "Nuestro proceso" },
+      { "href": "/#standard", "label": "Nosotros" }
+    ]
+  }
+}

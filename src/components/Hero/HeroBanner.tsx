@@ -2,26 +2,21 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { HeroContent } from "./HeroContent";
-
-const HERO_SLIDES = [
-  {
-    src: "/hero/villa-night.jpg",
-    alt: "Modern white home with a reflecting pool and palm trees",
-  },
-  {
-    src: "/hero/palms-house.jpg",
-    alt: "Backyard pool beside a house framed by palms",
-  },
-  {
-    src: "/hero/glass-villa.jpg",
-    alt: "Glass villa opening onto a turquoise pool",
-  },
+const HERO_SOURCES = [
+  "/hero/villa-night.jpg",
+  "/hero/palms-house.jpg",
+  "/hero/glass-villa.jpg",
 ] as const;
+
+type HeroBannerProps = {
+  label: string;
+  alts: readonly [string, string, string];
+  children: React.ReactNode;
+};
 
 const SLIDE_DURATION_MS = 6000;
 
-export function HeroBanner() {
+export function HeroBanner({ label, alts, children }: HeroBannerProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -29,20 +24,20 @@ export function HeroBanner() {
     if (motionQuery.matches) return;
 
     const timer = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % HERO_SLIDES.length);
+      setActiveIndex((current) => (current + 1) % HERO_SOURCES.length);
     }, SLIDE_DURATION_MS);
 
     return () => window.clearInterval(timer);
   }, []);
 
   return (
-    <section aria-label="Lupin Construction" className="relative min-h-svh">
+    <section aria-label={label} className="relative min-h-svh">
       <div className="absolute inset-0 z-0">
-        {HERO_SLIDES.map((slide, index) => (
+        {HERO_SOURCES.map((src, index) => (
           <Image
-            key={slide.src}
-            src={slide.src}
-            alt={slide.alt}
+            key={src}
+            src={src}
+            alt={alts[index]}
             fill
             sizes="100vw"
             preload={index === 0}
@@ -53,7 +48,7 @@ export function HeroBanner() {
         ))}
         <div className="absolute inset-0 bg-gradient-to-r from-[#041018]/70 via-[#041018]/30 to-transparent" />
       </div>
-      <HeroContent />
+      {children}
     </section>
   );
 }

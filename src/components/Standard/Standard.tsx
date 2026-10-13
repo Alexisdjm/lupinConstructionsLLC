@@ -1,3 +1,4 @@
+import { getDictionary } from "@/src/i18n/getDictionary";
 import { StandardCard } from "./StandardCard";
 
 const STANDARDS = [
@@ -87,40 +88,35 @@ const STANDARDS = [
   },
 ] as const;
 
-export function Standard() {
+export async function Standard() {
+  const { messages } = await getDictionary();
+  const copy = messages.standard;
+
   return (
-    <section id="standard" className="bg-[#fff] py-16 lg:py-20">
+    <section id="standard" className="bg-white py-16 lg:py-20">
       <div className="page-shell">
         <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
           <div>
             <p className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.22em] text-[#149e90] uppercase">
               <span className="size-1.5 rounded-full bg-[#2ad9c3]" aria-hidden="true" />
-              The Lupin Standard
+              {copy.eyebrow}
             </p>
-            <h2
-              className="mt-3 text-[30px] leading-none font-normal whitespace-nowrap text-[#1c2430]"
-            >
-              Built beautifully. Backed completely.
+            <h2 className="mt-3 text-[30px] leading-tight font-normal text-balance text-[#1c2430]">
+              {copy.title}
             </h2>
           </div>
-          <p
-            className="text-[16px] leading-6 font-normal text-[#5f6974] xl:text-right"
-          >
-            <span className="block whitespace-nowrap">
-              One expert team manages design, engineering, permits,
-            </span>
-            <span className="block whitespace-nowrap">
-              and construction from first sketch to first swim.
-            </span>
+          <p className="text-[16px] leading-6 font-normal text-[#5f6974] xl:text-right">
+            <span className="block sm:whitespace-nowrap">{copy.line1}</span>
+            <span className="block sm:whitespace-nowrap">{copy.line2}</span>
           </p>
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {STANDARDS.map((item) => (
+          {STANDARDS.map((item, index) => (
             <StandardCard
-              key={item.title}
-              title={item.title}
-              description={item.description}
+              key={copy.cards[index].title}
+              title={copy.cards[index].title}
+              description={copy.cards[index].description}
               icon={item.icon}
             />
           ))}

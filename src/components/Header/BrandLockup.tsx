@@ -1,4 +1,4 @@
-export function BrandLockup() {
+export function BrandLockup({ region = "SOUTH FLORIDA" }: { region?: string }) {
   return (
     <span className="flex min-w-0 items-center gap-3">
       <img
@@ -13,7 +13,7 @@ export function BrandLockup() {
           Lupin Construction LLC
         </span>
         <span className="mt-0.5 block text-[10px] font-medium tracking-[0.22em] text-[#2ad9c3]">
-          SOUTH FLORIDA
+          {region}
         </span>
       </span>
     </span>

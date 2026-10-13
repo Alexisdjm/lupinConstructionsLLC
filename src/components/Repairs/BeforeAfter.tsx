@@ -6,7 +6,15 @@ import { useRef, useState } from "react";
 const BEFORE = "/Repairs/before.webp";
 const AFTER = "/Repairs/after.webp";
 
-export function BeforeAfter() {
+type BeforeAfterProps = {
+  before: string;
+  after: string;
+  beforeAlt: string;
+  slider: string;
+  value: string;
+};
+
+export function BeforeAfter({ before, after, beforeAlt, slider, value }: BeforeAfterProps) {
   const frameRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(50);
 
@@ -61,7 +69,7 @@ export function BeforeAfter() {
       <div className="relative aspect-2/1 overflow-hidden rounded-[20px] bg-[#e7eef1] shadow-[0_18px_40px_rgba(16,24,40,0.08)]">
         <Image
           src={BEFORE}
-          alt="Deteriorated pool before repair"
+          alt={beforeAlt}
           fill
           quality={90}
           sizes="(min-width: 1445px) 1300px, 90vw"
@@ -84,10 +92,10 @@ export function BeforeAfter() {
         </div>
 
         <span className="absolute top-4 left-4 z-10 rounded-full bg-[#102433]/80 px-3 py-1 text-[10px] font-semibold tracking-[0.16em] text-white uppercase">
-          Before
+          {before}
         </span>
         <span className="absolute top-4 right-4 z-10 rounded-full bg-[#2ad9c3] px-3 py-1 text-[10px] font-semibold tracking-[0.16em] text-[#062018] uppercase">
-          After
+          {after}
         </span>
 
         <div
@@ -99,12 +107,12 @@ export function BeforeAfter() {
       <button
         type="button"
         role="slider"
-        aria-label="Compare the pool before and after remodeling"
+        aria-label={slider}
         aria-orientation="horizontal"
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(position)}
-        aria-valuetext={`${Math.round(position)}% of the deteriorated pool visible`}
+        aria-valuetext={value.replace("{percent}", String(Math.round(position)))}
         onKeyDown={onKeyDown}
         className="absolute top-1/2 z-30 grid size-12 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize place-items-center rounded-full bg-white text-[#5c6b76] shadow-[0_8px_24px_rgba(16,24,40,0.2)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2ad9c3]"
         style={{ left: `${position}%` }}

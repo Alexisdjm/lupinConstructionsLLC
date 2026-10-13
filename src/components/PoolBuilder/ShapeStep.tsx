@@ -1,5 +1,6 @@
 import { SIZE_PRESETS, SHAPES, dimensionsValid } from "./config";
 import { ChoiceCard, NumberField } from "./controls";
+import type { WizardCopy } from "./PoolBuilder";
 import type { PoolConfig } from "./types";
 
 function ShapeIcon({ id }: { id: PoolConfig["shape"] }) {
@@ -40,10 +41,11 @@ function ShapeIcon({ id }: { id: PoolConfig["shape"] }) {
 type ShapeStepProps = {
   config: PoolConfig;
   error: string;
+  copy: WizardCopy["shape"];
   onChange: (patch: Partial<PoolConfig>) => void;
 };
 
-export function ShapeStep({ config, error, onChange }: ShapeStepProps) {
+export function ShapeStep({ config, error, copy, onChange }: ShapeStepProps) {
   const activePreset = SIZE_PRESETS.find(
     (preset) =>
       preset.length === config.length && preset.width === config.width && preset.depth === config.depth,
@@ -52,7 +54,7 @@ export function ShapeStep({ config, error, onChange }: ShapeStepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-[11px] font-medium tracking-[0.16em] text-white/40 uppercase">Pool size</p>
+        <p className="text-[11px] font-medium tracking-[0.16em] text-white/40 uppercase">{copy.size}</p>
         <div className="mt-3 grid grid-cols-3 gap-2">
           {SIZE_PRESETS.map((preset) => (
             <button
@@ -68,7 +70,7 @@ export function ShapeStep({ config, error, onChange }: ShapeStepProps) {
                   : "border-white/10 bg-white/[0.03] hover:border-white/25"
               }`}
             >
-              <span className="block text-sm font-medium text-white">{preset.label}</span>
+              <span className="block text-sm font-medium text-white">{copy.presets[preset.id]}</span>
               <span className="mt-1 block text-[11px] text-white/50">
                 {preset.length}×{preset.width}
               </span>
@@ -77,21 +79,21 @@ export function ShapeStep({ config, error, onChange }: ShapeStepProps) {
         </div>
         <div className="mt-3 grid grid-cols-3 gap-2">
           <NumberField
-            label="Length"
+            label={copy.length}
             min={10}
             max={80}
             value={config.length}
             onChange={(length) => onChange({ length })}
           />
           <NumberField
-            label="Width"
+            label={copy.width}
             min={6}
             max={40}
             value={config.width}
             onChange={(width) => onChange({ width })}
           />
           <NumberField
-            label="Depth"
+            label={copy.depth}
             min={3}
             max={12}
             value={config.depth}
@@ -99,19 +101,19 @@ export function ShapeStep({ config, error, onChange }: ShapeStepProps) {
           />
         </div>
         <p className={`mt-2 text-xs ${error || !dimensionsValid(config) ? "text-rose-300" : "text-white/40"}`}>
-          {error || "Feet. Length 10–80, width 6–40, depth 3–12."}
+          {error || copy.hint}
         </p>
       </div>
 
       <div>
-        <p className="text-[11px] font-medium tracking-[0.16em] text-white/40 uppercase">Pool shape</p>
+        <p className="text-[11px] font-medium tracking-[0.16em] text-white/40 uppercase">{copy.shape}</p>
         <div className="mt-3 grid grid-cols-2 gap-2">
           {SHAPES.map((shape) => (
             <ChoiceCard
               key={shape.id}
               selected={config.shape === shape.id}
-              title={shape.label}
-              detail={shape.detail}
+              title={copy.shapes[shape.id].label}
+              detail={copy.shapes[shape.id].detail}
               icon={<ShapeIcon id={shape.id} />}
               onSelect={() => onChange({ shape: shape.id })}
             />

@@ -1,1 +1,1 @@
-export { BuilderSample } from "./BuilderSample";
+export { BuilderSampleSection } from "./BuilderSampleSection";

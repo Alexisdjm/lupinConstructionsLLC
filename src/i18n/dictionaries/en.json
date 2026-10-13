@@ -1,0 +1,343 @@
+{
+  "meta": {
+    "title": "Lupin Construction LLC | Luxury Pools in South Florida",
+    "description": "Bespoke pools, spas, and outdoor living designed for South Florida. Design your pool and request a custom proposal."
+  },
+  "create": {
+    "title": "Design Your Pool | Lupin Construction",
+    "description": "Configure the shape, interior, coping, and extras for your South Florida pool, then request a custom proposal."
+  },
+  "header": {
+    "region": "SOUTH FLORIDA",
+    "primary": "Primary",
+    "mobile": "Mobile",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "siteMenu": "Site menu",
+    "language": "Language",
+    "switchAria": "Ver el sitio en español",
+    "nav": [
+      { "href": "/#services", "label": "Services" },
+      { "href": "/#portfolio", "label": "Portfolio" },
+      { "href": "/#process", "label": "Process" },
+      { "href": "/#reviews", "label": "Reviews" }
+    ],
+    "quote": { "href": "/#quote", "label": "Request a Quote" }
+  },
+  "hero": {
+    "label": "Lupin Construction",
+    "eyebrow": "Miami's Luxury Pool Specialists",
+    "title": "Build Your Backyard Paradise in South Florida",
+    "subtitle": "Tell us about your vision and receive a personalized proposal crafted by our expert design team, delivered by email.",
+    "design": "Start Your Design",
+    "gallery": "View Gallery",
+    "alts": [
+      "Modern white home with a reflecting pool and palm trees",
+      "Backyard pool beside a house framed by palms",
+      "Glass villa opening onto a turquoise pool"
+    ]
+  },
+  "standard": {
+    "eyebrow": "The Lupin Standard",
+    "title": "Built beautifully. Backed completely.",
+    "line1": "One expert team manages design, engineering, permits,",
+    "line2": "and construction from first sketch to first swim.",
+    "cards": [
+      { "title": "State Licensed & Insured", "description": "CFC License" },
+      { "title": "Lifetime Structural Warranty", "description": "Built for lasting confidence" },
+      { "title": "100% Permit Handling", "description": "From plans to final inspection" },
+      { "title": "20+ Years of Excellence", "description": "Trusted craftsmanship since 2004" }
+    ]
+  },
+  "builder": {
+    "eyebrow": "Interactive Pool Builder",
+    "title": "Visualize Your Pool Before Breaking Ground.",
+    "subtitle": "Explore surface finishes, coping materials, and design combinations in our interactive builder. See how each choice transforms the look and feel of your future pool.",
+    "badge": "Builder preview",
+    "disclaimer": "Builder previews are conceptual representations. Final materials, dimensions, finishes, feasibility, and pricing are subject to professional evaluation and site assessment.",
+    "design": "Design Your Pool",
+    "consult": "Request a Consultation",
+    "note": "Visual estimate only",
+    "hotspots": {
+      "fountain": "Fountain",
+      "finish": "Interior finish",
+      "spa": "Spa"
+    },
+    "fountainOff": "No fountain",
+    "fountainOffDetail": "Open water, no feature",
+    "fountainOn": "Add fountain",
+    "fountainOnDetail": "Sheet waterfall",
+    "spaOff": "No spa",
+    "spaOffDetail": "Pool only",
+    "spaOn": "Add spa",
+    "spaOnDetail": "Attached spa",
+    "diamond": "Diamond Brite",
+    "diamondDetail": "Quartz aggregate finish",
+    "tile": "Glass Tile",
+    "tileDetail": "Luminous mosaic detail"
+  },
+  "wizard": {
+    "preview": "Pool preview",
+    "previewStyle": "Preview style",
+    "modes": { "animation": "Animation", "realistic": "Realistic" },
+    "exit": "Exit to Home",
+    "currentSelection": "Current selection",
+    "summary": "{length}×{width} ft · {shape} · {coping} coping · {deck} deck",
+    "stepOf": "Step {current} of {total}",
+    "received": "Proposal received.",
+    "back": "Back",
+    "continue": "Continue",
+    "send": "Send My Custom Proposal",
+    "dimensionsError": "Enter a length, width, and depth inside the allowed range.",
+    "steps": [
+      { "label": "Shape", "title": "Define your pool's foundation." },
+      { "label": "Interior", "title": "Choose the shell and the coping." },
+      { "label": "Features", "title": "Choose the deck. Add movement." },
+      { "label": "Submit", "title": "Your custom proposal starts here." }
+    ],
+    "shape": {
+      "size": "Pool size",
+      "shape": "Pool shape",
+      "length": "Length",
+      "width": "Width",
+      "depth": "Depth",
+      "hint": "Feet. Length 10–80, width 6–40, depth 3–12.",
+      "presets": { "small": "Small", "medium": "Medium", "large": "Large" },
+      "shapes": {
+        "rectangular": { "label": "Rectangular", "detail": "Clean geometry, easy to furnish" },
+        "l-shape": { "label": "L-Shape", "detail": "A lounge wing off the main basin" },
+        "lap": { "label": "Lap Pool", "detail": "Long and narrow for daily laps" },
+        "custom": { "label": "Custom", "detail": "A freeform silhouette" }
+      }
+    },
+    "interior": {
+      "finish": "Interior finish",
+      "coping": "Coping",
+      "interiors": {
+        "diamond-brite": { "label": "Diamond Brite", "detail": "Pebble finish with a soft sparkle" },
+        "glass-tile": { "label": "Glass Tile", "detail": "Gridded glass across the shell" }
+      },
+      "copings": {
+        "travertine": { "label": "Travertine", "detail": "Warm limestone edge" },
+        "slate": { "label": "Dark Slate", "detail": "Cool, honed stone" },
+        "teak": { "label": "Teak", "detail": "Oiled hardwood rim" },
+        "brick": { "label": "Brick", "detail": "Clay courses at the waterline" },
+        "pavers": { "label": "Pavers", "detail": "Cut stone set in a grid" }
+      }
+    },
+    "features": {
+      "deck": "Deck",
+      "lighting": "Lighting",
+      "extras": "Extras",
+      "decks": {
+        "travertine": { "label": "Travertine", "detail": "Warm stone pavers underfoot" },
+        "shellstone": { "label": "Shellstone", "detail": "Cream Florida limestone" },
+        "concrete": { "label": "Concrete", "detail": "Smooth cool-gray slab" },
+        "charcoal": { "label": "Charcoal", "detail": "Dark cut pavers" },
+        "ipe": { "label": "Ipe", "detail": "Hardwood decking" },
+        "bluestone": { "label": "Bluestone", "detail": "Blue-gray natural stone" }
+      },
+      "lightings": {
+        "white": { "label": "Warm White", "detail": "Even glow along the floor" },
+        "color": { "label": "Color", "detail": "Fixed teal and magenta accents" },
+        "rgb": { "label": "RGB Dynamic", "detail": "Lights that cycle through color" }
+      },
+      "spa": { "label": "Attached spa", "detail": "A square spa set against the main pool." },
+      "fountain": { "label": "Fountain", "detail": "A small fountain on the deck beside the pool." },
+      "heater": { "label": "Heater", "detail": "Gas heat so the water stays swim-ready." },
+      "bubbles": { "label": "Bubble jets", "detail": "A sheet of bubbles across the pool floor." }
+    },
+    "contact": {
+      "shape": "Shape",
+      "size": "Size",
+      "sizeValue": "{length} × {width} ft · {depth} ft deep",
+      "interior": "Interior",
+      "coping": "Coping",
+      "deck": "Deck",
+      "lighting": "Lighting",
+      "extras": "Extras",
+      "none": "None",
+      "name": "Name",
+      "address": "Address",
+      "email": "Email",
+      "phone": "Phone",
+      "errors": {
+        "name": "Enter your full name.",
+        "address": "Enter the project address.",
+        "email": "Enter a valid email address.",
+        "phone": "Enter a valid phone number."
+      }
+    },
+    "success": {
+      "message": "{name}, we'll email a custom proposal for your {shape} pool to {email}.",
+      "project": "Project",
+      "projectValue": "{length}×{width} ft · {interior}",
+      "edge": "Edge",
+      "edgeValue": "{coping} coping · {deck} deck",
+      "lighting": "Lighting",
+      "extras": "Extras",
+      "address": "Address",
+      "phone": "Phone",
+      "home": "Back to Home"
+    }
+  },
+  "services": {
+    "eyebrow": "Our Services",
+    "title": "What We Build For You.",
+    "subtitle": "From new pool construction to expert repairs and premium parts, Lupin Construction delivers quality at every stage of your pool's life.",
+    "learnMore": "Learn More",
+    "items": [
+      {
+        "title": "Pool Construction",
+        "description": "Design and build a new pool from the first sketch through permits, structure, and finish, made for South Florida living."
+      },
+      {
+        "title": "Pool Remodeling",
+        "description": "Transform your existing pool with updated finishes, modern tile work, resurfacing, and structural improvements tailored to your vision."
+      },
+      {
+        "title": "Pool Repair",
+        "description": "Repair surfaces, equipment, plumbing, and structure so your pool is safe, efficient, and ready to swim again."
+      },
+      {
+        "title": "Parts Sales",
+        "description": "Premium finishes, equipment, and replacement parts selected for durability and a precise fit with your pool."
+      }
+    ]
+  },
+  "repairs": {
+    "eyebrow": "Pool Repair & Remodeling",
+    "title": "Restore What You Have. Elevate What's Possible.",
+    "subtitle": "From structural repairs and surface resurfacing to full-scale renovations, our team brings deteriorated or outdated pools back to life — beautifully and durably.",
+    "disclaimer": "Conceptual before-and-after illustration. Actual results depend on site conditions and project scope.",
+    "consult": "Request a Consultation",
+    "before": "Before",
+    "after": "After",
+    "beforeAlt": "Deteriorated pool before repair",
+    "slider": "Compare the pool before and after remodeling",
+    "value": "{percent}% of the deteriorated pool visible"
+  },
+  "process": {
+    "eyebrow": "How it works",
+    "title1": "From inspiration to first swim,",
+    "title2": "without the guesswork.",
+    "design": "Start Your Design",
+    "steps": [
+      {
+        "title": "1. Share Your Vision",
+        "description": "Tell us about your ideal pool — dimensions, finish, lighting, water features — and we'll capture every detail.",
+        "duration": "About 1 minute"
+      },
+      {
+        "title": "2. Receive Your Proposal",
+        "description": "Our team reviews your submission and sends a tailored proposal by email, followed by a complimentary site visit.",
+        "duration": "Proposal within 24 hours"
+      },
+      {
+        "title": "3. We Build",
+        "description": "Our licensed team manages engineering, permits, construction, and your white-glove pool orientation.",
+        "duration": "Typical build: 10-14 weeks"
+      }
+    ]
+  },
+  "projects": {
+    "eyebrow": "Our Portfolio",
+    "title": "Completed South Florida Projects",
+    "subtitle": "Explore custom pools and outdoor spaces designed to complement South Florida homes and lifestyles.",
+    "carousel": "Completed projects",
+    "show": "Show {title}",
+    "items": {
+      "pinecrest-spa-terrace": { "category": "Spa & Lounge", "title": "Pinecrest Spa Terrace", "description": "A raised spa, wide entry steps, and a stone lounge terrace were integrated into a clean-lined pool built for effortless entertaining." },
+      "coconut-grove-night-pool": { "category": "Evening Light", "title": "Coconut Grove Night Pool", "description": "We paired a dark interior finish with layered LED lighting and a streamlined deck to create a dramatic pool after sunset." },
+      "palm-beach-rain-court": { "category": "Spa & Waterfall", "title": "Palm Beach Rain Court", "description": "This courtyard was transformed with an attached spa, a sculptural waterfall, and natural stone details that soften the modern geometry." },
+      "boca-raton-garden-pool": { "category": "Geometric Spa", "title": "Boca Raton Garden Pool", "description": "A geometric pool and spa were carefully positioned within the garden, with crisp coping and balanced zones for swimming and relaxing." },
+      "fort-lauderdale-paver-retreat": { "category": "Resort Style", "title": "Fort Lauderdale Paver Retreat", "description": "Large-format pavers, generous steps, and a resort-inspired layout turned this backyard into a comfortable everyday retreat." },
+      "las-olas-canal-pool": { "category": "Waterfront", "title": "Las Olas Canal Pool", "description": "Designed around the canal view, this pool combines a clean waterline, durable coastal finishes, and an open deck for waterfront living." },
+      "coral-gables-sun-shelf": { "category": "Sun Shelf", "title": "Coral Gables Sun Shelf", "description": "A spacious sun shelf, gradual entry, and light-toned finishes created a bright, family-friendly pool for lounging and play." }
+    }
+  },
+  "faqs": {
+    "eyebrow": "Frequently Asked Questions",
+    "title": "Everything You Need to Know Before Getting Started.",
+    "subtitle": "Planning a custom pool comes with important questions. We're here to help you understand the process.",
+    "cta": "Still Have Questions? Contact Our Team",
+    "items": [
+      {
+        "id": "cost",
+        "question": "How much does it cost to build a custom pool?",
+        "answer": "Every pool project is unique. Pricing depends on factors such as pool size, selected materials, site conditions, engineering, permits, and additional features. Our team reviews your project requirements before preparing a personalized quote."
+      },
+      {
+        "id": "customize",
+        "question": "Can I customize my pool using your online builder?",
+        "answer": "Yes. The builder lets you explore shape, interior finish, coping, deck, water features, and lighting, then send that design to our team."
+      },
+      {
+        "id": "price",
+        "question": "Does the Pool Builder provide an instant price?",
+        "answer": "No. The builder is a visual preview. Materials, dimensions, and pricing are confirmed after our team reviews your design and your site."
+      },
+      {
+        "id": "permits",
+        "question": "Do you handle permits and construction requirements?",
+        "answer": "Yes. Our licensed team manages engineering, permits, inspections, and construction from the approved plans through your pool orientation."
+      },
+      {
+        "id": "timeline",
+        "question": "How long does it take to build a pool?",
+        "answer": "Most projects take about 10–14 weeks once permits are approved. The schedule depends on the design, site conditions, and inspection timing."
+      },
+      {
+        "id": "after-submit",
+        "question": "What happens after I submit my pool design?",
+        "answer": "Our team reviews your submission and sends a tailored proposal by email, usually within 24 hours, followed by a complimentary site visit."
+      }
+    ]
+  },
+  "reviews": {
+    "eyebrow": "Share your experience",
+    "title": "Leave a Review",
+    "subtitle": "We value your honest feedback. Share your experience working with Lupin Construction LLC so others can learn more about our team.",
+    "formTitle": "Share your experience",
+    "thanks": "Thank you for sharing your experience with Lupin Construction LLC.",
+    "google": "Leave a Review on Google",
+    "name": "Full name",
+    "namePlaceholder": "Enter your full name",
+    "email": "Email address",
+    "review": "Your review",
+    "reviewPlaceholder": "Tell us about your experience, what went well, and any details you think would be helpful to others.",
+    "consent": "I agree that Lupin Construction LLC may publish my review on this website. I understand that my email address will not be published.",
+    "submit": "Submit Review",
+    "starOne": "1 star",
+    "starMany": "{count} stars",
+    "errors": {
+      "rating": "Select a rating.",
+      "name": "Enter your full name.",
+      "email": "Enter a valid email address.",
+      "review": "Tell us a little more about your experience.",
+      "consent": "Please agree before submitting."
+    }
+  },
+  "footer": {
+    "description": "Bespoke pools, spas, and outdoor living environments designed for the South Florida lifestyle.",
+    "serving": "Serving South Florida · Miami, Fort Lauderdale & Palm Beach",
+    "explore": "Explore",
+    "exploreNav": "Explore",
+    "studio": "Visit our design studio",
+    "hours": "Mon–Fri 8:00 AM–6:00 PM · Sat by appointment",
+    "copyright": "© 2026 Lupin Construction LLC · Florida Contractor License: CFC-XXXXXXX",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "invitationTitle": "Your South Florida retreat starts here.",
+    "invitationBody": "Tell us about your vision and we'll send a tailored proposal directly to your inbox.",
+    "invitationCta": "Request a Custom Proposal",
+    "links": [
+      { "href": "/#services", "label": "Services" },
+      { "href": "/#reviews", "label": "Client Reviews" },
+      { "href": "/#portfolio", "label": "Portfolio" },
+      { "href": "/#quote", "label": "Contact" },
+      { "href": "/#process", "label": "Our Process" },
+      { "href": "/#standard", "label": "About Us" }
+    ]
+  }
+}

@@ -1,14 +1,9 @@
 import { useState, type FormEvent } from "react";
-import {
-  COPINGS,
-  DECKS,
-  INTERIORS,
-  LIGHTING,
-  SHAPES,
-  findById,
-  validateContact,
-} from "./config";
+import { fill } from "@/src/i18n/locales";
+import { validateContact, type ContactErrors } from "./config";
 import { TextField } from "./controls";
+import type { WizardCopy } from "./PoolBuilder";
+import { extrasLabel } from "./summary";
 import type { ContactDetails, PoolConfig } from "./types";
 
 const EMPTY_CONTACT: ContactDetails = {
@@ -29,12 +24,14 @@ function SummaryRow({ label, value }: { label: string; value: string }) {
 
 type ContactStepProps = {
   config: PoolConfig;
+  copy: WizardCopy;
   onSubmit: (contact: ContactDetails) => void;
 };
 
-export function ContactStep({ config, onSubmit }: ContactStepProps) {
+export function ContactStep({ config, copy, onSubmit }: ContactStepProps) {
   const [contact, setContact] = useState<ContactDetails>(EMPTY_CONTACT);
-  const [errors, setErrors] = useState<Partial<Record<keyof ContactDetails, string>>>({});
+  const [errors, setErrors] = useState<ContactErrors>({});
+  const labels = copy.contact;
 
   function update(field: keyof ContactDetails, value: string) {
     setContact((current) => ({ ...current, [field]: value }));
@@ -43,7 +40,7 @@ export function ContactStep({ config, onSubmit }: ContactStepProps) {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const nextErrors = validateContact(contact);
+    const nextErrors = validateContact(contact, labels.errors);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
       return;
@@ -51,32 +48,29 @@ export function ContactStep({ config, onSubmit }: ContactStepProps) {
     onSubmit(contact);
   }
 
-  const extras = [
-    config.spa ? "Attached spa" : null,
-    config.fountain ? "Fountain" : null,
-    config.heater ? "Heater" : null,
-    config.bubbles ? "Bubble jets" : null,
-  ].filter((item): item is string => item !== null);
-
   return (
     <div className="space-y-6">
       <dl>
-        <SummaryRow label="Shape" value={findById(SHAPES, config.shape).label} />
+        <SummaryRow label={labels.shape} value={copy.shape.shapes[config.shape].label} />
         <SummaryRow
-          label="Size"
-          value={`${config.length} × ${config.width} ft · ${config.depth} ft deep`}
+          label={labels.size}
+          value={fill(labels.sizeValue, {
+            length: config.length,
+            width: config.width,
+            depth: config.depth,
+          })}
         />
-        <SummaryRow label="Interior" value={findById(INTERIORS, config.interior).label} />
-        <SummaryRow label="Coping" value={findById(COPINGS, config.coping).label} />
-        <SummaryRow label="Deck" value={findById(DECKS, config.deck).label} />
-        <SummaryRow label="Lighting" value={findById(LIGHTING, config.lighting).label} />
-        <SummaryRow label="Extras" value={extras.length > 0 ? extras.join(", ") : "None"} />
+        <SummaryRow label={labels.interior} value={copy.interior.interiors[config.interior].label} />
+        <SummaryRow label={labels.coping} value={copy.interior.copings[config.coping].label} />
+        <SummaryRow label={labels.deck} value={copy.features.decks[config.deck].label} />
+        <SummaryRow label={labels.lighting} value={copy.features.lightings[config.lighting].label} />
+        <SummaryRow label={labels.extras} value={extrasLabel(config, copy)} />
       </dl>
 
       <form id="quote-form" className="space-y-3" onSubmit={handleSubmit} noValidate>
         <TextField
           id="name"
-          label="Name"
+          label={labels.name}
           autoComplete="name"
           value={contact.name}
           error={errors.name}
@@ -84,7 +78,7 @@ export function ContactStep({ config, onSubmit }: ContactStepProps) {
         />
         <TextField
           id="address"
-          label="Address"
+          label={labels.address}
           autoComplete="street-address"
           value={contact.address}
           error={errors.address}
@@ -92,7 +86,7 @@ export function ContactStep({ config, onSubmit }: ContactStepProps) {
         />
         <TextField
           id="email"
-          label="Email"
+          label={labels.email}
           type="email"
           autoComplete="email"
           value={contact.email}
@@ -101,7 +95,7 @@ export function ContactStep({ config, onSubmit }: ContactStepProps) {
         />
         <TextField
           id="phone"
-          label="Phone"
+          label={labels.phone}
           type="tel"
           autoComplete="tel"
           value={contact.phone}

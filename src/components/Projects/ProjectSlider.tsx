@@ -11,6 +11,7 @@ type ProjectSliderProps = {
   projects: Project[];
   slidesPerView?: DesktopSlides;
   breakpoints?: SliderBreakpoints;
+  labels: { carousel: string; show: string };
 };
 
 const DEFAULT_BREAKPOINTS: SliderBreakpoints = {
@@ -22,6 +23,7 @@ export function ProjectSlider({
   projects,
   slidesPerView = 4,
   breakpoints = DEFAULT_BREAKPOINTS,
+  labels,
 }: ProjectSliderProps) {
   const count = projects.length;
   const slides = [...projects, ...projects, ...projects];
@@ -99,7 +101,7 @@ export function ProjectSlider({
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <div className="overflow-hidden" aria-roledescription="carousel" aria-label="Completed projects">
+      <div className="overflow-hidden" aria-roledescription="carousel" aria-label={labels.carousel}>
         <div
           className="flex"
           onTransitionEnd={onTransitionEnd}
@@ -129,7 +131,7 @@ export function ProjectSlider({
             <button
               key={project.id}
               type="button"
-              aria-label={`Show ${project.title}`}
+              aria-label={labels.show.replace("{title}", project.title)}
               aria-current={selected ? "true" : undefined}
               onClick={() => goTo(dot)}
               className={`size-2 rounded-full transition-colors ${

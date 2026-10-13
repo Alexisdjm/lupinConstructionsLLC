@@ -1,12 +1,15 @@
+import { getDictionary } from "@/src/i18n/getDictionary";
 import { ReviewsForm } from "./ReviewsForm";
 
-export function Reviews() {
+export async function Reviews() {
+  const { messages } = await getDictionary();
+  const copy = messages.reviews;
   return (
     <section id="reviews" className="scroll-mt-24 bg-[#061B2D]">
       <svg
         viewBox="0 0 1440 230"
         preserveAspectRatio="none"
-        className="block h-[150px] w-full sm:h-[190px]"
+        className="block h-37.5 w-full sm:h-47.5"
         aria-hidden="true"
       >
         <defs>
@@ -37,18 +40,17 @@ export function Reviews() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[0.22em] text-[#2ad9c3] uppercase">
             <span className="size-1.5 rounded-full bg-[#2ad9c3]" aria-hidden="true" />
-            Share your experience
+            {copy.eyebrow}
           </p>
           <h2 className="mt-3 text-3xl leading-tight font-medium text-white sm:text-4xl">
-            Leave a Review
+            {copy.title}
           </h2>
           <p className="mt-4 text-sm leading-6 text-white/60 sm:text-base">
-            We value your honest feedback. Share your experience working with Lupin
-            Construction LLC so others can learn more about our team.
+            {copy.subtitle}
           </p>
         </div>
 
-        <ReviewsForm />
+        <ReviewsForm copy={copy} />
       </div>
     </section>
   );

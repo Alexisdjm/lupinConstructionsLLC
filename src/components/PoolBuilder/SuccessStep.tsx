@@ -1,13 +1,19 @@
 import Link from "next/link";
-import { COPINGS, DECKS, INTERIORS, LIGHTING, SHAPES, findById } from "./config";
+import { fill } from "@/src/i18n/locales";
+import type { WizardCopy } from "./PoolBuilder";
+import { extrasLabel } from "./summary";
 import type { ContactDetails, PoolConfig } from "./types";
 
 type SuccessStepProps = {
   config: PoolConfig;
   contact: ContactDetails;
+  copy: WizardCopy;
+  homeHref: string;
 };
 
-export function SuccessStep({ config, contact }: SuccessStepProps) {
+export function SuccessStep({ config, contact, copy, homeHref }: SuccessStepProps) {
+  const labels = copy.success;
+
   return (
     <div className="flex h-full flex-col justify-center">
       <span className="grid size-12 place-items-center rounded-full bg-[#2ad9c3] text-[#06261f]">
@@ -23,53 +29,54 @@ export function SuccessStep({ config, contact }: SuccessStepProps) {
         </svg>
       </span>
       <p className="mt-5 text-sm leading-relaxed text-white/70">
-        {contact.name.trim()}, we&apos;ll email a custom proposal for your{" "}
-        {findById(SHAPES, config.shape).label} pool to {contact.email.trim()}.
+        {fill(labels.message, {
+          name: contact.name.trim(),
+          shape: copy.shape.shapes[config.shape].label,
+          email: contact.email.trim(),
+        })}
       </p>
       <dl className="mt-6 space-y-2 text-sm text-white/80">
         <div className="flex justify-between gap-4">
-          <dt className="text-white/45">Project</dt>
+          <dt className="text-white/45">{labels.project}</dt>
           <dd className="text-right">
-            {config.length}×{config.width} ft · {findById(INTERIORS, config.interior).label}
+            {fill(labels.projectValue, {
+              length: config.length,
+              width: config.width,
+              interior: copy.interior.interiors[config.interior].label,
+            })}
           </dd>
         </div>
         <div className="flex justify-between gap-4">
-          <dt className="text-white/45">Edge</dt>
+          <dt className="text-white/45">{labels.edge}</dt>
           <dd className="text-right">
-            {findById(COPINGS, config.coping).label} coping · {findById(DECKS, config.deck).label} deck
+            {fill(labels.edgeValue, {
+              coping: copy.interior.copings[config.coping].label,
+              deck: copy.features.decks[config.deck].label,
+            })}
           </dd>
         </div>
         <div className="flex justify-between gap-4">
-          <dt className="text-white/45">Lighting</dt>
-          <dd className="text-right">{findById(LIGHTING, config.lighting).label}</dd>
+          <dt className="text-white/45">{labels.lighting}</dt>
+          <dd className="text-right">{copy.features.lightings[config.lighting].label}</dd>
         </div>
         <div className="flex justify-between gap-4">
-          <dt className="text-white/45">Extras</dt>
-          <dd className="max-w-[14rem] text-right">
-            {[
-              config.spa ? "Attached spa" : null,
-              config.fountain ? "Fountain" : null,
-              config.heater ? "Heater" : null,
-              config.bubbles ? "Bubble jets" : null,
-            ]
-              .filter((item) => item !== null)
-              .join(", ") || "None"}
-          </dd>
+          <dt className="text-white/45">{labels.extras}</dt>
+          <dd className="max-w-[14rem] text-right">{extrasLabel(config, copy)}</dd>
         </div>
         <div className="flex justify-between gap-4">
-          <dt className="text-white/45">Address</dt>
+          <dt className="text-white/45">{labels.address}</dt>
           <dd className="max-w-[14rem] text-right">{contact.address.trim()}</dd>
         </div>
         <div className="flex justify-between gap-4">
-          <dt className="text-white/45">Phone</dt>
+          <dt className="text-white/45">{labels.phone}</dt>
           <dd className="text-right">{contact.phone.trim()}</dd>
         </div>
       </dl>
       <Link
-        href="/"
+        href={homeHref}
         className="mt-8 inline-flex w-fit rounded-full bg-[#2ad9c3] px-5 py-3 text-sm font-semibold text-[#06261f]"
       >
-        Back to Home
+        {labels.home}
       </Link>
     </div>
   );

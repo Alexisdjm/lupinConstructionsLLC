@@ -1,4 +1,6 @@
 import { PrimaryCTA } from "@/src/components/UXUI/PrimaryCTA";
+import { getDictionary } from "@/src/i18n/getDictionary";
+import { localePath } from "@/src/i18n/locales";
 import { ProcessCard } from "./ProcessCard";
 
 const STEPS = [
@@ -81,39 +83,42 @@ const STEPS = [
   },
 ] as const;
 
-export function Process() {
+export async function Process() {
+  const { locale, messages } = await getDictionary();
+  const copy = messages.process;
+
   return (
     <section id="process" className="scroll-mt-24 bg-[#061B2D] pt-16 lg:pt-20">
       <div className="page-shell">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-xl">
+          <div className="max-w-3xl">
             <p className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.22em] text-[#2ad9c3] uppercase">
               <span
                 className="size-1.5 rounded-full bg-[#2ad9c3]"
                 aria-hidden="true"
               />
-              How it works
+              {copy.eyebrow}
             </p>
             <h2 className="mt-3 text-3xl leading-tight font-medium text-white sm:text-4xl">
-              From inspiration to first swim,
+              {copy.title1}
               <br />
-              without the guesswork.
+              {copy.title2}
             </h2>
           </div>
           <div className="shrink-0 self-start">
-            <PrimaryCTA hoverColor="#C4FCFA" href="/create">Start Your Design</PrimaryCTA>
+            <PrimaryCTA hoverColor="#C4FCFA" href={localePath(locale, "/create")}>{copy.design}</PrimaryCTA>
           </div>
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {STEPS.map((step) => (
+          {copy.steps.map((step, index) => (
             <ProcessCard
-              key={step.step}
-              step={step.step}
+              key={STEPS[index].step}
+              step={STEPS[index].step}
               title={step.title}
               description={step.description}
               duration={step.duration}
-              icon={step.icon}
+              icon={STEPS[index].icon}
             />
           ))}
         </div>
@@ -122,7 +127,7 @@ export function Process() {
       <svg
         viewBox="0 0 1440 200"
         preserveAspectRatio="none"
-        className="mt-12 block h-[120px] w-full sm:h-[156px]"
+        className="mt-12 block h-30 w-full sm:h-39"
         aria-hidden="true"
       >
         <path

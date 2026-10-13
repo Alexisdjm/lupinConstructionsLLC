@@ -1,16 +1,12 @@
 import Link from "next/link";
+import { getDictionary } from "@/src/i18n/getDictionary";
+import { localePath } from "@/src/i18n/locales";
+import { LanguageSwitch } from "@/src/components/Header/LanguageSwitch";
 import { Invitation } from "./Invitation";
 
-const EXPLORE = [
-  { href: "/#services", label: "Services" },
-  { href: "/#reviews", label: "Client Reviews" },
-  { href: "/#portfolio", label: "Portfolio" },
-  { href: "/#quote", label: "Contact" },
-  { href: "/#process", label: "Our Process" },
-  { href: "/#standard", label: "About Us" },
-] as const;
-
-export function Footer() {
+export async function Footer() {
+  const { locale, messages } = await getDictionary();
+  const copy = messages.footer;
   return (
     <footer className="bg-[#061B2D] text-white">
       <section>
@@ -20,7 +16,7 @@ export function Footer() {
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-8">
             <div>
               <Link
-                href="/"
+                href={localePath(locale, "/")}
                 className="inline-flex min-w-0 items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2ad9c3]"
               >
                 <img
@@ -35,23 +31,22 @@ export function Footer() {
                 </span>
               </Link>
               <p className="mt-4 max-w-xs text-sm leading-6 text-white/60">
-                Bespoke pools, spas, and outdoor living environments designed
-                for the South Florida lifestyle.
+                {copy.description}
               </p>
               <p className="mt-6 text-sm text-white/80">
-                Serving South Florida · Miami, Fort Lauderdale & Palm Beach
+                {copy.serving}
               </p>
             </div>
 
-            <nav aria-label="Explore">
+            <nav aria-label={copy.exploreNav}>
               <p className="text-[11px] font-semibold tracking-[0.18em] text-white/45 uppercase">
-                Explore
+                {copy.explore}
               </p>
               <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3">
-                {EXPLORE.map((item) => (
+                {copy.links.map((item) => (
                   <Link
                     key={item.label}
-                    href={item.href}
+                    href={localePath(locale, item.href)}
                     className="text-sm text-white/75 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2ad9c3]"
                   >
                     {item.label}
@@ -62,7 +57,7 @@ export function Footer() {
 
             <div>
               <p className="text-[11px] font-semibold tracking-[0.18em] text-white/45 uppercase">
-                Visit our design studio
+                {copy.studio}
               </p>
               <p className="mt-4 text-sm leading-6 text-white/75">
                 7300 Biscayne Boulevard, Suite 210
@@ -76,28 +71,32 @@ export function Footer() {
                 (305) 555-0188
               </a>
               <p className="mt-3 text-sm text-white/55">
-                Mon–Fri 8:00 AM–6:00 PM · Sat by appointment
+                {copy.hours}
               </p>
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
             <p>
-              © 2026 Lupin Construction LLC · Florida Contractor License:
-              CFC-XXXXXXX
+              {copy.copyright}
             </p>
-            <div className="flex gap-6">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <LanguageSwitch
+                locale={locale}
+                label={messages.header.language}
+                switchAria={messages.header.switchAria}
+              />
               <Link
-                href="/terms"
+                href={localePath(locale, "/terms")}
                 className="transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2ad9c3]"
               >
-                Terms of Service
+                {copy.terms}
               </Link>
               <Link
-                href="/privacy"
+                href={localePath(locale, "/privacy")}
                 className="transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2ad9c3]"
               >
-                Privacy Policy
+                {copy.privacy}
               </Link>
             </div>
           </div>

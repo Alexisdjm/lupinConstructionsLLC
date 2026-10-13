@@ -22,12 +22,13 @@ import {
   deckSources,
   fountainSources,
   lightingSources,
-  selectionSummary,
   shapeSources,
   spaSources,
   waterSources,
 } from "./config";
 import { LayerImage } from "./LayerImage";
+import type { WizardCopy } from "./PoolBuilder";
+import { selectionSummary } from "./summary";
 import type { PhotoPhase, PoolConfig, ViewerMode } from "./types";
 
 const WATER = waterSources();
@@ -104,13 +105,20 @@ type PoolViewerProps = {
   config: PoolConfig;
   photoPhase: PhotoPhase;
   accentLight: LightColorPhoto;
+  copy: WizardCopy;
+  region: string;
+  homeHref: string;
 };
 
 export function PoolViewer({
   config,
   photoPhase,
   accentLight,
+  copy,
+  region,
+  homeHref,
 }: PoolViewerProps) {
+  const summary = selectionSummary(config, copy);
   const [mode, setMode] = useState<ViewerMode>("realistic");
   const [animationMounted, setAnimationMounted] = useState(false);
   const [revealed, setRevealed] = useState<ReadonlySet<string>>(
@@ -172,7 +180,7 @@ export function PoolViewer({
   return (
     <section
       className="relative min-h-[42dvh] flex-1 overflow-hidden bg-[#07111c]"
-      aria-label="Pool preview"
+      aria-label={copy.preview}
     >
       {animationMounted ? (
       <div
@@ -354,25 +362,25 @@ export function PoolViewer({
       <div className="absolute top-28 left-1/2 z-20 -translate-x-1/2 md:top-4">
         <div
           role="radiogroup"
-          aria-label="Preview style"
+          aria-label={copy.previewStyle}
           className="flex rounded-full border border-white/15 bg-[#07111c]/75 p-1"
         >
           {VIEWER_MODES.map((item) => {
-            const selected = mode === item.id;
+            const selected = mode === item;
             return (
               <button
-                key={item.id}
+                key={item}
                 type="button"
                 role="radio"
                 aria-checked={selected}
-                onClick={() => selectMode(item.id)}
+                onClick={() => selectMode(item)}
                 className={`rounded-full px-4 py-2 text-xs font-medium tracking-wide transition-colors ${
                   selected
                     ? "bg-[#2ad9c3] text-[#06261f]"
                     : "text-white/75 hover:text-white"
                 }`}
               >
-                {item.label}
+                {copy.modes[item]}
               </button>
             );
           })}
@@ -381,23 +389,23 @@ export function PoolViewer({
 
       <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-4 bg-gradient-to-b from-[#07111c]/75 to-transparent px-4 py-4 sm:px-6">
         <div className="min-w-0">
-          <BrandLockup />
+          <BrandLockup region={region} />
         </div>
         <Link
-          href="/"
+          href={homeHref}
           className="shrink-0 rounded-full border border-white/15 bg-black/30 px-4 py-2 text-sm text-white transition-colors hover:border-white/40"
         >
-          Exit to Home
+          {copy.exit}
         </Link>
       </div>
 
       <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#07111c] via-[#07111c]/85 to-transparent px-4 pt-16 pb-4 sm:px-6">
         <p className="text-[10px] font-medium tracking-[0.18em] text-white/50 uppercase">
-          Current selection
+          {copy.currentSelection}
         </p>
-        <p className="mt-1 text-sm text-white">{selectionSummary(config)}</p>
+        <p className="mt-1 text-sm text-white">{summary}</p>
         <p className="sr-only" aria-live="polite">
-          {selectionSummary(config)}
+          {summary}
         </p>
       </div>
     </section>

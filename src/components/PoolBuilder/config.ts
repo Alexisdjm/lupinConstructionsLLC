@@ -9,60 +9,51 @@ import type {
   ViewerMode,
 } from "./types";
 
+// Option labels and descriptions live in the i18n dictionaries under `wizard`.
+// These arrays only hold ids and language-neutral data (sizes, swatches, assets).
 export const STEPS = [
-  { id: "shape", label: "Shape", title: "Define your pool's foundation." },
-  { id: "interior", label: "Interior", title: "Choose the shell and the coping." },
-  { id: "features", label: "Features", title: "Choose the deck. Add movement." },
-  { id: "submit", label: "Submit", title: "Your custom proposal starts here." },
+  { id: "shape" },
+  { id: "interior" },
+  { id: "features" },
+  { id: "submit" },
 ] as const;
 
-export const SHAPES: { id: ShapeId; label: string; detail: string }[] = [
-  { id: "rectangular", label: "Rectangular", detail: "Clean geometry, easy to furnish" },
-  { id: "l-shape", label: "L-Shape", detail: "A lounge wing off the main basin" },
-  { id: "lap", label: "Lap Pool", detail: "Long and narrow for daily laps" },
-  { id: "custom", label: "Custom", detail: "A freeform silhouette" },
+export const SHAPES: { id: ShapeId }[] = [
+  { id: "rectangular" },
+  { id: "l-shape" },
+  { id: "lap" },
+  { id: "custom" },
 ];
 
 export const SIZE_PRESETS = [
-  { id: "small", label: "Small", length: 20, width: 10, depth: 4 },
-  { id: "medium", label: "Medium", length: 30, width: 15, depth: 5 },
-  { id: "large", label: "Large", length: 40, width: 20, depth: 6 },
+  { id: "small", length: 20, width: 10, depth: 4 },
+  { id: "medium", length: 30, width: 15, depth: 5 },
+  { id: "large", length: 40, width: 20, depth: 6 },
 ] as const;
 
-export const INTERIORS: { id: InteriorId; label: string; detail: string }[] = [
-  {
-    id: "diamond-brite",
-    label: "Diamond Brite",
-    detail: "Pebble finish with a soft sparkle",
-  },
-  {
-    id: "glass-tile",
-    label: "Glass Tile",
-    detail: "Gridded glass across the shell",
-  },
+export const INTERIORS: { id: InteriorId }[] = [
+  { id: "diamond-brite" },
+  { id: "glass-tile" },
 ];
 
-export const COPINGS: { id: CopingId; label: string; detail: string; swatch: string }[] = [
-  { id: "travertine", label: "Travertine", detail: "Warm limestone edge", swatch: "#e6d3b4" },
-  { id: "slate", label: "Dark Slate", detail: "Cool, honed stone", swatch: "#3e4c59" },
-  { id: "teak", label: "Teak", detail: "Oiled hardwood rim", swatch: "#8d5a32" },
-  { id: "brick", label: "Brick", detail: "Clay courses at the waterline", swatch: "#a34b3a" },
-  { id: "pavers", label: "Pavers", detail: "Cut stone set in a grid", swatch: "#7d8b86" },
+export const COPINGS: { id: CopingId; swatch: string }[] = [
+  { id: "travertine", swatch: "#e6d3b4" },
+  { id: "slate", swatch: "#3e4c59" },
+  { id: "teak", swatch: "#8d5a32" },
+  { id: "brick", swatch: "#a34b3a" },
+  { id: "pavers", swatch: "#7d8b86" },
 ];
 
-export const DECKS: { id: DeckId; label: string; detail: string; swatch: string }[] = [
-  { id: "travertine", label: "Travertine", detail: "Warm stone pavers underfoot", swatch: "#f3e6cf" },
-  { id: "shellstone", label: "Shellstone", detail: "Cream Florida limestone", swatch: "#d7b56a" },
-  { id: "concrete", label: "Concrete", detail: "Smooth cool-gray slab", swatch: "#cfd3d1" },
-  { id: "charcoal", label: "Charcoal", detail: "Dark cut pavers", swatch: "#3c444a" },
-  { id: "ipe", label: "Ipe", detail: "Hardwood decking", swatch: "#6e4126" },
-  { id: "bluestone", label: "Bluestone", detail: "Blue-gray natural stone", swatch: "#7f97a3" },
+export const DECKS: { id: DeckId; swatch: string }[] = [
+  { id: "travertine", swatch: "#f3e6cf" },
+  { id: "shellstone", swatch: "#d7b56a" },
+  { id: "concrete", swatch: "#cfd3d1" },
+  { id: "charcoal", swatch: "#3c444a" },
+  { id: "ipe", swatch: "#6e4126" },
+  { id: "bluestone", swatch: "#7f97a3" },
 ];
 
-export const VIEWER_MODES: { id: ViewerMode; label: string }[] = [
-  { id: "animation", label: "Animation" },
-  { id: "realistic", label: "Realistic" },
-];
+export const VIEWER_MODES: ViewerMode[] = ["animation", "realistic"];
 
 export const COPING_PHOTO_BASE = "/builder/phases/coping/based-pavers.webp";
 
@@ -119,10 +110,10 @@ export function nextAccentLight(current: LightColorPhoto): LightColorPhoto {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-export const LIGHTING: { id: LightingId; label: string; detail: string }[] = [
-  { id: "white", label: "Warm White", detail: "Even glow along the floor" },
-  { id: "color", label: "Color", detail: "Fixed teal and magenta accents" },
-  { id: "rgb", label: "RGB Dynamic", detail: "Lights that cycle through color" },
+export const LIGHTING: { id: LightingId }[] = [
+  { id: "white" },
+  { id: "color" },
+  { id: "rgb" },
 ];
 
 export const DEFAULT_CONFIG: PoolConfig = {
@@ -149,21 +140,6 @@ export function dimensionsValid(config: PoolConfig) {
     config.depth >= 3 &&
     config.depth <= 12
   );
-}
-
-export function findById<T extends { id: string }>(items: T[], id: string) {
-  const match = items.find((item) => item.id === id);
-  if (!match) {
-    throw new Error(`Unknown option: ${id}`);
-  }
-  return match;
-}
-
-export function selectionSummary(config: PoolConfig) {
-  const shape = findById(SHAPES, config.shape);
-  const coping = findById(COPINGS, config.coping);
-  const deck = findById(DECKS, config.deck);
-  return `${config.length}×${config.width} ft · ${shape.label} · ${coping.label} coping · ${deck.label} deck`;
 }
 
 export function waterSources() {
@@ -240,20 +216,26 @@ export function shapeSources(kind: "bubbles") {
   }));
 }
 
-export function validateContact(contact: ContactDetails) {
-  const errors: Partial<Record<keyof ContactDetails, string>> = {};
+export type ContactErrors = Partial<Record<keyof ContactDetails, string>>;
+
+/** Returns the invalid fields; the caller maps them to localized messages. */
+export function validateContact(
+  contact: ContactDetails,
+  messages: Record<keyof ContactDetails, string>,
+): ContactErrors {
+  const errors: ContactErrors = {};
 
   if (contact.name.trim().length < 2) {
-    errors.name = "Enter your full name.";
+    errors.name = messages.name;
   }
   if (contact.address.trim().length < 5) {
-    errors.address = "Enter the project address.";
+    errors.address = messages.address;
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email.trim())) {
-    errors.email = "Enter a valid email address.";
+    errors.email = messages.email;
   }
   if (!/^[\d\s()+.-]{7,}$/.test(contact.phone.trim())) {
-    errors.phone = "Enter a valid phone number.";
+    errors.phone = messages.phone;
   }
 
   return errors;

@@ -1,8 +1,8 @@
-import { BuilderSample } from "@/src/components/BuilderSample";
+import { BuilderSampleSection } from "@/src/components/BuilderSample";
 import { FAQs } from "@/src/components/FAQs";
 import { Footer } from "@/src/components/Footer";
 import { Header } from "@/src/components/Header";
-import { HeroBanner } from "@/src/components/Hero";
+import { HeroSection } from "@/src/components/Hero";
 import { Process } from "@/src/components/Process";
 import { Projects } from "@/src/components/Projects";
 import { Repairs } from "@/src/components/Repairs";
@@ -15,9 +15,9 @@ export default function Home() {
     <>
       <Header />
       <main>
-        <HeroBanner />
+        <HeroSection />
         <Standard />
-        <BuilderSample />
+        <BuilderSampleSection />
         <Services />
         <Repairs />
         <Process />

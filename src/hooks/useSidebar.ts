@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
-export function useMobileMenu() {
+export function useSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const sidebarId = useId();
   const previousOverflow = useRef("");

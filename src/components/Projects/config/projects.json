@@ -4,48 +4,55 @@
     "image": "/projects/pool1.webp",
     "category": "Spa & Lounge",
     "title": "Pinecrest Spa Terrace",
-    "location": "Pinecrest, Miami"
+    "location": "Pinecrest, Miami",
+    "description": "A raised spa, wide entry steps, and a stone lounge terrace were integrated into a clean-lined pool built for effortless entertaining."
   },
   {
     "id": "coconut-grove-night-pool",
     "image": "/projects/pool2.webp",
     "category": "Evening Light",
     "title": "Coconut Grove Night Pool",
-    "location": "Coconut Grove, Miami"
+    "location": "Coconut Grove, Miami",
+    "description": "We paired a dark interior finish with layered LED lighting and a streamlined deck to create a dramatic pool after sunset."
   },
   {
     "id": "palm-beach-rain-court",
     "image": "/projects/pool3.webp",
     "category": "Spa & Waterfall",
     "title": "Palm Beach Rain Court",
-    "location": "Palm Beach"
+    "location": "Palm Beach",
+    "description": "This courtyard was transformed with an attached spa, a sculptural waterfall, and natural stone details that soften the modern geometry."
   },
   {
     "id": "boca-raton-garden-pool",
     "image": "/projects/pool4.webp",
     "category": "Geometric Spa",
     "title": "Boca Raton Garden Pool",
-    "location": "Boca Raton"
+    "location": "Boca Raton",
+    "description": "A geometric pool and spa were carefully positioned within the garden, with crisp coping and balanced zones for swimming and relaxing."
   },
   {
     "id": "fort-lauderdale-paver-retreat",
     "image": "/projects/pool5.webp",
     "category": "Resort Style",
     "title": "Fort Lauderdale Paver Retreat",
-    "location": "Fort Lauderdale"
+    "location": "Fort Lauderdale",
+    "description": "Large-format pavers, generous steps, and a resort-inspired layout turned this backyard into a comfortable everyday retreat."
   },
   {
     "id": "las-olas-canal-pool",
     "image": "/projects/pool6.webp",
     "category": "Waterfront",
     "title": "Las Olas Canal Pool",
-    "location": "Fort Lauderdale"
+    "location": "Fort Lauderdale",
+    "description": "Designed around the canal view, this pool combines a clean waterline, durable coastal finishes, and an open deck for waterfront living."
   },
   {
     "id": "coral-gables-sun-shelf",
     "image": "/projects/pool7.webp",
     "category": "Sun Shelf",
     "title": "Coral Gables Sun Shelf",
-    "location": "Coral Gables, Miami"
+    "location": "Coral Gables, Miami",
+    "description": "A spacious sun shelf, gradual entry, and light-toned finishes created a bright, family-friendly pool for lounging and play."
   }
 ]

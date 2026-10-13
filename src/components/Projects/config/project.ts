@@ -4,6 +4,7 @@ export interface Project {
   category: string;
   title: string;
   location: string;
+  description: string;
 }
 
 export type DesktopSlides = 4 | 5 | 6;

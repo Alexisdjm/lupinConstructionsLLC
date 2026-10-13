@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { PrimaryCTA } from "../UXUI/PrimaryCTA";
 import { SecondaryCTA } from "../UXUI/SecondaryTSX";
+import type { Dictionary } from "@/src/i18n/getDictionary";
+import { localePath, type Locale } from "@/src/i18n/locales";
 import { OptionCard } from "./OptionCard";
 
 type Finish = "diamond" | "tile";
@@ -38,7 +40,6 @@ const STACK = [
 const HOTSPOTS = [
   {
     id: "fountain" as const,
-    label: "Fountain",
     left: "58%",
     top: "29%",
     placement: "below" as const,
@@ -46,7 +47,6 @@ const HOTSPOTS = [
   },
   {
     id: "finish" as const,
-    label: "Interior finish",
     left: "46%",
     top: "53%",
     placement: "below" as const,
@@ -54,7 +54,6 @@ const HOTSPOTS = [
   },
   {
     id: "spa" as const,
-    label: "Spa",
     left: "28%",
     top: "92%",
     placement: "above" as const,
@@ -62,7 +61,9 @@ const HOTSPOTS = [
   },
 ];
 
-export function BuilderSample() {
+type BuilderCopy = Dictionary["builder"];
+
+export function BuilderSample({ locale, copy }: { locale: Locale; copy: BuilderCopy }) {
   const [finish, setFinish] = useState<Finish>("diamond");
   const [fountain, setFountain] = useState(false);
   const [spa, setSpa] = useState(false);
@@ -128,15 +129,15 @@ export function BuilderSample() {
       return [
         {
           id: "off",
-          label: "No fountain",
-          description: "Open water, no feature",
+          label: copy.fountainOff,
+          description: copy.fountainOffDetail,
           selected: !fountain,
           onSelect: () => setFountain(false),
         },
         {
           id: "on",
-          label: "Add fountain",
-          description: "Sheet waterfall",
+          label: copy.fountainOn,
+          description: copy.fountainOnDetail,
           selected: fountain,
           onSelect: () => setFountain(true),
         },
@@ -147,15 +148,15 @@ export function BuilderSample() {
       return [
         {
           id: "off",
-          label: "No spa",
-          description: "Pool only",
+          label: copy.spaOff,
+          description: copy.spaOffDetail,
           selected: !spa,
           onSelect: () => setSpa(false),
         },
         {
           id: "on",
-          label: "Add spa",
-          description: "Attached spa",
+          label: copy.spaOn,
+          description: copy.spaOnDetail,
           selected: spa,
           onSelect: () => setSpa(true),
         },
@@ -165,15 +166,15 @@ export function BuilderSample() {
     return [
       {
         id: "diamond",
-        label: "Diamond Brite",
-        description: "Quartz aggregate finish",
+        label: copy.diamond,
+        description: copy.diamondDetail,
         selected: finish === "diamond",
         onSelect: () => setFinish("diamond"),
       },
       {
         id: "tile",
-        label: "Glass Tile",
-        description: "Luminous mosaic detail",
+        label: copy.tile,
+        description: copy.tileDetail,
         selected: finish === "tile",
         onSelect: () => setFinish("tile"),
       },
@@ -189,19 +190,17 @@ export function BuilderSample() {
               className="size-1.5 rounded-full bg-[#2ad9c3]"
               aria-hidden="true"
             />
-            Interactive Pool Builder
+            {copy.eyebrow}
           </p>
           <h2 className="mt-3 text-3xl leading-tight font-medium text-white sm:text-4xl">
-            Visualize Your Pool Before Breaking Ground.
+            {copy.title}
           </h2>
           <p className="mt-4 text-base leading-6 text-white/65">
-            Explore surface finishes, coping materials, and design combinations
-            in our interactive builder. See how each choice transforms the look
-            and feel of your future pool.
+            {copy.subtitle}
           </p>
         </div>
 
-        <div className="relative mt-10 aspect-[9/4] w-full">
+        <div className="relative mt-10 aspect-9/4 w-full">
           <div className="absolute inset-0 overflow-hidden rounded-[20px] shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
             {STACK.map((src) =>
               mounted.includes(src) ? (
@@ -228,7 +227,7 @@ export function BuilderSample() {
               className="size-1.5 rounded-full bg-[#2ad9c3]"
               aria-hidden="true"
             />
-            Builder preview
+            {copy.badge}
           </p>
 
           {HOTSPOTS.map((hotspot) => {
@@ -243,7 +242,7 @@ export function BuilderSample() {
                 <button
                   type="button"
                   aria-expanded={isOpen}
-                  aria-label={hotspot.label}
+                  aria-label={copy.hotspots[hotspot.id]}
                   onClick={() => setOpen(isOpen ? null : hotspot.id)}
                   className="absolute top-0 left-0 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-[#2ad9c3] bg-[#0b2c3a] text-white shadow-[0_8px_24px_rgba(7,17,28,0.35)] transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0b2c3a]"
                 >
@@ -263,13 +262,9 @@ export function BuilderSample() {
                 </button>
                 {isOpen ? (
                   <OptionCard
-                    title={hotspot.label}
+                    title={copy.hotspots[hotspot.id]}
                     choices={choicesFor(hotspot.id)}
-                    note={
-                      hotspot.id === "finish"
-                        ? "Visual estimate only"
-                        : undefined
-                    }
+                    note={hotspot.id === "finish" ? copy.note : undefined}
                     placement={hotspot.placement}
                     align={hotspot.align}
                   />
@@ -281,15 +276,13 @@ export function BuilderSample() {
 
         <div className="mt-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <p className="max-w-xl text-xs leading-5 text-white/45">
-            Builder previews are conceptual representations. Final materials,
-            dimensions, finishes, feasibility, and pricing are subject to
-            professional evaluation and site assessment.
+            {copy.disclaimer}
           </p>
           <div className="flex shrink-0 flex-wrap gap-3">
-            <PrimaryCTA hoverColor="#C4FCFA" href="/create">
-              Design Your Pool
+            <PrimaryCTA hoverColor="#C4FCFA" href={localePath(locale, "/create")}>
+              {copy.design}
             </PrimaryCTA>
-            <SecondaryCTA href="/#quote">Request a Consultation</SecondaryCTA>
+            <SecondaryCTA href={localePath(locale, "/#quote")}>{copy.consult}</SecondaryCTA>
           </div>
         </div>
       </div>

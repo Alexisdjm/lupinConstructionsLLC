@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { PrimaryCTA } from "@/src/components/UXUI/PrimaryCTA";
 import { SecondaryCTA } from "@/src/components/UXUI/SecondaryTSX";
+import type { Dictionary } from "@/src/i18n/getDictionary";
 
 const GOOGLE_REVIEW_URL =
   "https://www.google.com/search?q=Lupin+Construction+LLC+South+Florida";
@@ -27,7 +28,9 @@ function Star({ filled }: { filled: boolean }) {
   );
 }
 
-export function ReviewsForm() {
+type ReviewsCopy = Dictionary["reviews"];
+
+export function ReviewsForm({ copy }: { copy: ReviewsCopy }) {
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
   const [name, setName] = useState("");
@@ -44,15 +47,15 @@ export function ReviewsForm() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const nextErrors: ReviewErrors = {};
-    if (rating < 1) nextErrors.rating = "Select a rating.";
-    if (name.trim().length < 2) nextErrors.name = "Enter your full name.";
+    if (rating < 1) nextErrors.rating = copy.errors.rating;
+    if (name.trim().length < 2) nextErrors.name = copy.errors.name;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      nextErrors.email = "Enter a valid email address.";
+      nextErrors.email = copy.errors.email;
     }
     if (review.trim().length < 12) {
-      nextErrors.review = "Tell us a little more about your experience.";
+      nextErrors.review = copy.errors.review;
     }
-    if (!consent) nextErrors.consent = "Please agree before submitting.";
+    if (!consent) nextErrors.consent = copy.errors.consent;
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
     setSubmitted(true);
@@ -61,16 +64,16 @@ export function ReviewsForm() {
   return (
     <div className="mx-auto mt-10 max-w-235 rounded-[20px] border border-white/10 bg-[#162636] p-6 sm:p-8">
       <h3 className="text-lg font-semibold text-white">
-        Share your experience
+        {copy.formTitle}
       </h3>
 
       {submitted ? (
         <div className="mt-6">
           <p className="text-sm leading-6 text-white/75">
-            Thank you for sharing your experience with Lupin Construction LLC.
+            {copy.thanks}
           </p>
           <SecondaryCTA href={GOOGLE_REVIEW_URL} external className="mt-6">
-            Leave a Review on Google
+            {copy.google}
             <ExternalIcon />
           </SecondaryCTA>
         </div>
@@ -78,12 +81,12 @@ export function ReviewsForm() {
         <form className="mt-6" onSubmit={handleSubmit} noValidate>
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block text-sm text-white/80">
-              Full name
+              {copy.name}
               <input
                 name="name"
                 autoComplete="name"
                 value={name}
-                placeholder="Enter your full name"
+                placeholder={copy.namePlaceholder}
                 onChange={(event) => {
                   setName(event.target.value);
                   clearError("name");
@@ -98,7 +101,7 @@ export function ReviewsForm() {
               ) : null}
             </label>
             <label className="block text-sm text-white/80">
-              Email address
+              {copy.email}
               <input
                 name="email"
                 type="email"
@@ -121,12 +124,12 @@ export function ReviewsForm() {
           </div>
 
           <label className="mt-3 block text-sm text-white/80">
-            Your review
+            {copy.review}
             <textarea
               name="review"
               rows={5}
               value={review}
-              placeholder="Tell us about your experience, what went well, and any details you think would be helpful to others."
+              placeholder={copy.reviewPlaceholder}
               onChange={(event) => {
                 setReview(event.target.value);
                 clearError("review");
@@ -156,7 +159,7 @@ export function ReviewsForm() {
                     type="button"
                     role="radio"
                     aria-checked={rating === value}
-                    aria-label={`${value} star${value === 1 ? "" : "s"}`}
+                    aria-label={value === 1 ? copy.starOne : copy.starMany.replace("{count}", String(value))}
                     onMouseEnter={() => setHovered(value)}
                     onFocus={() => setHovered(value)}
                     onBlur={() => setHovered(0)}
@@ -189,8 +192,7 @@ export function ReviewsForm() {
               className="mt-0.5 size-4 shrink-0 accent-[#2ad9c3]"
             />
             <span>
-              I agree that Lupin Construction LLC may publish my review on this
-              website. I understand that my email address will not be published.
+              {copy.consent}
             </span>
           </label>
           {errors.consent ? (
@@ -199,14 +201,14 @@ export function ReviewsForm() {
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <PrimaryCTA hoverColor="#C4FCFA" type="submit" className="w-full justify-center">
-              Submit Review
+              {copy.submit}
             </PrimaryCTA>
             <SecondaryCTA
               href={GOOGLE_REVIEW_URL}
               external
               className="w-full justify-center"
             >
-              Leave a Review on Google
+              {copy.google}
               <ExternalIcon />
             </SecondaryCTA>
           </div>
