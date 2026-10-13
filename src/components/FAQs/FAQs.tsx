@@ -23,7 +23,7 @@ export async function FAQs() {
         <FAQList
           items={copy.items}
           cta={copy.cta}
-          ctaHref={localePath(locale, "/#quote")}
+          ctaHref={localePath(locale, "/contact")}
         />
       </div>
     </section>

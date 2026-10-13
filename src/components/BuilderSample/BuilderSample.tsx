@@ -282,7 +282,7 @@ export function BuilderSample({ locale, copy }: { locale: Locale; copy: BuilderC
             <PrimaryCTA hoverColor="#C4FCFA" href={localePath(locale, "/create")}>
               {copy.design}
             </PrimaryCTA>
-            <SecondaryCTA href={localePath(locale, "/#quote")}>{copy.consult}</SecondaryCTA>
+            <SecondaryCTA href={localePath(locale, "/contact")}>{copy.consult}</SecondaryCTA>
           </div>
         </div>
       </div>

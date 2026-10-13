@@ -7,6 +7,43 @@
     "title": "Diseña tu piscina | Lupin Construction",
     "description": "Configura la forma, el interior, el borde y los extras de tu piscina en el sur de la Florida, y pide una propuesta a medida."
   },
+  "notFound": {
+    "title": "No encontrado"
+  },
+  "contact": {
+    "metaTitle": "Solicita una consulta | Lupin Construction",
+    "metaDescription": "Cuéntanos sobre tu proyecto de construcción, remodelación o reparación de piscina y solicita una consulta personalizada.",
+    "eyebrow": "Solicita una consulta",
+    "title": "Hablemos de tu proyecto.",
+    "subtitle": "Comparte algunos detalles sobre tu idea. Nuestro equipo revisará el proyecto y se pondrá en contacto contigo para conversar sobre los próximos pasos.",
+    "name": "Nombre completo",
+    "namePlaceholder": "Tu nombre completo",
+    "email": "Correo electrónico",
+    "phone": "Número de teléfono",
+    "phonePlaceholder": "(305) 555-0188",
+    "location": "Ubicación del proyecto",
+    "locationPlaceholder": "Ciudad o código postal",
+    "service": "Servicio de interés",
+    "budget": "Presupuesto disponible",
+    "timeline": "Plazo estimado",
+    "message": "Cuéntanos sobre tu proyecto",
+    "messagePlaceholder": "Describe tu espacio, objetivos, características preferidas y cualquier detalle que nos ayude a entender tu proyecto.",
+    "optional": "opcional",
+    "selectOption": "Selecciona una opción",
+    "services": ["Construcción de piscina nueva", "Remodelación de piscina", "Reparación de piscina", "Piezas y equipos", "Aún no estoy seguro"],
+    "budgets": ["Menos de $50,000", "$50,000–$75,000", "$75,000–$100,000", "$100,000–$150,000", "$150,000 o más", "Aún no estoy seguro"],
+    "timelines": ["Lo antes posible", "En 1–3 meses", "En 3–6 meses", "En 6–12 meses", "Solo estoy explorando"],
+    "privacy": "Tu información solo se utilizará para responder a tu solicitud de consulta.",
+    "submit": "Solicitar consulta",
+    "successTitle": "Gracias por contactarnos.",
+    "successBody": "Recibimos los detalles de tu proyecto. Nuestro equipo los revisará y se comunicará contigo pronto para conversar sobre tu consulta.",
+    "errors": {
+      "name": "Escribe tu nombre completo.",
+      "email": "Escribe un correo electrónico válido.",
+      "service": "Selecciona el servicio de tu interés.",
+      "message": "Cuéntanos un poco más sobre tu proyecto."
+    }
+  },
   "header": {
     "region": "SUR DE LA FLORIDA",
     "primary": "Principal",
@@ -22,7 +59,7 @@
       { "href": "/#process", "label": "Proceso" },
       { "href": "/#reviews", "label": "Reseñas" }
     ],
-    "quote": { "href": "/#quote", "label": "Pedir una cotización" }
+    "quote": { "href": "/contact", "label": "Pedir una cotización" }
   },
   "hero": {
     "label": "Lupin Construction",
@@ -335,7 +372,7 @@
       { "href": "/#services", "label": "Servicios" },
       { "href": "/#reviews", "label": "Reseñas de clientes" },
       { "href": "/#portfolio", "label": "Portafolio" },
-      { "href": "/#quote", "label": "Contacto" },
+      { "href": "/contact", "label": "Contacto" },
       { "href": "/#process", "label": "Nuestro proceso" },
       { "href": "/#standard", "label": "Nosotros" }
     ]

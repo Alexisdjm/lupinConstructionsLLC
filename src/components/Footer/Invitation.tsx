@@ -18,7 +18,7 @@ export async function Invitation() {
           </p>
         </div>
         <PrimaryCTA
-          href={localePath(locale, "/#quote")}
+          href={localePath(locale, "/contact")}
           color="#ffffff"
           hoverColor="#C4FCFA"
           className="self-start lg:self-center"

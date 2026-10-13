@@ -199,3 +199,47 @@ h6 {
 .pool-light-fade {
   animation: pool-light-fade 12s ease-in-out infinite;
 }
+
+.not-found-liquid {
+  transform: translateY(360px);
+  animation: not-found-fill 2.8s cubic-bezier(0.22, 0.72, 0.3, 1) forwards;
+}
+
+.not-found-wave {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: not-found-wave 2.4s ease-in-out infinite;
+}
+
+@keyframes not-found-fill {
+  from {
+    transform: translateY(360px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes not-found-wave {
+  0%,
+  100% {
+    transform: translate(-52px, 2px) rotate(0.4deg);
+  }
+  35% {
+    transform: translate(28px, 8px) rotate(-0.65deg);
+  }
+  68% {
+    transform: translate(58px, -3px) rotate(0.55deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .not-found-liquid {
+    transform: translateY(0);
+    animation: none;
+  }
+
+  .not-found-wave {
+    animation: none;
+  }
+}

@@ -5,7 +5,7 @@ import { ServicesGrid } from "./ServicesGrid";
 export async function Services() {
   const { locale, messages } = await getDictionary();
   const copy = messages.services;
-  const quoteHref = localePath(locale, "/#quote");
+  const quoteHref = localePath(locale, "/contact");
   return (
     <section id="services" className="scroll-mt-24 bg-[#fff] py-16 lg:py-20">
       <div className="page-shell">

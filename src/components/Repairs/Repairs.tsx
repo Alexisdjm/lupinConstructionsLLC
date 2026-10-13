@@ -35,7 +35,7 @@ export async function Repairs() {
             {copy.disclaimer}
           </p>
           <div className="shrink-0">
-            <PrimaryCTA hoverColor="#C4FCFA" href={localePath(locale, "/#quote")}>{copy.consult}</PrimaryCTA>
+            <PrimaryCTA hoverColor="#C4FCFA" href={localePath(locale, "/contact")}>{copy.consult}</PrimaryCTA>
           </div>
         </div>
       </div>
