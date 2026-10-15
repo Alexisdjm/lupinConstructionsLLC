@@ -53,7 +53,7 @@ export function PoolBuilder({ locale, copy, region }: PoolBuilderProps) {
       name: contact.name.trim(),
       email: contact.email.trim(),
       phone: contact.phone.trim(),
-      location: contact.address.trim(),
+      address: contact.address.trim(),
       message: quoteMessage(config, copy, contact),
     });
 

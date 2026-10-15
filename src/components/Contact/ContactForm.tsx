@@ -42,7 +42,7 @@ export function ContactForm({ copy }: { copy: ContactCopy }) {
       email: value("email"),
       message: value("message"),
     };
-    for (const field of ["phone", "location", "service", "budget", "timeline"] as const) {
+    for (const field of ["phone", "address", "service", "budget", "timeline"] as const) {
       const text = value(field);
       if (text) payload[field] = text;
     }
@@ -77,7 +77,7 @@ export function ContactForm({ copy }: { copy: ContactCopy }) {
           <input name="phone" type="tel" autoComplete="tel" placeholder={copy.phonePlaceholder} className={fieldClass} />
         </Field>
         <Field label={copy.location} hint={copy.optional}>
-          <input name="location" autoComplete="address-level2" placeholder={copy.locationPlaceholder} className={fieldClass} />
+          <input name="address" autoComplete="address-level2" placeholder={copy.locationPlaceholder} className={fieldClass} />
         </Field>
         <Field label={copy.service} hint={copy.optional}>
           <select name="service" defaultValue="" className={fieldClass}>

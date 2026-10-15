@@ -9,7 +9,7 @@ export type ContactRequest = {
   email: string;
   message: string;
   phone?: string;
-  location?: string;
+  address?: string;
   service?: string;
   budget?: string;
   timeline?: string;
