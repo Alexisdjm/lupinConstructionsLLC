@@ -28,7 +28,7 @@ export async function Footer() {
                   className="size-10 shrink-0"
                 />
                 <span className="text-[15px] font-semibold tracking-tight">
-                  Lupin Construction LLC
+                  Lupin Constructions LLC
                 </span>
               </Link>
               <p className="mt-4 max-w-xs text-sm leading-6 text-white/60">

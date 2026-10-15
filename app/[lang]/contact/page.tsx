@@ -4,13 +4,16 @@ import { Footer } from "@/src/components/Footer";
 import { Header } from "@/src/components/Header";
 import { Projects } from "@/src/components/Projects";
 import { getDictionary } from "@/src/i18n/getDictionary";
+import { pageMetadata } from "@/src/i18n/site";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { messages } = await getDictionary();
-  return {
-    title: messages.contact.metaTitle,
-    description: messages.contact.metaDescription,
-  };
+  const { locale, messages } = await getDictionary();
+  return pageMetadata(
+    locale,
+    "/contact",
+    messages.contact.metaTitle,
+    messages.contact.metaDescription,
+  );
 }
 
 export default async function ContactPage() {

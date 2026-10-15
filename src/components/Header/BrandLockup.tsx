@@ -10,7 +10,7 @@ export function BrandLockup({ region = "SOUTH FLORIDA" }: { region?: string }) {
       />
       <span className="min-w-0 leading-tight">
         <span className="block truncate text-[15px] font-semibold tracking-tight text-white">
-          Lupin Construction LLC
+          Lupin Constructions LLC
         </span>
         <span className="mt-0.5 block text-[10px] font-medium tracking-[0.22em] text-[#2ad9c3]">
           {region}

@@ -132,6 +132,12 @@
     "send": "Enviar mi propuesta personalizada",
     "sending": "Enviando...",
     "submitError": "No pudimos enviar tu propuesta. Inténtalo de nuevo en un momento.",
+    "confirm": {
+      "title": "¿Seguro que quieres enviar esta propuesta?",
+      "message": "Vamos a recibir tu diseño y tus datos de contacto para preparar una propuesta personalizada. Envíala solo cuando estés listo para que nuestro equipo la revise.",
+      "cancel": "Todavía no",
+      "confirm": "Sí, enviar"
+    },
     "dimensionsError": "Ingresa un largo, ancho y profundidad dentro del rango permitido.",
     "steps": [
       { "label": "Forma", "title": "Define la base de tu piscina." },
@@ -607,7 +613,7 @@
     "exploreNav": "Explorar",
     "studio": "Visita nuestro estudio de diseño",
     "hours": "Lun–vie 8:00 AM–6:00 PM · Sáb con cita",
-    "copyright": "© 2026 Lupin Construction LLC",
+    "copyright": "© 2026 Lupin Constructions LLC",
     "terms": "Términos del servicio",
     "privacy": "Política de privacidad",
     "invitationTitle": "Tu retiro en el sur de la Florida empieza aquí.",

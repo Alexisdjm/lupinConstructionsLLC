@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { fill } from "@/src/i18n/locales";
 import { validateContact, type ContactErrors } from "./config";
 import { TextField } from "./controls";
@@ -31,6 +31,8 @@ type ContactStepProps = {
 export function ContactStep({ config, copy, onSubmit }: ContactStepProps) {
   const [contact, setContact] = useState<ContactDetails>(EMPTY_CONTACT);
   const [errors, setErrors] = useState<ContactErrors>({});
+  const [confirming, setConfirming] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const labels = copy.contact;
 
   function update(field: keyof ContactDetails, value: string) {
@@ -45,8 +47,45 @@ export function ContactStep({ config, copy, onSubmit }: ContactStepProps) {
     if (Object.keys(nextErrors).length > 0) {
       return;
     }
+    setConfirming(true);
+  }
+
+  function confirmSend() {
+    setConfirming(false);
     onSubmit(contact);
   }
+
+  useEffect(() => {
+    if (!confirming) return;
+
+    const previous = document.activeElement;
+    dialogRef.current?.focus();
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setConfirming(false);
+        return;
+      }
+      if (event.key !== "Tab" || !dialogRef.current) return;
+      const items = [...dialogRef.current.querySelectorAll<HTMLElement>("button")];
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (!first || !last) return;
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      if (previous instanceof HTMLElement) previous.focus();
+    };
+  }, [confirming]);
 
   return (
     <div className="space-y-6">
@@ -103,6 +142,47 @@ export function ContactStep({ config, copy, onSubmit }: ContactStepProps) {
           onChange={(value) => update("phone", value)}
         />
       </form>
+
+      {confirming ? (
+        <div
+          className="fixed inset-0 z-60 grid place-items-center bg-[#07111c]/75 px-5"
+          onClick={() => setConfirming(false)}
+        >
+          <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="quote-confirm-title"
+            aria-describedby="quote-confirm-message"
+            tabIndex={-1}
+            onClick={(event) => event.stopPropagation()}
+            className="w-full max-w-md rounded-[20px] border border-white/10 bg-[#0b1922] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)] outline-none"
+          >
+            <h2 id="quote-confirm-title" className="text-lg leading-snug font-medium text-white">
+              {copy.confirm.title}
+            </h2>
+            <p id="quote-confirm-message" className="mt-3 text-sm leading-6 text-white/70">
+              {copy.confirm.message}
+            </p>
+            <div className="mt-6 flex gap-3">
+              <button
+                type="button"
+                onClick={() => setConfirming(false)}
+                className="rounded-full border border-white/15 px-5 py-3 text-sm text-white transition-colors hover:border-white/40"
+              >
+                {copy.confirm.cancel}
+              </button>
+              <button
+                type="button"
+                onClick={confirmSend}
+                className="flex-1 rounded-full bg-[#2ad9c3] px-5 py-3 text-sm font-semibold text-[#06261f] transition-colors hover:bg-[#5eead4]"
+              >
+                {copy.confirm.confirm}
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

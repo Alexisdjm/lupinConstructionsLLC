@@ -4,13 +4,16 @@ import { Header } from "@/src/components/Header";
 import { LegalPage } from "@/src/components/Legal/LegalPage";
 import { getDictionary } from "@/src/i18n/getDictionary";
 import { localePath } from "@/src/i18n/locales";
+import { pageMetadata } from "@/src/i18n/site";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { messages } = await getDictionary();
-  return {
-    title: messages.privacy.metaTitle,
-    description: messages.privacy.metaDescription,
-  };
+  const { locale, messages } = await getDictionary();
+  return pageMetadata(
+    locale,
+    "/privacy",
+    messages.privacy.metaTitle,
+    messages.privacy.metaDescription,
+  );
 }
 
 export default async function PrivacyPage() {

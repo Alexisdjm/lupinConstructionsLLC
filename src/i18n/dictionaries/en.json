@@ -132,6 +132,12 @@
     "send": "Send My Custom Proposal",
     "sending": "Sending...",
     "submitError": "We couldn't send your proposal. Please try again in a moment.",
+    "confirm": {
+      "title": "Are you sure you want to send this proposal?",
+      "message": "We'll receive your design and contact details and prepare a custom proposal. Send it only when you're ready for our team to review the project.",
+      "cancel": "Not yet",
+      "confirm": "Yes, send it"
+    },
     "dimensionsError": "Enter a length, width, and depth inside the allowed range.",
     "steps": [
       { "label": "Shape", "title": "Define your pool's foundation." },
@@ -607,7 +613,7 @@
     "exploreNav": "Explore",
     "studio": "Visit our design studio",
     "hours": "Mon–Fri 8:00 AM–6:00 PM · Sat by appointment",
-    "copyright": "© 2026 Lupin Construction LLC",
+    "copyright": "© 2026 Lupin Constructions LLC",
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
     "invitationTitle": "Your South Florida retreat starts here.",

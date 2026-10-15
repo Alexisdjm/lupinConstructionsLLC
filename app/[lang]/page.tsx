@@ -9,10 +9,19 @@ import { Repairs } from "@/src/components/Repairs";
 import { Reviews } from "@/src/components/Reviews";
 import { Services } from "@/src/components/Services";
 import { Standard } from "@/src/components/Standard";
+import { getDictionary } from "@/src/i18n/getDictionary";
+import { localBusinessJsonLd } from "@/src/i18n/site";
 
-export default function Home() {
+export default async function Home() {
+  const { locale, messages } = await getDictionary();
+  const jsonLd = JSON.stringify(localBusinessJsonLd(locale, messages.meta.description)).replace(
+    /</g,
+    "\\u003c",
+  );
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <Header />
       <main>
         <HeroSection />

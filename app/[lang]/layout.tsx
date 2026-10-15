@@ -5,6 +5,7 @@ import { PageTransition } from "@/src/components/UXUI/PageTransition";
 import { ScrollToTop } from "@/src/components/UXUI/ScrollToTop";
 import { getDictionary } from "@/src/i18n/getDictionary";
 import { hasLocale, locales } from "@/src/i18n/locales";
+import { pageMetadata, siteUrl } from "@/src/i18n/site";
 import "../globals.css";
 
 const inter = Inter({
@@ -22,10 +23,11 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { messages } = await getDictionary();
+  const { locale, messages } = await getDictionary();
   return {
-    title: messages.meta.title,
-    description: messages.meta.description,
+    metadataBase: new URL(siteUrl),
+    ...pageMetadata(locale, "", messages.meta.title, messages.meta.description),
+    robots: { index: true, follow: true },
     icons: {
       icon: "/svgs/lupin.svg",
       apple: "/svgs/lupin.svg",

@@ -91,6 +91,9 @@ function phasePhotoSrcs(phase: PhotoPhase) {
   }
 }
 
+const ANIMATION_FIT =
+  "object-contain object-center lg:object-cover lg:object-[center_40%]";
+
 const PHOTO_FRAME: Record<PhotoPhase, string> = {
   shape: "object-cover object-center",
   interior: "object-cover object-center",
@@ -200,6 +203,7 @@ export function PoolViewer({
           <LayerImage
             key={layer.key}
             src={layer.src}
+            fit={ANIMATION_FIT}
             visible={layer.shape === config.shape && layer.deck === config.deck}
           />
         ))}
@@ -209,6 +213,7 @@ export function PoolViewer({
           <LayerImage
             key={layer.key}
             src={layer.src}
+            fit={ANIMATION_FIT}
             visible={
               layer.shape === config.shape && layer.interior === config.interior
             }
@@ -218,6 +223,7 @@ export function PoolViewer({
           <LayerImage
             key={layer.key}
             src={layer.src}
+            fit={ANIMATION_FIT}
             visible={config.bubbles && layer.shape === config.shape}
           />
         ))}
@@ -227,6 +233,7 @@ export function PoolViewer({
           <LayerImage
             key={layer.key}
             src={layer.src}
+            fit={ANIMATION_FIT}
             visible={
               layer.shape === config.shape && layer.lighting === config.lighting
             }
@@ -238,6 +245,7 @@ export function PoolViewer({
           <LayerImage
             key={layer.key}
             src={layer.src}
+            fit={ANIMATION_FIT}
             visible={
               layer.shape === config.shape && layer.coping === config.coping
             }
@@ -249,6 +257,7 @@ export function PoolViewer({
           <LayerImage
             key={layer.key}
             src={layer.src}
+            fit={ANIMATION_FIT}
             visible={
               config.spa &&
               layer.shape === config.shape &&
@@ -263,6 +272,7 @@ export function PoolViewer({
           <LayerImage
             key={layer.key}
             src={layer.src}
+            fit={ANIMATION_FIT}
             visible={
               config.fountain &&
               layer.shape === config.shape &&
