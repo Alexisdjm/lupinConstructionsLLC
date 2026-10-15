@@ -26,6 +26,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: messages.meta.title,
     description: messages.meta.description,
+    icons: {
+      icon: "/svgs/lupin.svg",
+      apple: "/svgs/lupin.svg",
+    },
   };
 }
 
