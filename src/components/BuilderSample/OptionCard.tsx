@@ -12,6 +12,7 @@ type OptionCardProps = {
   note?: string;
   placement: "above" | "below";
   align: "start" | "center" | "end";
+  layout?: "stack" | "row";
 };
 
 const ALIGN = {
@@ -20,7 +21,14 @@ const ALIGN = {
   end: "right-0",
 } as const;
 
-export function OptionCard({ title, choices, note, placement, align }: OptionCardProps) {
+export function OptionCard({
+  title,
+  choices,
+  note,
+  placement,
+  align,
+  layout = "stack",
+}: OptionCardProps) {
   const position =
     placement === "above"
       ? `bottom-7 ${ALIGN[align]}`
@@ -36,34 +44,44 @@ export function OptionCard({ title, choices, note, placement, align }: OptionCar
         <p className="px-1 text-[10px] font-semibold tracking-[0.18em] text-[#2ad9c3] uppercase">
           {title}
         </p>
-        <div className="mt-2 grid gap-1.5">
+        <div className={layout === "row" ? "mt-2 flex gap-1" : "mt-2 grid gap-1.5"}>
           {choices.map((choice) => (
             <button
               key={choice.id}
               type="button"
               aria-pressed={choice.selected}
               onClick={choice.onSelect}
-              className={`flex items-start gap-3 rounded-[12px] border px-3 py-2.5 text-left transition-colors ${
+              className={`rounded-[12px] border transition-colors ${
+                layout === "row"
+                  ? "flex-1 px-1 py-2 text-center"
+                  : "flex items-start gap-3 px-3 py-2.5 text-left"
+              } ${
                 choice.selected
                   ? "border-[#2ad9c3]/80 bg-[#123848]"
                   : "border-white/10 bg-white/[0.04] hover:border-white/25"
               }`}
             >
-              <span
-                className={`mt-0.5 grid size-4 shrink-0 place-items-center rounded-full border ${
-                  choice.selected ? "border-[#2ad9c3]" : "border-white/40"
-                }`}
-                aria-hidden="true"
-              >
-                {choice.selected ? (
-                  <span className="size-2 rounded-full bg-[#2ad9c3]" />
-                ) : null}
-              </span>
+              {layout === "stack" ? (
+                <span
+                  className={`mt-0.5 grid size-4 shrink-0 place-items-center rounded-full border ${
+                    choice.selected ? "border-[#2ad9c3]" : "border-white/40"
+                  }`}
+                  aria-hidden="true"
+                >
+                  {choice.selected ? (
+                    <span className="size-2 rounded-full bg-[#2ad9c3]" />
+                  ) : null}
+                </span>
+              ) : null}
               <span className="min-w-0">
-                <span className="block text-sm font-semibold text-white">
+                <span
+                  className={`block font-semibold text-white ${
+                    layout === "row" ? "text-xs" : "text-sm"
+                  }`}
+                >
                   {choice.label}
                 </span>
-                {choice.description ? (
+                {layout === "stack" && choice.description ? (
                   <span className="mt-0.5 block text-xs leading-4 text-white/60">
                     {choice.description}
                   </span>

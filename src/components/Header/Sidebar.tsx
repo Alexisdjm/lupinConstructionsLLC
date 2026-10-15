@@ -8,6 +8,7 @@ import type { Locale } from "@/src/i18n/locales";
 import { BrandLockup } from "./BrandLockup";
 import { LanguageSwitch } from "./LanguageSwitch";
 import { useSidebar } from "@/src/hooks/useSidebar";
+import { scrollToSection } from "./sectionScroll";
 
 type SidebarLink = { href: string; label: string };
 
@@ -106,7 +107,11 @@ export function Sidebar({
             <Link
               key={link.href}
               href={link.href}
-              onClick={close}
+              scroll={false}
+              onClick={(event) => {
+                scrollToSection(event, link.href);
+                close();
+              }}
               className="rounded-lg px-3 py-3 text-base font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2ad9c3]"
             >
               {link.label}

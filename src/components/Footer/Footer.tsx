@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getDictionary } from "@/src/i18n/getDictionary";
 import { localePath } from "@/src/i18n/locales";
 import { LanguageSwitch } from "@/src/components/Header/LanguageSwitch";
+import { FooterLinks } from "./FooterLinks";
 import { Invitation } from "./Invitation";
 
 export async function Footer() {
@@ -33,53 +34,38 @@ export async function Footer() {
               <p className="mt-4 max-w-xs text-sm leading-6 text-white/60">
                 {copy.description}
               </p>
-              <p className="mt-6 text-sm text-white/80">
-                {copy.serving}
-              </p>
+              <p className="mt-6 text-sm text-white/80">{copy.serving}</p>
             </div>
 
             <nav aria-label={copy.exploreNav}>
               <p className="text-[11px] font-semibold tracking-[0.18em] text-white/45 uppercase">
                 {copy.explore}
               </p>
-              <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3">
-                {copy.links.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={localePath(locale, item.href)}
-                    className="text-sm text-white/75 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2ad9c3]"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
+              <FooterLinks
+                links={copy.links.map((item) => ({
+                  href: localePath(locale, item.href),
+                  label: item.label,
+                }))}
+              />
             </nav>
 
             <div>
               <p className="text-[11px] font-semibold tracking-[0.18em] text-white/45 uppercase">
                 {copy.studio}
               </p>
-              <p className="mt-4 text-sm leading-6 text-white/75">
-                7300 Biscayne Boulevard, Suite 210
-                <br />
-                Miami, FL 33138
-              </p>
+              <p className="mt-4 text-sm leading-6 text-white/75">3941 SW 89th Av Apt 3</p>
               <a
-                href="tel:3055550188"
+                href="tel:3053212186"
                 className="mt-4 inline-block text-lg font-semibold tracking-tight text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2ad9c3]"
               >
-                (305) 555-0188
+                (305) 321-2186
               </a>
-              <p className="mt-3 text-sm text-white/55">
-                {copy.hours}
-              </p>
+              <p className="mt-3 text-sm text-white/55">{copy.hours}</p>
             </div>
           </div>
 
           <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
-            <p>
-              {copy.copyright}
-            </p>
+            <p>{copy.copyright}</p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
               <LanguageSwitch
                 locale={locale}

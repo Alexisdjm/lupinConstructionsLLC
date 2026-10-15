@@ -8,73 +8,71 @@ import type { Dictionary } from "@/src/i18n/getDictionary";
 import { localePath, type Locale } from "@/src/i18n/locales";
 import { OptionCard } from "./OptionCard";
 
-type Finish = "diamond" | "tile";
-type HotspotId = "fountain" | "finish" | "spa";
+const LIGHTS = ["white", "blue", "green", "pink"] as const;
+type LightColor = (typeof LIGHTS)[number];
+type Coping = "light" | "dark";
+type HotspotId = "lights" | "fountain" | "coping";
 
-const BASE: Record<Finish, string> = {
-  diamond: "/builderSample/diamond-standard.webp",
-  tile: "/builderSample/tile-standard.webp",
-};
+function lightSrc(color: LightColor) {
+  return `/builderSample/${color}-light.webp`;
+}
 
-const FOUNTAIN: Record<Finish, string> = {
-  diamond: "/builderSample/diamond-fountain.webp",
-  tile: "/builderSample/tile-fountain.webp",
-};
+function fountainSrc(color: LightColor) {
+  return `/builderSample/${color}-fountain.webp`;
+}
 
-const SPA: Record<Finish, string> = {
-  diamond: "/builderSample/diamond-spa.webp",
-  tile: "/builderSample/tile-spa.webp",
-};
+const COPING_WITHOUT_FOUNTAIN = "/builderSample/dark-coping-no-fountain.webp";
+const COPING_WITH_FOUNTAIN = "/builderSample/dark-coping.webp";
 
-const INITIAL = BASE.diamond;
+const INITIAL = lightSrc("white");
 
 const STACK = [
-  BASE.diamond,
-  BASE.tile,
-  FOUNTAIN.diamond,
-  FOUNTAIN.tile,
-  SPA.diamond,
-  SPA.tile,
+  ...LIGHTS.map(lightSrc),
+  ...LIGHTS.map(fountainSrc),
+  COPING_WITHOUT_FOUNTAIN,
+  COPING_WITH_FOUNTAIN,
 ];
 
 const HOTSPOTS = [
   {
+    id: "lights" as const,
+    left: "30%",
+    top: "78%",
+    placement: "above" as const,
+    align: "start" as const,
+  },
+  {
     id: "fountain" as const,
-    left: "58%",
-    top: "29%",
+    left: "70%",
+    top: "57%",
     placement: "below" as const,
     align: "end" as const,
   },
   {
-    id: "finish" as const,
-    left: "46%",
-    top: "53%",
-    placement: "below" as const,
-    align: "center" as const,
-  },
-  {
-    id: "spa" as const,
-    left: "28%",
-    top: "92%",
+    id: "coping" as const,
+    left: "50%",
+    top: "93%",
     placement: "above" as const,
-    align: "start" as const,
+    align: "center" as const,
   },
 ];
 
 type BuilderCopy = Dictionary["builder"];
 
 export function BuilderSample({ locale, copy }: { locale: Locale; copy: BuilderCopy }) {
-  const [finish, setFinish] = useState<Finish>("diamond");
+  const [light, setLight] = useState<LightColor>("white");
   const [fountain, setFountain] = useState(false);
-  const [spa, setSpa] = useState(false);
+  const [coping, setCoping] = useState<Coping>("light");
   const [open, setOpen] = useState<HotspotId | null>(null);
   const [mounted, setMounted] = useState<string[]>([INITIAL]);
   const [entered, setEntered] = useState<string[]>([INITIAL]);
 
   const active = [
-    BASE[finish],
-    ...(fountain ? [FOUNTAIN[finish]] : []),
-    ...(spa ? [SPA[finish]] : []),
+    lightSrc(light),
+    ...(fountain ? [fountainSrc(light)] : []),
+    ...(coping === "dark"
+      ? [fountain ? COPING_WITH_FOUNTAIN : COPING_WITHOUT_FOUNTAIN]
+      : []),
   ];
 
   const missing = active.filter((src) => !mounted.includes(src));
@@ -125,6 +123,16 @@ export function BuilderSample({ locale, copy }: { locale: Locale; copy: BuilderC
   }, [open]);
 
   function choicesFor(id: HotspotId) {
+    if (id === "lights") {
+      return LIGHTS.map((color) => ({
+        id: color,
+        label: copy.lights[color].label,
+        description: copy.lights[color].detail,
+        selected: light === color,
+        onSelect: () => setLight(color),
+      }));
+    }
+
     if (id === "fountain") {
       return [
         {
@@ -144,45 +152,26 @@ export function BuilderSample({ locale, copy }: { locale: Locale; copy: BuilderC
       ];
     }
 
-    if (id === "spa") {
-      return [
-        {
-          id: "off",
-          label: copy.spaOff,
-          description: copy.spaOffDetail,
-          selected: !spa,
-          onSelect: () => setSpa(false),
-        },
-        {
-          id: "on",
-          label: copy.spaOn,
-          description: copy.spaOnDetail,
-          selected: spa,
-          onSelect: () => setSpa(true),
-        },
-      ];
-    }
-
     return [
       {
-        id: "diamond",
-        label: copy.diamond,
-        description: copy.diamondDetail,
-        selected: finish === "diamond",
-        onSelect: () => setFinish("diamond"),
+        id: "light",
+        label: copy.copingLight,
+        description: copy.copingLightDetail,
+        selected: coping === "light",
+        onSelect: () => setCoping("light"),
       },
       {
-        id: "tile",
-        label: copy.tile,
-        description: copy.tileDetail,
-        selected: finish === "tile",
-        onSelect: () => setFinish("tile"),
+        id: "dark",
+        label: copy.copingDark,
+        description: copy.copingDarkDetail,
+        selected: coping === "dark",
+        onSelect: () => setCoping("dark"),
       },
     ];
   }
 
   return (
-    <section id="preview" className="bg-[#071422] py-16 lg:py-20">
+    <section id="preview" className="bg-[#061B2D] py-16 lg:py-20">
       <div className="page-shell">
         <div className="mx-auto text-center">
           <p className="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[0.22em] text-[#2ad9c3] uppercase">
@@ -264,9 +253,10 @@ export function BuilderSample({ locale, copy }: { locale: Locale; copy: BuilderC
                   <OptionCard
                     title={copy.hotspots[hotspot.id]}
                     choices={choicesFor(hotspot.id)}
-                    note={hotspot.id === "finish" ? copy.note : undefined}
+                    note={hotspot.id === "coping" ? copy.note : undefined}
                     placement={hotspot.placement}
                     align={hotspot.align}
+                    layout={hotspot.id === "lights" ? "row" : "stack"}
                   />
                 ) : null}
               </div>
@@ -279,10 +269,15 @@ export function BuilderSample({ locale, copy }: { locale: Locale; copy: BuilderC
             {copy.disclaimer}
           </p>
           <div className="flex shrink-0 flex-wrap gap-3">
-            <PrimaryCTA hoverColor="#C4FCFA" href={localePath(locale, "/create")}>
+            <PrimaryCTA
+              hoverColor="#C4FCFA"
+              href={localePath(locale, "/create")}
+            >
               {copy.design}
             </PrimaryCTA>
-            <SecondaryCTA href={localePath(locale, "/contact")}>{copy.consult}</SecondaryCTA>
+            <SecondaryCTA href={localePath(locale, "/contact")}>
+              {copy.consult}
+            </SecondaryCTA>
           </div>
         </div>
       </div>

@@ -1,7 +1,9 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { usePathname } from "next/navigation";
+import { useLayoutEffect, type ReactNode } from "react";
 import { useHeaderScroll } from "@/src/hooks/useHeaderScroll";
+import { consumePendingSection, dropPendingSection } from "./sectionScroll";
 
 type HeaderShellProps = {
   children: ReactNode;
@@ -9,6 +11,25 @@ type HeaderShellProps = {
 
 export function HeaderShell({ children }: HeaderShellProps) {
   const { atTop, hidden } = useHeaderScroll();
+  const pathname = usePathname();
+
+  useLayoutEffect(() => {
+    let frame = 0;
+    let tries = 0;
+
+    function attempt() {
+      const pending = consumePendingSection(pathname);
+      if (pending !== "wait" || tries >= 12) {
+        if (pending === "wait") dropPendingSection();
+        return;
+      }
+      tries += 1;
+      frame = requestAnimationFrame(attempt);
+    }
+
+    attempt();
+    return () => cancelAnimationFrame(frame);
+  }, [pathname]);
 
   return (
     <header

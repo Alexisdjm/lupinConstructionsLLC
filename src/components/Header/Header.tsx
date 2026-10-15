@@ -3,6 +3,7 @@ import { PrimaryCTA } from "@/src/components/UXUI/PrimaryCTA";
 import { getDictionary } from "@/src/i18n/getDictionary";
 import { localePath } from "@/src/i18n/locales";
 import { BrandLockup } from "./BrandLockup";
+import { HeaderNav } from "./HeaderNav";
 import { HeaderShell } from "./HeaderShell";
 import { LanguageSwitch } from "./LanguageSwitch";
 import { Sidebar } from "./Sidebar";
@@ -22,15 +23,12 @@ export async function Header() {
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label={copy.primary}>
-          {copy.nav.map((link) => (
-            <Link
-              key={link.href}
-              href={localePath(locale, link.href)}
-              className="text-sm font-medium text-white/85 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2ad9c3]"
-            >
-              {link.label}
-            </Link>
-          ))}
+          <HeaderNav
+            links={copy.nav.map((link) => ({
+              href: localePath(locale, link.href),
+              label: link.label,
+            }))}
+          />
           <div className="flex items-center gap-2 rounded-[16px] border border-white/15 bg-white/8 p-1">
             <LanguageSwitch
               locale={locale}

@@ -35,6 +35,8 @@
     "timelines": ["As soon as possible", "Within 1–3 months", "Within 3–6 months", "Within 6–12 months", "Just exploring"],
     "privacy": "Your information will only be used to respond to your consultation request.",
     "submit": "Request Consultation",
+    "sending": "Sending...",
+    "submitError": "We couldn't send your request. Please try again in a moment.",
     "successTitle": "Thank you for reaching out.",
     "successBody": "We've received your project details. Our team will review them and contact you shortly to discuss your consultation.",
     "errors": {
@@ -83,35 +85,37 @@
       { "title": "State Licensed & Insured", "description": "CFC License" },
       { "title": "Lifetime Structural Warranty", "description": "Built for lasting confidence" },
       { "title": "100% Permit Handling", "description": "From plans to final inspection" },
-      { "title": "20+ Years of Excellence", "description": "Trusted craftsmanship since 2004" }
+      { "title": "18 Years of Excellence", "description": "Trusted craftsmanship since 2008" }
     ]
   },
   "builder": {
     "eyebrow": "Interactive Pool Builder",
     "title": "Visualize Your Pool Before Breaking Ground.",
-    "subtitle": "Explore surface finishes, coping materials, and design combinations in our interactive builder. See how each choice transforms the look and feel of your future pool.",
+    "subtitle": "Explore lighting colors, a fountain, and coping in our interactive builder. See how each choice transforms the look and feel of your future pool.",
     "badge": "Builder preview",
     "disclaimer": "Builder previews are conceptual representations. Final materials, dimensions, finishes, feasibility, and pricing are subject to professional evaluation and site assessment.",
     "design": "Design Your Pool",
     "consult": "Request a Consultation",
     "note": "Visual estimate only",
     "hotspots": {
+      "lights": "Lighting",
       "fountain": "Fountain",
-      "finish": "Interior finish",
-      "spa": "Spa"
+      "coping": "Coping"
+    },
+    "lights": {
+      "white": { "label": "White", "detail": "Bright white pool light" },
+      "blue": { "label": "Blue", "detail": "Deep blue water" },
+      "green": { "label": "Green", "detail": "Green pool light" },
+      "pink": { "label": "Pink", "detail": "Pink pool light" }
     },
     "fountainOff": "No fountain",
     "fountainOffDetail": "Open water, no feature",
     "fountainOn": "Add fountain",
-    "fountainOnDetail": "Sheet waterfall",
-    "spaOff": "No spa",
-    "spaOffDetail": "Pool only",
-    "spaOn": "Add spa",
-    "spaOnDetail": "Attached spa",
-    "diamond": "Diamond Brite",
-    "diamondDetail": "Quartz aggregate finish",
-    "tile": "Glass Tile",
-    "tileDetail": "Luminous mosaic detail"
+    "fountainOnDetail": "Sheet waterfall on the right wall",
+    "copingLight": "Light coping",
+    "copingLightDetail": "The pale edge already in the photo",
+    "copingDark": "Dark coping",
+    "copingDarkDetail": "Dark stone along the waterline"
   },
   "wizard": {
     "preview": "Pool preview",
@@ -125,6 +129,8 @@
     "back": "Back",
     "continue": "Continue",
     "send": "Send My Custom Proposal",
+    "sending": "Sending...",
+    "submitError": "We couldn't send your proposal. Please try again in a moment.",
     "dimensionsError": "Enter a length, width, and depth inside the allowed range.",
     "steps": [
       { "label": "Shape", "title": "Define your pool's foundation." },
@@ -355,6 +361,239 @@
       "consent": "Please agree before submitting."
     }
   },
+  "terms": {
+    "metaTitle": "Terms of Service | Lupin Construction",
+    "metaDescription": "How Lupin Construction LLC plans, estimates, and builds a custom pool in South Florida, and the terms that apply when you use this website.",
+    "breadcrumbLabel": "Breadcrumb",
+    "home": "Home",
+    "crumbGroup": "Legal",
+    "crumbCurrent": "Terms of Service",
+    "title": "Terms of Service",
+    "intro": "These terms explain how a Lupin pool is planned, priced, and built, and what applies when you use this website or ask us for a proposal.",
+    "effective": "Effective September 26, 2025 · South Florida",
+    "sidebarTitle": "On this page",
+    "tocTitle": "On this page",
+    "summary": [],
+    "noteTitle": "Important note",
+    "noteBody": "The pool tool on this website is a planning aid. A configuration, estimate, or message on the site is not a contract, a permit, or a fixed price. Construction starts only after a written agreement.",
+    "sections": [
+      {
+        "title": "Acceptance of these terms",
+        "paragraphs": [
+          "By using lupinconstruction.com, configuring a pool, or requesting a consultation, you agree to these terms. If you do not agree, please do not use the site to request work.",
+          "These terms cover the website and the planning process. The contract for a specific pool, when one is signed, governs the construction itself."
+        ]
+      },
+      {
+        "title": "Online pool configuration",
+        "paragraphs": [
+          "The builder lets you explore shape, finish, coping, lighting, and extras. Those choices are a visual starting point. They do not reserve a crew, submit a permit, or lock a price.",
+          "Photos and previews are illustrations. Soil, access, engineering, and the county review can change what can actually be built on a property."
+        ]
+      },
+      {
+        "title": "Non-binding estimates and proposals",
+        "paragraphs": [
+          "Any range, sample, or proposal you receive from the website or from our team is an estimate until both sides sign a written agreement. An email proposal is not an offer you can accept by reply alone.",
+          "Prices can change after we see the property, the survey, and the engineering. Allowances in a proposal stay estimates until the related choice is confirmed."
+        ]
+      },
+      {
+        "title": "Site evaluation",
+        "paragraphs": [
+          "Before a price becomes a contract, Lupin Construction LLC may need to visit the property or review plans, photos, and access. You agree to tell us about known conditions that would affect the work, including easements, flooding, and structures we cannot see from the street.",
+          "A site visit is a chance to confirm the design. It is not, by itself, an agreement to build."
+        ]
+      },
+      {
+        "title": "Soil and groundwater conditions",
+        "paragraphs": [
+          "South Florida soil and the water table often control how a pool is built. Dewatering, piling, or a different structure may be required after excavation starts, even when the surface looks straightforward.",
+          "If hidden conditions change the work, we will tell you what changed and what it costs before that extra work proceeds, unless a delay would risk safety or the structure."
+        ]
+      },
+      {
+        "title": "Survey, title, and access requirements",
+        "paragraphs": [
+          "A current survey, and sometimes a title or easement review, is needed to place the pool, the equipment, and the setbacks. You are responsible for giving us permission to enter the property and for telling us about gates, pets, and occupied areas.",
+          "If a survey or access delay holds the schedule, the start date moves with it."
+        ]
+      },
+      {
+        "title": "Engineering and design documents",
+        "paragraphs": [
+          "Structural drawings, equipment layouts, and other design documents are prepared for the agreed pool. They are instruments of the project, not a product you can reuse on another property or hand to another builder without our written consent.",
+          "We may update drawings to meet the engineer of record or the building department. Those updates are part of getting a permit, not a change to the design you already approved, unless they alter the pool you will see or use."
+        ]
+      },
+      {
+        "title": "Florida county permitting",
+        "paragraphs": [
+          "Pools in Miami-Dade, Broward, Palm Beach, and neighboring counties need a building permit. Timing depends on the county, the completeness of the plans, and inspections. We do not control how long a department takes to review.",
+          "Work that requires a permit does not start until that permit is issued, except for planning and design."
+        ]
+      },
+      {
+        "title": "Changes to the work",
+        "paragraphs": [
+          "If you add a spa, change a finish, move the waterline, or alter access after the agreement is signed, that change needs a written description and a price before we do it.",
+          "A change can also move the schedule. We will say so when we price it."
+        ]
+      },
+      {
+        "title": "Scheduling, weather, and delays",
+        "paragraphs": [
+          "Start dates are targets. Rain, storms, inspections, material lead times, and county closures can move the work. We will keep you informed when a delay is ours to explain.",
+          "We are not responsible for delays caused by weather, the building department, utilities, or conditions that were not visible when the agreement was signed."
+        ]
+      },
+      {
+        "title": "Warranties and maintenance",
+        "paragraphs": [
+          "Any warranty on the shell, the equipment, or the finishes is the warranty stated in the written agreement and in the manufacturer’s own terms. A website description is not a warranty.",
+          "Pools need normal care: water chemistry, cleaning, and equipment service. Damage from lack of maintenance, storms, or alterations by others is not a defect in our work."
+        ]
+      },
+      {
+        "title": "Payment terms",
+        "paragraphs": [
+          "Deposits, progress payments, and the final payment follow the schedule in the written agreement. We may pause work if a payment that is due is not received.",
+          "Paying a deposit holds a place in the schedule. It does not, by itself, approve a design that is still being drawn."
+        ]
+      },
+      {
+        "title": "Limitation of liability",
+        "paragraphs": [
+          "To the extent Florida law allows, Lupin Construction LLC is not liable for indirect or consequential losses arising from the use of this website, including lost time or a design you cannot build as configured.",
+          "Nothing on this page limits liability that Florida law does not allow us to limit, including liability for our own gross negligence or willful misconduct."
+        ]
+      },
+      {
+        "title": "Disputes and governing law",
+        "paragraphs": [
+          "These terms are governed by the laws of the State of Florida. Disputes that come from the website or from a project are handled in the state or federal courts located in Miami-Dade County, Florida, unless a written agreement names a different venue or requires mediation first.",
+          "Before filing a claim about the website, write to us and give us a reasonable chance to resolve it."
+        ]
+      },
+      {
+        "title": "Contact information",
+        "paragraphs": [
+          "Lupin Construction LLC, 7300 Biscayne Boulevard, Suite 210, Miami, FL 33138. Phone (305) 555-0188. Questions about these terms can also be sent through the contact form on this website."
+        ]
+      }
+    ]
+  },
+  "privacy": {
+    "metaTitle": "Privacy Policy | Lupin Construction",
+    "metaDescription": "How Lupin Construction LLC collects, uses, and protects the information you share when you plan a pool or request a proposal.",
+    "breadcrumbLabel": "Breadcrumb",
+    "home": "Home",
+    "crumbGroup": "Privacy",
+    "crumbCurrent": "Privacy Policy",
+    "title": "Privacy Policy",
+    "intro": "This policy explains what we collect when you plan a pool with us, why we collect it, and the choices you have.",
+    "effective": "Effective September 26, 2025 · South Florida",
+    "sidebarTitle": "Quick summary",
+    "tocTitle": "On this page",
+    "summary": [
+      "We use what you send to plan a pool and reply to you.",
+      "We do not sell your personal information.",
+      "You can ask us what we have and how to reach us."
+    ],
+    "noteTitle": "We do not sell or share your personal information",
+    "noteBody": "We do not sell your name, email, phone, or project details, and we do not share them for cross-context advertising. We use them to answer you and to carry out a project you ask us to start.",
+    "sections": [
+      {
+        "title": "Scope of this policy",
+        "paragraphs": [
+          "This policy applies to lupinconstruction.com and to information you give Lupin Construction LLC when you configure a pool, request a consultation, or write to us about a project.",
+          "It does not apply to a manufacturer, a county portal, or another site we link to. Those sites have their own policies."
+        ]
+      },
+      {
+        "title": "Information we collect",
+        "paragraphs": [
+          "You give us information when you fill in a form or use the builder. That can include your name, email address, phone number, project address, and the message you write.",
+          "The builder also records the choices you make, such as shape, size, finish, coping, deck, lighting, and extras. Those choices are part of the request you send.",
+          "The site may also receive technical data your browser sends, such as the pages you open and a general location derived from your IP address, so the pages can load and so we can keep the site reliable."
+        ]
+      },
+      {
+        "title": "Project and property information",
+        "paragraphs": [
+          "A pool design depends on the property. If you share an address, photos, a survey, or notes about access, drainage, or existing structures, we use that information to see whether the pool you want can be built there.",
+          "Please do not send someone else’s personal information unless you have their permission to share it with us."
+        ]
+      },
+      {
+        "title": "How we use information",
+        "paragraphs": [
+          "We use your information to reply to you, prepare a proposal, schedule a visit, produce drawings, pull a permit, and build the pool you hire us to build.",
+          "We also use it to keep records of the project, to meet tax and contractor requirements, and to improve the website. We do not use it to build advertising profiles of our visitors."
+        ]
+      },
+      {
+        "title": "Phone, text, and email consent",
+        "paragraphs": [
+          "If you give us a phone number or an email address, you agree that we may contact you about the request you submitted. Messages may be sent by phone, text, or email.",
+          "Message and data rates from your carrier may apply. You can ask us to stop promotional messages at any time. We may still contact you about a project that is underway, a payment, or a record we are required to keep."
+        ]
+      },
+      {
+        "title": "Cookies and analytics",
+        "paragraphs": [
+          "The site may store a small amount of data in your browser to remember a language choice or to understand which pages are used. That data is used to run the site, not to follow you across other companies’ websites.",
+          "You can control cookies in your browser. Blocking them may affect how the site remembers the language you picked."
+        ]
+      },
+      {
+        "title": "Service providers and disclosures",
+        "paragraphs": [
+          "We share information with people who help us do the work you asked for: engineers, surveyors, permit runners, equipment suppliers, and the software that hosts this website and delivers form messages.",
+          "We also disclose information when the law requires it, when a county asks for it as part of a permit, or when we need to protect the safety of a job site. Those providers may only use the information for that purpose."
+        ]
+      },
+      {
+        "title": "No selling or sharing of personal information",
+        "paragraphs": [
+          "We do not sell personal information for money. We do not share it with third parties so they can advertise to you on other sites.",
+          "If this practice ever changes, we will update this policy and, where Florida law requires it, ask you before we do."
+        ]
+      },
+      {
+        "title": "Data security and retention",
+        "paragraphs": [
+          "We keep project records for as long as the business, the warranty, and Florida contractor rules require, and then we delete or archive them. A proposal you never proceed with is kept only as long as we need it to answer you and to keep a record of the request.",
+          "No website transmission is perfectly secure. Do not send account passwords or payment card numbers through the contact form."
+        ]
+      },
+      {
+        "title": "Florida and US privacy rights",
+        "paragraphs": [
+          "Depending on where you live, you may have the right to ask what personal information we have about you, to ask us to correct it, or to ask us to delete it when we are not required to keep it.",
+          "To make a request, use the contact details below. We may need to confirm that the request comes from you before we act on it. We will not discriminate against you for asking."
+        ]
+      },
+      {
+        "title": "Children's privacy",
+        "paragraphs": [
+          "This website is meant for adults who are planning a property. We do not knowingly collect personal information from children under 13. If you believe a child sent us information, contact us and we will delete it."
+        ]
+      },
+      {
+        "title": "Updates to this policy",
+        "paragraphs": [
+          "We may update this policy when our practices or the law change. The date at the top of the page is the date of the current version. The new version applies from that date."
+        ]
+      },
+      {
+        "title": "Contact and privacy requests",
+        "paragraphs": [
+          "Lupin Construction LLC, 7300 Biscayne Boulevard, Suite 210, Miami, FL 33138. Phone (305) 555-0188. Privacy requests can also be sent through the contact form on this website. Tell us that the message is a privacy request so we can route it correctly."
+        ]
+      }
+    ]
+  },
   "footer": {
     "description": "Bespoke pools, spas, and outdoor living environments designed for the South Florida lifestyle.",
     "serving": "Serving South Florida · Miami, Fort Lauderdale & Palm Beach",
@@ -362,7 +601,7 @@
     "exploreNav": "Explore",
     "studio": "Visit our design studio",
     "hours": "Mon–Fri 8:00 AM–6:00 PM · Sat by appointment",
-    "copyright": "© 2026 Lupin Construction LLC · Florida Contractor License: CFC-XXXXXXX",
+    "copyright": "© 2026 Lupin Construction LLC",
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
     "invitationTitle": "Your South Florida retreat starts here.",

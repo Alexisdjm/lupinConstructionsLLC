@@ -64,8 +64,8 @@ const STANDARDS = [
     ),
   },
   {
-    title: "20+ Years of Excellence",
-    description: "Trusted craftsmanship since 2004",
+    title: "18 Years of Excellence",
+    description: "Trusted craftsmanship since 2008",
     icon: (
       <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
         <circle
@@ -93,7 +93,7 @@ export async function Standard() {
   const copy = messages.standard;
 
   return (
-    <section id="standard" className="bg-white py-16 lg:py-20">
+    <section id="standard" className="scroll-mt-24 bg-white py-16 lg:py-20">
       <div className="page-shell">
         <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
           <div>

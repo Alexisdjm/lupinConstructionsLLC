@@ -37,7 +37,9 @@ export function FAQList({ items, cta, ctaHref }: FAQListProps) {
       </div>
 
       <div className="mt-8">
-        <PrimaryCTA href={ctaHref}>{cta}</PrimaryCTA>
+        <PrimaryCTA hoverColor="#C4FCFA" href={ctaHref}>
+          {cta}
+        </PrimaryCTA>
       </div>
     </>
   );

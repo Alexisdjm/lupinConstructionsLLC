@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useContactSubmit, type ContactRequest } from "@/src/hooks/useContactSubmit";
 import { PrimaryCTA } from "@/src/components/UXUI/PrimaryCTA";
 import type { Dictionary } from "@/src/i18n/getDictionary";
 
 type ContactCopy = Dictionary["contact"];
-type RequiredField = "name" | "email" | "service" | "message";
+type RequiredField = "name" | "email" | "message";
 type FormErrors = Partial<Record<RequiredField, string>>;
 
 const fieldClass =
@@ -13,14 +14,16 @@ const fieldClass =
 
 export function ContactForm({ copy }: { copy: ContactCopy }) {
   const [errors, setErrors] = useState<FormErrors>({});
-  const [submitted, setSubmitted] = useState(false);
+  const { status, submit } = useContactSubmit();
 
   function clearError(field: RequiredField) {
     setErrors((current) => ({ ...current, [field]: undefined }));
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (status === "submitting") return;
+
     const form = new FormData(event.currentTarget);
     const value = (field: string) => String(form.get(field) ?? "").trim();
     const nextErrors: FormErrors = {};
@@ -29,15 +32,25 @@ export function ContactForm({ copy }: { copy: ContactCopy }) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value("email"))) {
       nextErrors.email = copy.errors.email;
     }
-    if (!value("service")) nextErrors.service = copy.errors.service;
-    if (value("message").length < 12) nextErrors.message = copy.errors.message;
+    if (!value("message")) nextErrors.message = copy.errors.message;
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
-    setSubmitted(true);
+
+    const payload: ContactRequest = {
+      name: value("name"),
+      email: value("email"),
+      message: value("message"),
+    };
+    for (const field of ["phone", "location", "service", "budget", "timeline"] as const) {
+      const text = value(field);
+      if (text) payload[field] = text;
+    }
+
+    await submit(payload);
   }
 
-  if (submitted) {
+  if (status === "success") {
     return (
       <div className="rounded-2xl border border-[#2ad9c3]/35 bg-[#effcf9] px-6 py-12 text-center sm:px-10">
         <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-[#2ad9c3] text-[#062018]">
@@ -66,9 +79,9 @@ export function ContactForm({ copy }: { copy: ContactCopy }) {
         <Field label={copy.location} hint={copy.optional}>
           <input name="location" autoComplete="address-level2" placeholder={copy.locationPlaceholder} className={fieldClass} />
         </Field>
-        <Field label={copy.service} error={errors.service}>
-          <select name="service" defaultValue="" onChange={() => clearError("service")} aria-invalid={errors.service ? true : undefined} className={fieldClass}>
-            <option value="" disabled>{copy.selectOption}</option>
+        <Field label={copy.service} hint={copy.optional}>
+          <select name="service" defaultValue="" className={fieldClass}>
+            <option value="">{copy.selectOption}</option>
             {copy.services.map((option) => <option key={option} value={option}>{option}</option>)}
           </select>
         </Field>
@@ -92,10 +105,14 @@ export function ContactForm({ copy }: { copy: ContactCopy }) {
         </Field>
       </div>
 
+      {status === "error" ? (
+        <p role="alert" className="mt-5 text-sm text-[#b42318]">{copy.submitError}</p>
+      ) : null}
+
       <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-md text-xs leading-5 text-[#75808a]">{copy.privacy}</p>
-        <PrimaryCTA type="submit" hoverColor="#C4FCFA" className="justify-center sm:min-w-48">
-          {copy.submit}
+        <PrimaryCTA type="submit" hoverColor="#C4FCFA" disabled={status === "submitting"} className="justify-center sm:min-w-48 disabled:cursor-not-allowed disabled:opacity-60">
+          {status === "submitting" ? copy.sending : copy.submit}
         </PrimaryCTA>
       </div>
     </form>

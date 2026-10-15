@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useContactSubmit } from "@/src/hooks/useContactSubmit";
 import type { Dictionary } from "@/src/i18n/getDictionary";
 import { fill, localePath, type Locale } from "@/src/i18n/locales";
 import { ContactStep } from "./ContactStep";
@@ -16,6 +17,7 @@ import { InteriorStep } from "./InteriorStep";
 import { PoolViewer } from "./PoolViewer";
 import { ShapeStep } from "./ShapeStep";
 import { SuccessStep } from "./SuccessStep";
+import { quoteMessage } from "./summary";
 import type { ContactDetails, PhotoPhase, PoolConfig } from "./types";
 
 export type WizardCopy = Dictionary["wizard"];
@@ -39,8 +41,24 @@ export function PoolBuilder({ locale, copy, region }: PoolBuilderProps) {
   const [accentLight, setAccentLight] = useState<LightColorPhoto>("blue");
   const [stepError, setStepError] = useState("");
   const [quote, setQuote] = useState<ContactDetails | null>(null);
+  const { status, submit } = useContactSubmit();
 
   const homeHref = localePath(locale, "/");
+  const sending = status === "submitting";
+
+  async function handleQuote(contact: ContactDetails) {
+    if (sending) return;
+
+    const sent = await submit({
+      name: contact.name.trim(),
+      email: contact.email.trim(),
+      phone: contact.phone.trim(),
+      location: contact.address.trim(),
+      message: quoteMessage(config, copy, contact),
+    });
+
+    if (sent) setQuote(contact);
+  }
 
   function updateConfig(patch: Partial<PoolConfig>) {
     setConfig((current) => ({ ...current, ...patch }));
@@ -173,39 +191,45 @@ export function PoolBuilder({ locale, copy, region }: PoolBuilderProps) {
                 />
               ) : null}
               {step === 3 ? (
-                <ContactStep config={config} copy={copy} onSubmit={setQuote} />
+                <ContactStep config={config} copy={copy} onSubmit={handleQuote} />
               ) : null}
             </>
           )}
         </div>
 
         {quote ? null : (
-          <div className="flex gap-3 border-t border-white/10 px-5 py-4">
-            <button
-              type="button"
-              onClick={() => openStep(step - 1)}
-              disabled={step === 0}
-              className="rounded-full border border-white/15 px-5 py-3 text-sm text-white transition-colors hover:border-white/40 disabled:cursor-not-allowed disabled:opacity-35"
-            >
-              {copy.back}
-            </button>
-            {step < STEPS.length - 1 ? (
+          <div className="border-t border-white/10 px-5 py-4">
+            {step === STEPS.length - 1 && status === "error" ? (
+              <p role="alert" className="mb-3 text-sm text-[#ffb4ab]">{copy.submitError}</p>
+            ) : null}
+            <div className="flex gap-3">
               <button
                 type="button"
-                onClick={goNext}
-                className="flex-1 rounded-full bg-[#2ad9c3] px-5 py-3 text-sm font-semibold text-[#06261f] transition-colors hover:bg-[#5eead4]"
+                onClick={() => openStep(step - 1)}
+                disabled={step === 0 || sending}
+                className="rounded-full border border-white/15 px-5 py-3 text-sm text-white transition-colors hover:border-white/40 disabled:cursor-not-allowed disabled:opacity-35"
               >
-                {copy.continue}
+                {copy.back}
               </button>
-            ) : (
-              <button
-                type="submit"
-                form="quote-form"
-                className="flex-1 rounded-full bg-[#2ad9c3] px-5 py-3 text-sm font-semibold text-[#06261f] transition-colors hover:bg-[#5eead4]"
-              >
-                {copy.send}
-              </button>
-            )}
+              {step < STEPS.length - 1 ? (
+                <button
+                  type="button"
+                  onClick={goNext}
+                  className="flex-1 rounded-full bg-[#2ad9c3] px-5 py-3 text-sm font-semibold text-[#06261f] transition-colors hover:bg-[#5eead4]"
+                >
+                  {copy.continue}
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  form="quote-form"
+                  disabled={sending}
+                  className="flex-1 rounded-full bg-[#2ad9c3] px-5 py-3 text-sm font-semibold text-[#06261f] transition-colors hover:bg-[#5eead4] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {sending ? copy.sending : copy.send}
+                </button>
+              )}
+            </div>
           </div>
         )}
       </aside>
