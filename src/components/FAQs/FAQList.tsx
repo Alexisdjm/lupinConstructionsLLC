@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import { PrimaryCTA } from "@/src/components/UXUI/PrimaryCTA";
 import { FAQItem } from "./FAQItem";
 
@@ -17,21 +14,16 @@ type FAQListProps = {
 };
 
 export function FAQList({ items, cta, ctaHref }: FAQListProps) {
-  const [openId, setOpenId] = useState(items[0]?.id ?? "");
-
   return (
     <>
       <div className="mx-auto mt-10 flex flex-col gap-3">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <FAQItem
             key={item.id}
             id={item.id}
             question={item.question}
             answer={item.answer}
-            open={openId === item.id}
-            onToggle={() =>
-              setOpenId((current) => (current === item.id ? "" : item.id))
-            }
+            open={index === 0}
           />
         ))}
       </div>

@@ -26,6 +26,71 @@ body {
   margin-inline: auto;
 }
 
+.faq-details {
+  interpolate-size: allow-keywords;
+}
+
+.faq-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-chevron {
+  transition: transform 0.3s ease-out;
+}
+
+.faq-details[open] > summary .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.faq-details::details-content {
+  height: 0;
+  overflow: clip;
+  transition:
+    height 0.3s ease-out,
+    content-visibility 0.3s ease-out allow-discrete;
+}
+
+.faq-details[open]::details-content {
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-details::details-content,
+  .faq-chevron {
+    transition: none;
+  }
+}
+
+.service-card > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Keep every card's text in the layout so desktop hover can reveal it. */
+.service-card::details-content {
+  display: block;
+  height: auto;
+  content-visibility: visible;
+}
+
+@media (width < 64rem) {
+  .service-card[open] {
+    border-top-color: #2ad9c3;
+    background-color: rgb(6 40 58 / 0.8);
+  }
+
+  .service-card .service-panel {
+    grid-template-rows: 0fr;
+  }
+
+  .service-card[open] .service-panel {
+    grid-template-rows: 1fr;
+  }
+
+  .service-card:not([open]) .service-panel-inner {
+    visibility: hidden;
+  }
+}
+
 .primary-cta {
   position: relative;
   isolation: isolate;
@@ -167,6 +232,26 @@ body {
       0 0
     );
   }
+}
+
+.page-wave {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background-color: #2ad9c3;
+  pointer-events: auto;
+}
+
+.page-wave[data-phase="rise"] {
+  animation: cta-wave 0.8s linear forwards;
+}
+
+.page-wave[data-phase="hold"] {
+  clip-path: polygon(0% 100%, 100% 100%, 100% 0, 86% 0, 71% 0, 55% 0, 34% 0, 18% 0, 0 0);
+}
+
+.page-wave[data-phase="fall"] {
+  animation: cta-wave 0.8s linear reverse forwards;
 }
 
 h1,

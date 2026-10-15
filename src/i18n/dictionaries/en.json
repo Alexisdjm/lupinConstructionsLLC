@@ -10,6 +10,7 @@
   "notFound": {
     "title": "Not Found"
   },
+  "scrollTop": "Back to top",
   "contact": {
     "metaTitle": "Request a Consultation | Lupin Construction",
     "metaDescription": "Tell us about your pool construction, remodeling, or repair project and request a personalized consultation.",
@@ -267,16 +268,19 @@
     "design": "Start Your Design",
     "steps": [
       {
+        "id": "vision",
         "title": "1. Share Your Vision",
         "description": "Tell us about your ideal pool — dimensions, finish, lighting, water features — and we'll capture every detail.",
         "duration": "About 1 minute"
       },
       {
+        "id": "proposal",
         "title": "2. Receive Your Proposal",
         "description": "Our team reviews your submission and sends a tailored proposal by email, followed by a complimentary site visit.",
         "duration": "Proposal within 24 hours"
       },
       {
+        "id": "build",
         "title": "3. We Build",
         "description": "Our licensed team manages engineering, permits, construction, and your white-glove pool orientation.",
         "duration": "Typical build: 10-14 weeks"
@@ -289,6 +293,8 @@
     "subtitle": "Explore custom pools and outdoor spaces designed to complement South Florida homes and lifestyles.",
     "carousel": "Completed projects",
     "show": "Show {title}",
+    "previous": "Previous project",
+    "next": "Next project",
     "items": {
       "pinecrest-spa-terrace": { "category": "Spa & Lounge", "title": "Pinecrest Spa Terrace", "description": "A raised spa, wide entry steps, and a stone lounge terrace were integrated into a clean-lined pool built for effortless entertaining." },
       "coconut-grove-night-pool": { "category": "Evening Light", "title": "Coconut Grove Night Pool", "description": "We paired a dark interior finish with layered LED lighting and a streamlined deck to create a dramatic pool after sunset." },

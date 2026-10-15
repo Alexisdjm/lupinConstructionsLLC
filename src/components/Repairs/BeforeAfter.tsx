@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useCompareSlider } from "@/src/hooks/useCompareSlider";
 
 const BEFORE = "/Repairs/before.webp";
 const AFTER = "/Repairs/after.webp";
@@ -15,48 +15,7 @@ type BeforeAfterProps = {
 };
 
 export function BeforeAfter({ before, after, beforeAlt, slider, value }: BeforeAfterProps) {
-  const frameRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState(50);
-
-  function moveTo(clientX: number) {
-    const frame = frameRef.current;
-    if (!frame) return;
-    const bounds = frame.getBoundingClientRect();
-    if (bounds.width === 0) return;
-    const next = ((clientX - bounds.left) / bounds.width) * 100;
-    setPosition(Math.min(100, Math.max(0, next)));
-  }
-
-  function onPointerDown(event: React.PointerEvent<HTMLDivElement>) {
-    if (event.button !== 0) return;
-    event.currentTarget.setPointerCapture(event.pointerId);
-    moveTo(event.clientX);
-  }
-
-  function onPointerMove(event: React.PointerEvent<HTMLDivElement>) {
-    if (!event.currentTarget.hasPointerCapture(event.pointerId)) return;
-    moveTo(event.clientX);
-  }
-
-  function onKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
-    const step = event.shiftKey ? 10 : 2;
-    if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      setPosition((value) => Math.max(0, value - step));
-    }
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      setPosition((value) => Math.min(100, value + step));
-    }
-    if (event.key === "Home") {
-      event.preventDefault();
-      setPosition(0);
-    }
-    if (event.key === "End") {
-      event.preventDefault();
-      setPosition(100);
-    }
-  }
+  const { frameRef, position, onPointerDown, onPointerMove, onKeyDown } = useCompareSlider();
 
   return (
     <div

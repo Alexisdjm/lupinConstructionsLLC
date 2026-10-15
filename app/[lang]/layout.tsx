@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
+import { PageTransition } from "@/src/components/UXUI/PageTransition";
+import { ScrollToTop } from "@/src/components/UXUI/ScrollToTop";
 import { getDictionary } from "@/src/i18n/getDictionary";
 import { hasLocale, locales } from "@/src/i18n/locales";
 import "../globals.css";
@@ -33,13 +35,18 @@ export default async function RootLayout({
 }: LayoutProps<"/[lang]">) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
+  const { messages } = await getDictionary();
 
   return (
     <html
       lang={lang}
       className={`${inter.variable} ${plusJakarta.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <PageTransition />
+        <ScrollToTop label={messages.scrollTop} />
+        {children}
+      </body>
     </html>
   );
 }

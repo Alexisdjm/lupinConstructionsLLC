@@ -36,7 +36,7 @@ export async function Projects() {
 
       <ProjectSlider
         projects={localized}
-        labels={{ carousel: copy.carousel, show: copy.show }}
+        labels={{ carousel: copy.carousel, show: copy.show, previous: copy.previous, next: copy.next }}
         slidesPerView={4}
         breakpoints={{ mobile: 1, tablet: 2 }}
       />

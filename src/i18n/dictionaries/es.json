@@ -10,6 +10,7 @@
   "notFound": {
     "title": "No encontrado"
   },
+  "scrollTop": "Volver arriba",
   "contact": {
     "metaTitle": "Solicita una consulta | Lupin Construction",
     "metaDescription": "Cuéntanos sobre tu proyecto de construcción, remodelación o reparación de piscina y solicita una consulta personalizada.",
@@ -267,16 +268,19 @@
     "design": "Empieza tu diseño",
     "steps": [
       {
+        "id": "vision",
         "title": "1. Comparte tu idea",
         "description": "Cuéntanos la piscina que imaginas — medidas, acabado, iluminación, elementos de agua — y registramos cada detalle.",
         "duration": "Cerca de 1 minuto"
       },
       {
+        "id": "proposal",
         "title": "2. Recibe tu propuesta",
         "description": "Nuestro equipo revisa tu solicitud y envía una propuesta a medida por correo, seguida de una visita al sitio sin costo.",
         "duration": "Propuesta en 24 horas"
       },
       {
+        "id": "build",
         "title": "3. Construimos",
         "description": "Nuestro equipo con licencia gestiona la ingeniería, los permisos, la construcción y tu orientación de piscina.",
         "duration": "Obra típica: 10 a 14 semanas"
@@ -289,6 +293,8 @@
     "subtitle": "Explora piscinas y espacios exteriores diseñados para complementar las casas y el estilo de vida del sur de la Florida.",
     "carousel": "Proyectos terminados",
     "show": "Mostrar {title}",
+    "previous": "Proyecto anterior",
+    "next": "Siguiente proyecto",
     "items": {
       "pinecrest-spa-terrace": { "category": "Spa y salón", "title": "Terraza con spa en Pinecrest", "description": "Integramos un spa elevado, amplios escalones de acceso y una terraza de piedra en una piscina de líneas limpias, pensada para recibir invitados." },
       "coconut-grove-night-pool": { "category": "Luz de noche", "title": "Piscina nocturna en Coconut Grove", "description": "Combinamos un acabado interior oscuro, iluminación LED por capas y una terraza estilizada para crear una piscina impactante al anochecer." },
