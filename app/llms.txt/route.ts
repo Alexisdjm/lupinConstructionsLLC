@@ -1,11 +1,11 @@
 import { siteUrl } from "@/src/i18n/site";
 
 function llmsTxt(origin: string) {
-  return `# Lupin Construction LLC
+  return `# Lupin Constructions LLC
 
 > Bespoke pools, spas, and outdoor living designed for South Florida. The company serves Miami, Fort Lauderdale, and Palm Beach.
 
-Lupin Construction LLC designs and builds custom pools, remodels existing pools, repairs pools, and sells parts. One team handles design, engineering, permits, and construction. The online pool builder is a visual preview and does not show an instant price. A proposal follows after the team reviews the project.
+Lupin Constructions LLC designs and builds custom pools, remodels existing pools, repairs pools, and sells parts. One team handles design, engineering, permits, and construction. The online pool builder is a visual preview and does not show an instant price. A proposal follows after the team reviews the project.
 
 ## Contact
 

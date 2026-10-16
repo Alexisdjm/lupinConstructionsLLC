@@ -1,10 +1,10 @@
 {
   "meta": {
-    "title": "Lupin Construction LLC | Luxury Pools in South Florida",
-    "description": "Bespoke pools, spas, and outdoor living designed for South Florida. Design your pool and request a custom proposal."
+    "title": "Lupin Constructions LLC | Pool Contractor in Miami, FL",
+    "description": "Custom pool construction, remodeling, and repair in Miami and South Florida. Design your pool and request a proposal from Lupin Constructions LLC."
   },
   "create": {
-    "title": "Design Your Pool | Lupin Construction",
+    "title": "Design Your Pool | Lupin Constructions LLC",
     "description": "Configure the shape, interior, coping, and extras for your South Florida pool, then request a custom proposal."
   },
   "notFound": {
@@ -12,7 +12,7 @@
   },
   "scrollTop": "Back to top",
   "contact": {
-    "metaTitle": "Request a Consultation | Lupin Construction",
+    "metaTitle": "Miami Pool Consultation | Lupin Constructions LLC",
     "metaDescription": "Tell us about your pool construction, remodeling, or repair project and request a personalized consultation.",
     "eyebrow": "Request a consultation",
     "title": "Let's talk about your project.",
@@ -65,7 +65,7 @@
     "quote": { "href": "/contact", "label": "Request a Quote" }
   },
   "hero": {
-    "label": "Lupin Construction",
+    "label": "Lupin Constructions",
     "eyebrow": "Miami's Luxury Pool Specialists",
     "title": "Build Your Backyard Paradise in South Florida",
     "subtitle": "Tell us about your vision and receive a personalized proposal crafted by our expert design team, delivered by email.",
@@ -234,7 +234,7 @@
   "services": {
     "eyebrow": "Our Services",
     "title": "What We Build For You.",
-    "subtitle": "From new pool construction to expert repairs and premium parts, Lupin Construction delivers quality at every stage of your pool's life.",
+    "subtitle": "From new pool construction to expert repairs and premium parts, Lupin Constructions delivers quality at every stage of your pool's life.",
     "learnMore": "Learn More",
     "items": [
       {
@@ -352,16 +352,16 @@
   "reviews": {
     "eyebrow": "Share your experience",
     "title": "Leave a Review",
-    "subtitle": "We value your honest feedback. Share your experience working with Lupin Construction LLC so others can learn more about our team.",
+    "subtitle": "We value your honest feedback. Share your experience working with Lupin Constructions LLC so others can learn more about our team.",
     "formTitle": "Share your experience",
-    "thanks": "Thank you for sharing your experience with Lupin Construction LLC.",
+    "thanks": "Thank you for sharing your experience with Lupin Constructions LLC.",
     "google": "Leave a Review on Google",
     "name": "Full name",
     "namePlaceholder": "Enter your full name",
     "email": "Email address",
     "review": "Your review",
     "reviewPlaceholder": "Tell us about your experience, what went well, and any details you think would be helpful to others.",
-    "consent": "I agree that Lupin Construction LLC may publish my review on this website. I understand that my email address will not be published.",
+    "consent": "I agree that Lupin Constructions LLC may publish my review on this website. I understand that my email address will not be published.",
     "submit": "Submit Review",
     "starOne": "1 star",
     "starMany": "{count} stars",
@@ -374,8 +374,8 @@
     }
   },
   "terms": {
-    "metaTitle": "Terms of Service | Lupin Construction",
-    "metaDescription": "How Lupin Construction LLC plans, estimates, and builds a custom pool in South Florida, and the terms that apply when you use this website.",
+    "metaTitle": "Terms of Service | Lupin Constructions LLC",
+    "metaDescription": "How Lupin Constructions LLC plans, estimates, and builds a custom pool in South Florida, and the terms that apply when you use this website.",
     "breadcrumbLabel": "Breadcrumb",
     "home": "Home",
     "crumbGroup": "Legal",
@@ -392,7 +392,7 @@
       {
         "title": "Acceptance of these terms",
         "paragraphs": [
-          "By using lupinconstruction.com, configuring a pool, or requesting a consultation, you agree to these terms. If you do not agree, please do not use the site to request work.",
+          "By using lupinconstructionsllc.com, configuring a pool, or requesting a consultation, you agree to these terms. If you do not agree, please do not use the site to request work.",
           "These terms cover the website and the planning process. The contract for a specific pool, when one is signed, governs the construction itself."
         ]
       },
@@ -413,7 +413,7 @@
       {
         "title": "Site evaluation",
         "paragraphs": [
-          "Before a price becomes a contract, Lupin Construction LLC may need to visit the property or review plans, photos, and access. You agree to tell us about known conditions that would affect the work, including easements, flooding, and structures we cannot see from the street.",
+          "Before a price becomes a contract, Lupin Constructions LLC may need to visit the property or review plans, photos, and access. You agree to tell us about known conditions that would affect the work, including easements, flooding, and structures we cannot see from the street.",
           "A site visit is a chance to confirm the design. It is not, by itself, an agreement to build."
         ]
       },
@@ -476,7 +476,7 @@
       {
         "title": "Limitation of liability",
         "paragraphs": [
-          "To the extent Florida law allows, Lupin Construction LLC is not liable for indirect or consequential losses arising from the use of this website, including lost time or a design you cannot build as configured.",
+          "To the extent Florida law allows, Lupin Constructions LLC is not liable for indirect or consequential losses arising from the use of this website, including lost time or a design you cannot build as configured.",
           "Nothing on this page limits liability that Florida law does not allow us to limit, including liability for our own gross negligence or willful misconduct."
         ]
       },
@@ -490,14 +490,14 @@
       {
         "title": "Contact information",
         "paragraphs": [
-          "Lupin Construction LLC, 7300 Biscayne Boulevard, Suite 210, Miami, FL 33138. Phone (305) 555-0188. Questions about these terms can also be sent through the contact form on this website."
+          "Lupin Constructions LLC, 3941 SW 89th Av Apt 3, Miami, FL. Phone (305) 321-2186. Questions about these terms can also be sent through the contact form on this website."
         ]
       }
     ]
   },
   "privacy": {
-    "metaTitle": "Privacy Policy | Lupin Construction",
-    "metaDescription": "How Lupin Construction LLC collects, uses, and protects the information you share when you plan a pool or request a proposal.",
+    "metaTitle": "Privacy Policy | Lupin Constructions LLC",
+    "metaDescription": "How Lupin Constructions LLC collects, uses, and protects the information you share when you plan a pool or request a proposal.",
     "breadcrumbLabel": "Breadcrumb",
     "home": "Home",
     "crumbGroup": "Privacy",
@@ -518,7 +518,7 @@
       {
         "title": "Scope of this policy",
         "paragraphs": [
-          "This policy applies to lupinconstruction.com and to information you give Lupin Construction LLC when you configure a pool, request a consultation, or write to us about a project.",
+          "This policy applies to lupinconstructionsllc.com and to information you give Lupin Constructions LLC when you configure a pool, request a consultation, or write to us about a project.",
           "It does not apply to a manufacturer, a county portal, or another site we link to. Those sites have their own policies."
         ]
       },
@@ -601,7 +601,7 @@
       {
         "title": "Contact and privacy requests",
         "paragraphs": [
-          "Lupin Construction LLC, 7300 Biscayne Boulevard, Suite 210, Miami, FL 33138. Phone (305) 555-0188. Privacy requests can also be sent through the contact form on this website. Tell us that the message is a privacy request so we can route it correctly."
+          "Lupin Constructions LLC, 3941 SW 89th Av Apt 3, Miami, FL. Phone (305) 321-2186. Privacy requests can also be sent through the contact form on this website. Tell us that the message is a privacy request so we can route it correctly."
         ]
       }
     ]

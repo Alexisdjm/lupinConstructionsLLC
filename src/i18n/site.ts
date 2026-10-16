@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { Locale } from "./locales";
 
+export const companyName = "Lupin Constructions LLC";
+
 export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://lupinconstructionsllc.com"
 ).replace(/\/$/, "");
@@ -36,7 +38,7 @@ export function pageMetadata(
       title,
       description,
       url,
-      siteName: "Lupin Construction LLC",
+      siteName: companyName,
       locale: locale === "es" ? "es_US" : "en_US",
       alternateLocale: locale === "es" ? ["en_US"] : ["es_US"],
       type: "website",
@@ -53,13 +55,16 @@ export function localBusinessJsonLd(locale: Locale, description: string) {
   return {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
-    name: "Lupin Construction LLC",
+    name: companyName,
     description,
     url: localizedUrl(locale),
+    logo: `${siteUrl}/svgs/lupin.svg`,
+    image: `${siteUrl}/hero/villa-night.jpg`,
     telephone: "+1-305-321-2186",
     address: {
       "@type": "PostalAddress",
       streetAddress: "3941 SW 89th Av Apt 3",
+      addressLocality: "Miami",
       addressRegion: "FL",
       addressCountry: "US",
     },

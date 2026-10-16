@@ -20,6 +20,16 @@ function preferredLocale(request: NextRequest): Locale {
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  if (request.nextUrl.hostname === "www.lupinconstructionsllc.com") {
+    const canonicalUrl = request.nextUrl.clone();
+    canonicalUrl.hostname = "lupinconstructionsllc.com";
+    canonicalUrl.protocol = "https:";
+    return NextResponse.redirect(canonicalUrl, 308);
+  }
+
+  if (/\.[^/]+$/.test(pathname)) return;
+
   const hasLocale = locales.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );
@@ -32,5 +42,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|.*\\..*).*)"],
+  matcher: ["/((?!_next).*)"],
 };
