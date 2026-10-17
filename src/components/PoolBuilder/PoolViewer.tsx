@@ -436,7 +436,7 @@ export function PoolViewer({
         </div>
       </div>
 
-      <div className="absolute lg:top-0 top-18 left-1/2 z-20 -translate-x-1/2 md:top-4">
+      <div className="absolute lg:top-4 top-18 left-1/2 z-20 -translate-x-1/2 md:top-4">
         <div
           role="radiogroup"
           aria-label={copy.previewStyle}
