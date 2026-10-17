@@ -1,8 +1,10 @@
+import { Suspense } from "react";
 import { getDictionary } from "@/src/i18n/getDictionary";
 import { ReviewsForm } from "./ReviewsForm";
+import { ReviewsList, ReviewsListLoading } from "./ReviewsList";
 
 export async function Reviews() {
-  const { messages } = await getDictionary();
+  const { locale, messages } = await getDictionary();
   const copy = messages.reviews;
   return (
     <section id="reviews" className="scroll-mt-24 bg-[#061B2D]">
@@ -49,6 +51,10 @@ export async function Reviews() {
             {copy.subtitle}
           </p>
         </div>
+
+        <Suspense fallback={<ReviewsListLoading copy={copy} />}>
+          <ReviewsList copy={copy} locale={locale} />
+        </Suspense>
 
         <ReviewsForm copy={copy} />
       </div>

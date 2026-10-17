@@ -16,6 +16,18 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Public API configuration
+
+The reviews and contact integrations use the public API base URL below:
+
+```env
+NEXT_PUBLIC_API_URL=https://api.lupinconstructionsllc.com
+```
+
+The application uses that production URL as a fallback. Docker builds can override it with
+`--build-arg NEXT_PUBLIC_API_URL=https://api.lupinconstructionsllc.com`. This value is a public
+URL; private backend credentials must never be added to the frontend build.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

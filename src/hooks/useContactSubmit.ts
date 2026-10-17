@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { API_BASE_URL } from "@/src/lib/api";
 
-const CONTACT_ENDPOINT = "https://api.lupinconstructionsllc.com/contact";
+const CONTACT_ENDPOINT = `${API_BASE_URL}/contact`;
 
 export type ContactRequest = {
   name: string;

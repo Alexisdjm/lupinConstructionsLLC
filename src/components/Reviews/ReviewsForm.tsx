@@ -3,12 +3,16 @@
 import { useState, type FormEvent } from "react";
 import { PrimaryCTA } from "@/src/components/UXUI/PrimaryCTA";
 import { SecondaryCTA } from "@/src/components/UXUI/SecondaryTSX";
+import {
+  useReviewSubmit,
+  type ReviewField,
+  type ReviewSubmitError,
+} from "@/src/hooks/useReviewSubmit";
 import type { Dictionary } from "@/src/i18n/getDictionary";
 
 const GOOGLE_REVIEW_URL =
-  "https://www.google.com/search?q=Lupin+Construction+LLC+South+Florida";
+  "https://www.google.com/search?q=Lupin+Constructions+LLC+South+Florida";
 
-type ReviewField = "rating" | "name" | "email" | "review" | "consent";
 type ReviewErrors = Partial<Record<ReviewField, string>>;
 
 const fieldClass =
@@ -31,6 +35,7 @@ function Star({ filled }: { filled: boolean }) {
 type ReviewsCopy = Dictionary["reviews"];
 
 export function ReviewsForm({ copy }: { copy: ReviewsCopy }) {
+  const { status, submit } = useReviewSubmit();
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
   const [name, setName] = useState("");
@@ -38,28 +43,68 @@ export function ReviewsForm({ copy }: { copy: ReviewsCopy }) {
   const [review, setReview] = useState("");
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<ReviewErrors>({});
-  const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<ReviewSubmitError | null>(null);
 
   function clearError(field: ReviewField) {
     setErrors((current) => ({ ...current, [field]: undefined }));
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (status === "submitting") return;
+
     const nextErrors: ReviewErrors = {};
-    if (rating < 1) nextErrors.rating = copy.errors.rating;
-    if (name.trim().length < 2) nextErrors.name = copy.errors.name;
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedReview = review.trim();
+    if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
+      nextErrors.rating = copy.errors.rating;
+    }
+    if (trimmedName.length < 2 || trimmedName.length > 100) {
+      nextErrors.name = copy.errors.name;
+    }
+    if (
+      trimmedEmail.length > 254 ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)
+    ) {
       nextErrors.email = copy.errors.email;
     }
-    if (review.trim().length < 12) {
+    if (trimmedReview.length < 12 || trimmedReview.length > 2000) {
       nextErrors.review = copy.errors.review;
     }
     if (!consent) nextErrors.consent = copy.errors.consent;
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length > 0) return;
-    setSubmitted(true);
+    setSubmitError(null);
+    if (Object.keys(nextErrors).length > 0) {
+      setSubmitError("validation");
+      return;
+    }
+
+    const result = await submit({
+      name: trimmedName,
+      email: trimmedEmail,
+      rating,
+      message: trimmedReview,
+      consent,
+    });
+
+    if (!result.ok) {
+      const backendErrors: ReviewErrors = {};
+      for (const field of result.fields) backendErrors[field] = copy.errors[field];
+      setErrors((current) => ({ ...current, ...backendErrors }));
+      setSubmitError(result.error);
+      return;
+    }
+
+    setRating(0);
+    setHovered(0);
+    setName("");
+    setEmail("");
+    setReview("");
+    setConsent(false);
   }
+
+  const submitErrorMessage = submitError ? copy.submitErrors[submitError] : null;
 
   return (
     <div className="mx-auto mt-10 max-w-235 rounded-[20px] border border-white/10 bg-[#162636] p-6 sm:p-8">
@@ -67,24 +112,26 @@ export function ReviewsForm({ copy }: { copy: ReviewsCopy }) {
         {copy.formTitle}
       </h3>
 
-      {submitted ? (
-        <div className="mt-6">
+      {status === "success" ? (
+        <div className="mt-6" role="status" aria-live="polite">
           <p className="text-sm leading-6 text-white/75">
             {copy.thanks}
           </p>
+          <p className="mt-2 text-sm leading-6 text-white/60">{copy.pending}</p>
           <SecondaryCTA href={GOOGLE_REVIEW_URL} external className="mt-6">
             {copy.google}
             <ExternalIcon />
           </SecondaryCTA>
         </div>
       ) : (
-        <form className="mt-6" onSubmit={handleSubmit} noValidate>
+        <form className="mt-6" onSubmit={handleSubmit} noValidate aria-busy={status === "submitting"}>
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block text-sm text-white/80">
               {copy.name}
               <input
                 name="name"
                 autoComplete="name"
+                maxLength={100}
                 value={name}
                 placeholder={copy.namePlaceholder}
                 onChange={(event) => {
@@ -93,9 +140,10 @@ export function ReviewsForm({ copy }: { copy: ReviewsCopy }) {
                 }}
                 className={`${fieldClass} mt-2`}
                 aria-invalid={errors.name ? true : undefined}
+                aria-describedby={errors.name ? "review-name-error" : undefined}
               />
               {errors.name ? (
-                <span className="mt-1 block text-xs text-[#ffb4b4]">
+                <span id="review-name-error" className="mt-1 block text-xs text-[#ffb4b4]">
                   {errors.name}
                 </span>
               ) : null}
@@ -106,6 +154,7 @@ export function ReviewsForm({ copy }: { copy: ReviewsCopy }) {
                 name="email"
                 type="email"
                 autoComplete="email"
+                maxLength={254}
                 value={email}
                 placeholder="name@example.com"
                 onChange={(event) => {
@@ -114,9 +163,10 @@ export function ReviewsForm({ copy }: { copy: ReviewsCopy }) {
                 }}
                 className={`${fieldClass} mt-2`}
                 aria-invalid={errors.email ? true : undefined}
+                aria-describedby={errors.email ? "review-email-error" : undefined}
               />
               {errors.email ? (
-                <span className="mt-1 block text-xs text-[#ffb4b4]">
+                <span id="review-email-error" className="mt-1 block text-xs text-[#ffb4b4]">
                   {errors.email}
                 </span>
               ) : null}
@@ -128,6 +178,7 @@ export function ReviewsForm({ copy }: { copy: ReviewsCopy }) {
             <textarea
               name="review"
               rows={5}
+              maxLength={2000}
               value={review}
               placeholder={copy.reviewPlaceholder}
               onChange={(event) => {
@@ -136,18 +187,21 @@ export function ReviewsForm({ copy }: { copy: ReviewsCopy }) {
               }}
               className={`${fieldClass} mt-2 resize-y`}
               aria-invalid={errors.review ? true : undefined}
+              aria-describedby={errors.review ? "review-message-error" : undefined}
             />
             {errors.review ? (
-              <span className="mt-1 block text-xs text-[#ffb4b4]">
+              <span id="review-message-error" className="mt-1 block text-xs text-[#ffb4b4]">
                 {errors.review}
               </span>
             ) : null}
           </label>
 
           <div className="mt-3">
+            <p id="review-rating-label" className="text-sm text-white/80">{copy.rating}</p>
             <div
               role="radiogroup"
               aria-labelledby="review-rating-label"
+              aria-describedby={errors.rating ? "review-rating-error" : undefined}
               className="mt-2 flex gap-1 text-[#7f8b96]"
               onMouseLeave={() => setHovered(0)}
             >
@@ -177,7 +231,7 @@ export function ReviewsForm({ copy }: { copy: ReviewsCopy }) {
               })}
             </div>
             {errors.rating ? (
-              <p className="mt-1 text-xs text-[#ffb4b4]">{errors.rating}</p>
+              <p id="review-rating-error" className="mt-1 text-xs text-[#ffb4b4]">{errors.rating}</p>
             ) : null}
           </div>
 
@@ -190,18 +244,33 @@ export function ReviewsForm({ copy }: { copy: ReviewsCopy }) {
                 clearError("consent");
               }}
               className="mt-0.5 size-4 shrink-0 accent-[#2ad9c3]"
+              aria-invalid={errors.consent ? true : undefined}
+              aria-describedby={errors.consent ? "review-consent-error" : undefined}
             />
             <span>
               {copy.consent}
             </span>
           </label>
           {errors.consent ? (
-            <p className="mt-1 text-xs text-[#ffb4b4]">{errors.consent}</p>
+            <p id="review-consent-error" className="mt-1 text-xs text-[#ffb4b4]">{errors.consent}</p>
           ) : null}
 
+          <div aria-live="polite" aria-atomic="true">
+            {status === "submitting" ? (
+              <p className="mt-4 text-sm text-white/60">{copy.submitting}</p>
+            ) : submitErrorMessage ? (
+              <p className="mt-4 text-sm text-[#ffb4b4]" role="alert">{submitErrorMessage}</p>
+            ) : null}
+          </div>
+
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <PrimaryCTA hoverColor="#C4FCFA" type="submit" className="w-full justify-center">
-              {copy.submit}
+            <PrimaryCTA
+              hoverColor="#C4FCFA"
+              type="submit"
+              disabled={status === "submitting"}
+              className="w-full justify-center disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {status === "submitting" ? copy.submitting : copy.submit}
             </PrimaryCTA>
             <SecondaryCTA
               href={GOOGLE_REVIEW_URL}
